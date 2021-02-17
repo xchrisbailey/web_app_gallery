@@ -34,7 +34,11 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld />
+      <div id="nav">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link>
+      </div>
+      <router-view />
     </v-main>
   </v-app>
 </template>
@@ -45,10 +49,6 @@ import HelloWorld from "./components/HelloWorld.vue";
 
 export default Vue.extend({
   name: "App",
-
-  components: {
-    HelloWorld
-  },
 
   data: () => ({
     //
