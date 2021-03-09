@@ -5,8 +5,8 @@ const createUser = async (data) => {
   await user.save();
   const token = await user.genAuthToken();
   return {
-    user,
     token,
+    user,
   };
 };
 
@@ -15,8 +15,8 @@ const loginUser = async (email, password) => {
   if (!user) throw new Error('User not found');
   const token = await user.genAuthToken(); //generate new jwt
   return {
-    user,
     token,
+    user,
   };
 };
 
