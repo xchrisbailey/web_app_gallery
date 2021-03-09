@@ -28,17 +28,19 @@ const userSchema = new mongoose.Schema(
 );
 
 // sanitize sensitive info before returning json
-userSchema.methods.toJSON = function () {
+userSchema.methods.toJSON = function() {
   const user = this;
   const uo = user.toObject();
 
   delete uo.password;
+  delete uo.createdAt;
+  delete uo.updatedAt;
 
   return uo;
 };
 
 // generate new jwt
-userSchema.methods.genAuthToken = async function () {
+userSchema.methods.genAuthToken = async function() {
   const user = this;
   const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, {
     expiresIn: '1d',
@@ -47,7 +49,7 @@ userSchema.methods.genAuthToken = async function () {
 };
 
 // find user by email and check for valid password
-userSchema.statics.findByCred = async function (email, password) {
+userSchema.statics.findByCred = async function(email, password) {
   const user = await User.findOne({ email });
   if (!user) throw new Error('Email not found');
 
@@ -58,7 +60,7 @@ userSchema.statics.findByCred = async function (email, password) {
 };
 
 // hash user password
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function(next) {
   const user = this;
 
   if (user.isModified('password')) {

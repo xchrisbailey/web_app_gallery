@@ -7,8 +7,7 @@ const r = new express.Router();
 
 r.post('/signup', userController.createUser);
 r.post('/login', userController.loginUser);
-r.get('/me', auth, async (req, res) => {
-  res.json(req.user);
-});
+r.post('/logout', userController.logoutUser)
+r.get('/me', auth, userController.getProfile);
 
 module.exports = r;
