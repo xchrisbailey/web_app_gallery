@@ -7,7 +7,7 @@ const expressPinoLogger = require('express-pino-logger');
 const logger = require('./utils/logger');
 const db = require('./utils/db');
 
-const indexRouter = require('./routers/index');
+const { userRouter } = require('./user')
 
 // create instance of app
 const app = express();
@@ -29,6 +29,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressPinoLogger({ logger: logger }));
 
 // routers
-app.use('/', indexRouter); // attach index router to root path
+app.use('/', userRouter)
 
 module.exports = app;
