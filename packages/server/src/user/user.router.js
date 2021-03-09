@@ -1,14 +1,14 @@
-const express = require('express')
+const express = require('express');
 
-const userController = require('./user.controller')
-const auth = require('../middleware/auth')
+const userController = require('./user.controller');
+const auth = require('../middleware/auth');
 
-const r = new express.Router()
+const r = new express.Router();
 
-r.post('/signup', userController.createUser)
-r.post('/login', userController.loginUser)
+r.post('/signup', userController.createUser);
+r.post('/login', userController.loginUser);
 r.get('/me', auth, async (req, res) => {
-  res.json(req.user)
-})
+  res.json(req.user);
+});
 
-module.exports = r
+module.exports = r;
