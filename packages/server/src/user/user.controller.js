@@ -40,9 +40,27 @@ const getProfile = (req, res) => {
   });
 };
 
+const deleteUser = async (req, res) => {
+  try {
+    (await userService.deleteUser(req.user._id)) &&
+      res
+        .status(201)
+        .json({
+          stauts: 'ok',
+          data: { message: 'Account successfully removed' },
+        });
+  } catch (e) {
+    res.status(400).json({ status: 'error', data: { message: e.message } });
+  }
+};
+
+const updateUser = (req, res) => {};
+
 module.exports = {
+  getProfile,
   createUser,
   loginUser,
   logoutUser,
-  getProfile,
+  deleteUser,
+  updateUser,
 };
