@@ -11,5 +11,6 @@ r.post('/login', userController.loginUser);
 r.post('/logout', auth, userController.logoutUser);
 r.delete('/me/destroy', auth, userController.deleteUser);
 r.put('/me', auth, userController.updateUser);
+r.put('/me/updatePassword', auth, userController.updatePassword);
 
 module.exports = r;

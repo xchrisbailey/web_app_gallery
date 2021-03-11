@@ -30,10 +30,21 @@ const update = async (uid, updates) => {
   for (k in updates) {
     if (allowedUpdates.includes(k)) validUpdates[k] = updates[k];
   }
-  if (!Object.keys(validUpdates).length) throw new Error('No valid updates provided');
+  if (!Object.keys(validUpdates).length)
+    throw new Error('No valid updates provided');
 
-  const data = await User.findByIdAndUpdate(uid, { ...validUpdates }, { new: true });
+  const data = await User.findByIdAndUpdate(
+    uid,
+    { ...validUpdates },
+    { new: true },
+  );
   return data;
+};
+
+const updatePass = async (uid, newPassword) => {
+  const user = await User.findById(uid);
+  user.password = newPassword;
+  await user.save();
 };
 
 module.exports = {
@@ -41,4 +52,5 @@ module.exports = {
   login,
   remove,
   update,
+  updatePass,
 };
