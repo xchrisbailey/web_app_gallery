@@ -1,6 +1,6 @@
 const User = require('./user.model');
 
-const createUser = async (data) => {
+const create = async (data) => {
   const user = new User(data);
   await user.save();
   const token = await user.genAuthToken();
@@ -10,25 +10,35 @@ const createUser = async (data) => {
   };
 };
 
-const loginUser = async (email, password) => {
+const login = async (email, password) => {
   const user = await User.findByCred(email, password); // authorize and get requested user
   if (!user) throw new Error('User not found');
-  const token = await user.genAuthToken(); //generate new jwt
-  return {
-    token,
-    user,
-  };
+  return user;
 };
 
-const deleteUser = async (uid) => {
+const remove = async (uid) => {
   const user = await User.findById(uid);
   if (!user) throw new Error('User could not be found');
-  await user.delete();
-  return true;
+  const res = await user.remove();
+  if (res) return true;
+  throw new Error('User could not be removed');
+};
+
+const update = async (uid, updates) => {
+  const allowedUpdates = ['firstName', 'lastName', 'email'];
+  const validUpdates = {};
+  for (k in updates) {
+    if (allowedUpdates.includes(k)) validUpdates[k] = updates[k];
+  }
+  if (!Object.keys(validUpdates).length) throw new Error('No valid updates provided');
+
+  const data = await User.findByIdAndUpdate(uid, { ...validUpdates }, { new: true });
+  return data;
 };
 
 module.exports = {
-  createUser,
-  loginUser,
-  deleteUser,
+  create,
+  login,
+  remove,
+  update,
 };

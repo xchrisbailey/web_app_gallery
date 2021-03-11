@@ -1,35 +1,34 @@
 const userService = require('./user.service');
 const authCookie = require('../utils/authCookie');
 
+const r = require('../utils/resHelpers.js')
+
 const createUser = async (req, res) => {
   try {
-    const { token, user } = await userService.createUser(req.body);
+    const { token, user } = await userService.create(req.body);
     authCookie(res, token); // set auth cookie
-    res.status(201).json({ status: 'ok', data: user });
+    r.data(res, 201, user)
   } catch (e) {
-    res.status(400).json({ status: 'error', data: { message: e.message } });
+    r.error(res, 400, e.message)
   }
 };
 
 const loginUser = async (req, res) => {
   try {
-    const { token, user } = await userService.loginUser(
-      req.body.email,
-      req.body.password,
-    );
-    authCookie(res, token);
-    res.status(200).json({ status: 'ok', data: user });
+    const user = await userService.login(req.body.email, req.body.password);
+    authCookie(res, await user.genAuthToken());
+    r.data(res, 200, user)
   } catch (e) {
-    res.status(400).json({ status: 'error', data: { message: e.message } });
+    r.error(res, 400, e.message)
   }
 };
 
 const logoutUser = (req, res) => {
   try {
     res.clearCookie('token');
-    res.status(200).json({ status: 'ok' });
+    r.data(res, 200, {})
   } catch (e) {
-    res.status(400).json({ status: 'error', data: { message: e.message } });
+    r.error(res, 400, e.message)
   }
 };
 
@@ -42,19 +41,21 @@ const getProfile = (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    (await userService.deleteUser(req.user._id)) &&
-      res
-        .status(201)
-        .json({
-          stauts: 'ok',
-          data: { message: 'Account successfully removed' },
-        });
+    (await userService.remove(req.user._id)) &&
+      r.data(res, 200, { message: 'Account successfully removed' })
   } catch (e) {
-    res.status(400).json({ status: 'error', data: { message: e.message } });
+    r.error(res, 400, e.message)
   }
 };
 
-const updateUser = (req, res) => {};
+const updateUser = async (req, res) => {
+  try {
+    const updatedUser = await userService.update(req.user._id, req.body)
+    r.data(res, 201, updatedUser)
+  } catch (e) {
+    r.error(res, 400, e.message)
+  }
+};
 
 module.exports = {
   getProfile,
