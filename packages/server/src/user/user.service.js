@@ -2,12 +2,9 @@ const User = require('./user.model');
 
 const create = async (data) => {
   const user = new User(data);
+  if (!user) throw new Error('Account creation failed')
   await user.save();
-  const token = await user.genAuthToken();
-  return {
-    token,
-    user,
-  };
+  return user;
 };
 
 const login = async (email, password) => {
@@ -16,33 +13,30 @@ const login = async (email, password) => {
   return user;
 };
 
-const remove = async (uid) => {
-  const user = await User.findById(uid);
-  if (!user) throw new Error('User could not be found');
+const remove = async (user) => {
   const res = await user.remove();
   if (res) return true;
   throw new Error('User could not be removed');
 };
 
-const update = async (uid, updates) => {
-  const allowedUpdates = ['firstName', 'lastName', 'email'];
+const update = async (user, updates) => {
+  const allowedUpdates = ['firstName', 'lastName', 'email']; // user updatable fields
   const validUpdates = {};
+
+  // sanitize incoming updates to those allowed by system
   for (k in updates) {
     if (allowedUpdates.includes(k)) validUpdates[k] = updates[k];
   }
+
   if (!Object.keys(validUpdates).length)
     throw new Error('No valid updates provided');
 
-  const data = await User.findByIdAndUpdate(
-    uid,
-    { ...validUpdates },
-    { new: true },
-  );
-  return data;
+  for (u in validUpdates) user[u] = validUpdates[u]; // assign new fields to user object
+  await user.save();
+  return user;
 };
 
-const updatePass = async (uid, newPassword) => {
-  const user = await User.findById(uid);
+const updatePass = async (user, newPassword) => {
   user.password = newPassword;
   await user.save();
 };
