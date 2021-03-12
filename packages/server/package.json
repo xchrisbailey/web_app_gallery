@@ -19,7 +19,9 @@
     "mongoose": "^5.11.18",
     "pino": "^6.11.1",
     "pino-colada": "^2.1.0",
-    "pino-pretty": "^4.5.0"
+    "pino-pretty": "^4.5.0",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "eslint": "^7.21.0",
