@@ -23,6 +23,12 @@ const routes: Array<RouteConfig> = [
     path: "*",
     name: "Not Found",
     component: () => import(/* webpackChunkName: "404" */ "../views/404.vue")
+  },
+  {
+    path: "/Rating",
+    name: "Rating",
+    component: () => import("../views/Ratings.vue")
+
   }
 ];
 
