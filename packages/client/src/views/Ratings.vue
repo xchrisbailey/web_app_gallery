@@ -12,36 +12,36 @@
             </v-flex>
         </v-layout>
         <v-layout row wrap justify-space-around>
-            <v-flex xs5 md12>
+            <v-flex xs12 md12>
                 <v-radio-group
                 v-model="row"
                 row
                 >
-                    <v-flex xs5 md2>
+                    <v-flex xs2 md1>
                         <v-radio
                         label="1"
                         value="rating-1"
                         ></v-radio>
                         </v-flex>
-                    <v-flex xs5 md2>
+                    <v-flex xs2 md1>
                         <v-radio
                         label="2"
                         value="rating-2"
                         ></v-radio>
                         </v-flex>
-                    <v-flex xs5 md2>
+                    <v-flex xs2 md1>
                         <v-radio
                         label="3"
                         value="rating-3"
                         ></v-radio>
                         </v-flex>
-                    <v-flex xs5 md2>
+                    <v-flex xs2 md1>
                         <v-radio
                         label="4"
                         value="rating-4"
                         ></v-radio>
                         </v-flex>
-                    <v-flex xs5 md2>
+                    <v-flex xs2 md1>
                         <v-radio
                         label="5"
                         value="rating-5"
@@ -85,3 +85,6 @@
 </template>
 
 
+<style lang="scss" scoped>
+
+</style>
