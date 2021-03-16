@@ -2,7 +2,7 @@ const User = require('./user.model');
 
 const create = async (data) => {
   const user = new User(data);
-  if (!user) throw new Error('Account creation failed')
+  if (!user) throw new Error('Account creation failed');
   await user.save();
   return user;
 };
