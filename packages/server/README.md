@@ -50,3 +50,7 @@ from inside server directory
 
 - if you're on macOS the [mongo.app](https://github.com/MongoApp/MongoApp) makes launching database a breeze (not sure if theres a windows equivalent)
 - manually testing endpoints i prefer using [insomnia](https://insomnia.rest) the free version should be more than sufficient. [postman](https://www.postman.com) is probably more popular and feature rich. [hoppscotch](https://hoppscotch.io) is web based, i've not used it but was previously called postwoman
+
+## Documentation
+
+checkout `feat/swagger` branch, run the dev server and goto `http://localhost:3000/api/docs`
