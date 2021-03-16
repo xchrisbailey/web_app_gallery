@@ -63,7 +63,7 @@ const catagories = [
 ];
 
 export default Vue.extend({
-  name: "App",
+  name: 'App',
 
   data: () => ({
     drawer: false,
