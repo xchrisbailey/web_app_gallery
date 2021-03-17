@@ -25,6 +25,8 @@
     "pino": "^6.11.2",
     "pino-colada": "^2.1.0",
     "pino-pretty": "^4.7.1"
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "eslint": "^7.22.0",
