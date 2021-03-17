@@ -2,7 +2,7 @@ const User = require('./user.model');
 
 const create = async (data) => {
   const user = new User(data);
-  if (!user) throw new Error('Account creation failed')
+  if (!user) throw new Error('Account creation failed');
   await user.save();
   return user;
 };
@@ -24,7 +24,7 @@ const update = async (user, updates) => {
   const validUpdates = {};
 
   // sanitize incoming updates to those allowed by system
-  for (k in updates) {
+  for (const k in updates) {
     if (allowedUpdates.includes(k)) validUpdates[k] = updates[k];
   }
 

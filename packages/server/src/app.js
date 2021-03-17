@@ -8,22 +8,12 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const logger = require('./utils/logger');
-const db = require('./utils/db');
 const swaggerSpec = require('./utils/swagger.js')
 
 const { userRouter } = require('./user');
 
 // create instance of app
 const app = express();
-
-// connect to mongodb
-db.connect()
-  .then(() => {
-    console.log('mongo connected');
-  })
-  .catch((e) => {
-    console.log(e);
-  });
 
 app.set('port', process.env.PORT || 3000);
 
@@ -38,6 +28,6 @@ app.use(expressPinoLogger({ logger: logger }));
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 // routers
-app.use('/', userRouter);
+app.use('/api/', userRouter);
 
 module.exports = app;
