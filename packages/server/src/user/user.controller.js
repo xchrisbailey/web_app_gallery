@@ -42,6 +42,7 @@ const getProfile = (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     (await userService.remove(req.user)) &&
+      res.clearCookie('token') &&
       r.data(res, 200, { message: 'Account successfully removed' });
   } catch (e) {
     r.error(res, 400, e.message);

@@ -24,7 +24,7 @@ const update = async (user, updates) => {
   const validUpdates = {};
 
   // sanitize incoming updates to those allowed by system
-  for (k in updates) {
+  for (const k in updates) {
     if (allowedUpdates.includes(k)) validUpdates[k] = updates[k];
   }
 
