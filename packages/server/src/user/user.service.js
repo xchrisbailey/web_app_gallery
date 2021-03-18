@@ -31,7 +31,7 @@ const update = async (user, updates) => {
   if (!Object.keys(validUpdates).length)
     throw new Error('No valid updates provided');
 
-  for (u in validUpdates) user[u] = validUpdates[u]; // assign new fields to user object
+  for (const u in validUpdates) user[u] = validUpdates[u]; // assign new fields to user object
   await user.save();
   return user;
 };
