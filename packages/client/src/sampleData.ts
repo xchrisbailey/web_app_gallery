@@ -4,15 +4,15 @@ interface DataReturn {
   status: string;
 }
 
-interface AppReturn extends DataReturn {
+interface AppsReturn extends DataReturn {
   data: WebApp[];
 }
 
-interface ReviewReturn extends DataReturn {
+interface ReviewsReturn extends DataReturn {
   data: Review[];
 }
 
-export const sampleApps: AppReturn = {
+export const sampleApps: AppsReturn = {
   status: 'ok',
   data: [
     {
@@ -65,7 +65,7 @@ export const sampleApps: AppReturn = {
   ]
 };
 
-export const sampleReviews: ReviewReturn = {
+export const sampleReviews: ReviewsReturn = {
   status: 'ok',
   data: [
     {
