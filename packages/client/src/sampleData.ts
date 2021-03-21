@@ -1,15 +1,24 @@
 import { Review, WebApp } from './types';
 
 interface DataReturn {
-  status: string;
+  status: 'ok' | 'error';
+  data?: WebApp | WebApp[] | Review | Review[];
+  message?: string;
 }
 
 interface AppsReturn extends DataReturn {
+  status: 'ok';
   data: WebApp[];
 }
 
 interface ReviewsReturn extends DataReturn {
+  status: 'ok';
   data: Review[];
+}
+
+interface ErrorReturn extends DataReturn {
+  status: 'error';
+  message: string;
 }
 
 export const sampleApps: AppsReturn = {
@@ -92,4 +101,9 @@ export const sampleReviews: ReviewsReturn = {
       lastUpdated: 1615837503
     }
   ]
+};
+
+export const sampleError: ErrorReturn = {
+  status: 'error',
+  message: 'Amet rem vel a harum'
 };
