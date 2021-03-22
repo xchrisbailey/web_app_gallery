@@ -52,13 +52,7 @@ export default Vue.extend({
 
   data: () => ({
     appData: null as WebApp | null,
-    loading: true,
-    item: {
-      color: "#1F7087",
-      src: "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
-      title: "Supermodel",
-      artist: "Foster the People"
-    }
+    loading: true
   }),
 
   created: function() {
