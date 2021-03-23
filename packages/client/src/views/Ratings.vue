@@ -13,41 +13,10 @@
         </v-layout>
         <v-layout row wrap justify-space-around>
             <v-flex xs12 md12>
-                <v-radio-group
-                v-model="row"
-                row
-                >
-                    <v-flex xs2 md1>
-                        <v-radio
-                        label="1"
-                        value="rating-1"
-                        ></v-radio>
-                        </v-flex>
-                    <v-flex xs2 md1>
-                        <v-radio
-                        label="2"
-                        value="rating-2"
-                        ></v-radio>
-                        </v-flex>
-                    <v-flex xs2 md1>
-                        <v-radio
-                        label="3"
-                        value="rating-3"
-                        ></v-radio>
-                        </v-flex>
-                    <v-flex xs2 md1>
-                        <v-radio
-                        label="4"
-                        value="rating-4"
-                        ></v-radio>
-                        </v-flex>
-                    <v-flex xs2 md1>
-                        <v-radio
-                        label="5"
-                        value="rating-5"
-                        ></v-radio>
-                        </v-flex>
-                </v-radio-group>
+                <v-rating
+                    v-model="rating"
+                    icon-label="cutom icon label text {0} of {1}"
+                ></v-rating>
             </v-flex>
         </v-layout>
         <v-layout row wrap>
@@ -85,6 +54,3 @@
 </template>
 
 
-<style lang="scss" scoped>
-
-</style>
