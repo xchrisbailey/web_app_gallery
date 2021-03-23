@@ -15,7 +15,7 @@ const webAppSchema = new mongoose.Schema(
       purpose: { type: String },
     },
     screenshot: {
-      src: { type: String, required: true },
+      src: { type: String },
       size: {
         height: { type: Number },
         width: { type: Number },
