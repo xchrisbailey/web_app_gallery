@@ -11,7 +11,7 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
-    path: "/web-app/:id",
+    path: "/apps/:id",
     name: "Web App",
     component: () =>
       import(/* webpackChunkName: "WebApp" */ "../views/WebApp.vue")
