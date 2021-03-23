@@ -1,5 +1,5 @@
 <template>
-<div class="Ratings">
+<div class="">
     <v-container>
         <v-layout row wrap justify-center>
             <v-flex xs4 md1>
@@ -8,7 +8,7 @@
         </v-layout>
         <v-layout row wrap>
             <v-flex s4 md5>
-                <p class="text-left">What rate do you give the Webapp at a scale 1 to 5</p>
+                <p class="text-left">Give the WebApp a rating</p>
             </v-flex>
         </v-layout>
         <v-layout row wrap justify-space-around>
@@ -53,4 +53,8 @@
 </div>
 </template>
 
+<script lang="ts">
+import Vue from "vue";
 
+
+</script>
