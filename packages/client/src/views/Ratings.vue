@@ -1,5 +1,5 @@
 <template>
-<div class="">
+<div id="rating">
     <v-container>
         <v-layout row wrap justify-center>
             <v-flex xs4 md1>
@@ -14,8 +14,9 @@
         <v-layout row wrap justify-space-around>
             <v-flex xs12 md12>
                 <v-rating
-                    v-model="rating"
-                    icon-label="cutom icon label text {0} of {1}"
+                    v-model="rate"
+                    hover
+                    clearable
                 ></v-rating>
             </v-flex>
         </v-layout>
@@ -31,12 +32,16 @@
         </v-layout>
         <v-layout row wrap justtify-center>
             <v-flex xs15 md12 justify-center>
-            <V-textarea
+            <v-textarea
+            v-model="userReview"
             outlined
-            name="user-review"
             label="review"
+            auto-grow
+            clearable
+            counter="250"
+            :rules="[rules.userReview,rules.length(250)]"
             >
-            </V-textarea>
+            </v-textarea>
             </v-flex>
         </v-layout>
         <v-layout justify-center>
@@ -44,6 +49,8 @@
                 <v-btn 
                 block
                 color="error"
+                type="submit"
+                @click="submit"
                 >
                     Submit
                 </v-btn>
@@ -53,8 +60,26 @@
 </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script>
+export default {
+    name: "rating",
 
+    data: () => ({
+        userReview: undefined,
+        rate: undefined,
+        
+        rules: {
+            length: len => v => (v || '').length <= len || `Invalid character length, max ${len}`,
+        },
+    }),
+    methods: {
+        submit (){
+            console.log(
+                this.rate,
+                this.userReview
+                )
+            }
+    }
+}
 
 </script>
