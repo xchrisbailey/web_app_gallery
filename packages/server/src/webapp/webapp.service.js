@@ -6,9 +6,9 @@ const findWebApp = async (id) => {
   return res;
 };
 
-// make mongoose call to find all web apps and return paginated response
-const findWebApps = async () => {
-  const res = await WebApp.find({});
+// make mongoose call to find all web apps and return paginated results
+const findWebApps = async (opts = { limit: 10 }) => {
+  const res = await WebApp.paginate({}, opts);
   return res;
 };
 

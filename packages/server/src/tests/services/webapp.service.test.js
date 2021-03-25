@@ -43,14 +43,44 @@ describe('get single web app', () => {
     it('should return array of web apps', async () => {
       const sampleApp = await WebApp.create(sampleData);
       const res = await webAppService.findWebApps();
-      expect(res.length).toBe(1);
-      expect(res[0]._id).toEqual(sampleApp._id);
+      expect(res.docs.length).toBe(1);
+      expect(res.docs[0]._id).toEqual(sampleApp._id);
+    });
+
+    it('should allow limit to be set', async () => {
+      for (let i = 0; i < 10; i++) {
+        await WebApp.create(sampleData);
+      }
+
+      const opts = {
+        limit: 2,
+      };
+
+      const res = await webAppService.findWebApps(opts);
+      expect(res.page).toBe(1);
+      expect(res.limit).toBe(2);
+      expect(res.docs.length).toBe(2);
+    });
+
+    it('should return second page when asked and exists', async () => {
+      for (let i = 0; i < 10; i++) {
+        await WebApp.create(sampleData);
+      }
+
+      const opts = {
+        limit: 2,
+        page: 2,
+      };
+
+      const res = await webAppService.findWebApps(opts);
+      expect(res.page).toBe(2);
+      expect(res.limit).toBe(2);
     });
 
     it('should return an empty array if no apps', async () => {
       await db.clear();
       const res = await webAppService.findWebApps();
-      expect(res.length).toBe(0);
+      expect(res.docs.length).toBe(0);
     });
   });
 });
