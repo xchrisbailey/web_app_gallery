@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const db = require('../db');
 const userService = require('../../user/user.service');
 const User = require('../../user/user.model');
@@ -7,10 +9,10 @@ beforeEach(async () => await db.clear());
 afterAll(async () => await db.close());
 
 const u = {
-  firstName: 'chris',
-  lastName: 'bailey',
-  email: 'chris@example.com',
-  password: 'qwe123',
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  email: faker.internet.email(),
+  password: faker.internet.password(),
 };
 
 describe('create user', () => {
@@ -98,7 +100,7 @@ describe('login', () => {
   it('should error when passwords do not match', async () => {
     try {
       await userService.create(u);
-      await userService.login(u.email, 'zxc123');
+      await userService.login(u.email, faker.internet.password());
     } catch (e) {
       expect(e.message).toBe('Invalid login credentials');
     }
@@ -122,7 +124,7 @@ describe('update', () => {
   it('should error when invalid update sent', async () => {
     try {
       const lu = await userService.create(u);
-      await userService.update(lu, { password: 'zxc123' });
+      await userService.update(lu, { password: faker.internet.password() });
     } catch (e) {
       expect(e.message).toBe('No valid updates provided');
     }
@@ -130,9 +132,10 @@ describe('update', () => {
 });
 
 describe('updatePass', () => {
-  it('should update as users password', async () => {
-    const lu = await userService.create(u);
-    let res = await userService.updatePass(lu, 'zxc123');
+  it('should update a users password', async () => {
+    const lu = await User.create(u);
+    const newPassword = faker.internet.password();
+    let res = await userService.updatePass(lu, newPassword);
 
     try {
       await userService.login(u.email, u.password);
@@ -140,7 +143,7 @@ describe('updatePass', () => {
       expect(e.message).toBe('Invalid login credentials');
     }
 
-    res = await userService.login(u.email, 'zxc123');
+    res = await userService.login(u.email, newPassword);
     expect(res.email).toBe(lu.email);
   });
 });
