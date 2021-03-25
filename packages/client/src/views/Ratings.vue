@@ -1,5 +1,14 @@
 <template>
 <div id="rating">
+    <div>
+        <v-alert 
+        type="error"
+        :value="error"
+        dismissible
+        >
+        {{errorMsg}}
+        </v-alert>
+    </div>
     <v-container>
         <v-layout row wrap justify-center>
             <v-flex xs4 md1>
@@ -46,8 +55,9 @@
         </v-layout>
         <v-layout justify-center>
             <v-flex xs5 md12>
-                <v-btn 
+                <v-btn
                 block
+                :loading="loading"
                 color="error"
                 type="submit"
                 @click="submit"
@@ -67,17 +77,27 @@ export default {
     data: () => ({
         userReview: undefined,
         rate: undefined,
-        
+        loading: false,
+        error: false,
+        errorMsg:'',
+
         rules: {
-            length: len => v => (v || '').length <= len || `Invalid character length, max ${len}`,
+            length: len => v => (v || '').length <= len || `Invalid character length, max ${len}`, 
         },
     }),
     methods: {
         submit (){
-            console.log(
-                this.rate,
-                this.userReview
-                )
+            if(this.userReview.length > 250){
+                this.error = true
+                this.errorMsg='Invalid size of review'
+            }else{
+                this.loading = true
+                this.error = false
+                console.log(
+                    this.rate,
+                    this.userReview,
+                    )
+                }
             }
     }
 }
