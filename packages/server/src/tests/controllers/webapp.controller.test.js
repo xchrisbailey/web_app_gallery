@@ -69,3 +69,81 @@ describe('requests single web app', () => {
     });
   });
 });
+
+describe('get list of web applications', () => {
+  it('should 200 and return list of web applications', async () => {
+    const req = mockRequest();
+    const res = mockResponse();
+
+    await webAppController.getWebApps(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ status: 'ok' }),
+    );
+  });
+
+  it('should 200 and set return limit', async () => {
+    for (let i = 0; i < 10; i++) {
+      await WebApp.create(sampleWebApp);
+    }
+
+    const req = mockRequest();
+    req.query.limit = 2;
+    const res = mockResponse();
+
+    await webAppController.getWebApps(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ status: 'ok' }),
+    );
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ data: expect.objectContaining({ limit: 2 }) }),
+    );
+  });
+
+  it('should 200 and return requested page', async () => {
+    for (let i = 0; i < 10; i++) {
+      await WebApp.create(sampleWebApp);
+    }
+
+    const req = mockRequest();
+    req.query.limit = 2;
+    req.query.page = 2;
+    const res = mockResponse();
+
+    await webAppController.getWebApps(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ status: 'ok' }),
+    );
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ page: 2, nextPage: 3, prevPage: 1 }),
+      }),
+    );
+  });
+
+  it('should 400 and return error if page does not exist', async () => {
+    for (let i = 0; i < 10; i++) {
+      await WebApp.create(sampleWebApp);
+    }
+
+    const req = mockRequest();
+    req.query.limit = 2;
+    req.query.page = 200;
+    const res = mockResponse();
+
+    await webAppController.getWebApps(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        status: 'error',
+        message: 'no applications found',
+      }),
+    );
+  });
+});
