@@ -11,7 +11,15 @@ const findWebApp = async (id) => {
 
 // make mongoose call to find all web apps and return paginated results
 const findWebApps = async (opts = { limit: 10 }) => {
-  const res = await WebApp.paginate({}, opts);
+  const res = await WebApp.paginate(
+    {},
+    {
+      ...opts,
+      customLabels: {
+        docs: 'data',
+      },
+    },
+  );
   return res;
 };
 

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const db = require('../db');
 const webAppService = require('../../webapp/webapp.service.js');
 const WebApp = require('../../webapp/webapp.model');
@@ -43,8 +44,8 @@ describe('get single web app', () => {
     it('should return array of web apps', async () => {
       const sampleApp = await WebApp.create(sampleData);
       const res = await webAppService.findWebApps();
-      expect(res.docs.length).toBe(1);
-      expect(res.docs[0]._id).toEqual(sampleApp._id);
+      expect(res.data.length).toBe(1);
+      expect(res.data[0]._id).toEqual(sampleApp._id);
     });
 
     it('should allow limit to be set', async () => {
@@ -59,7 +60,7 @@ describe('get single web app', () => {
       const res = await webAppService.findWebApps(opts);
       expect(res.page).toBe(1);
       expect(res.limit).toBe(2);
-      expect(res.docs.length).toBe(2);
+      expect(res.data.length).toBe(2);
     });
 
     it('should return second page when asked and exists', async () => {
@@ -80,7 +81,7 @@ describe('get single web app', () => {
     it('should return an empty array if no apps', async () => {
       await db.clear();
       const res = await webAppService.findWebApps();
-      expect(res.docs.length).toBe(0);
+      expect(res.data.length).toBe(0);
     });
   });
 });
