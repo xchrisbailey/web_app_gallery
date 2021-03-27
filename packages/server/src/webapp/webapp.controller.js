@@ -25,7 +25,10 @@ const getWebApps = async (req, res) => {
   }
 };
 
+const createWebApp = async (req, res) => {};
+
 module.exports = {
   getWebApp,
   getWebApps,
+  createWebApp,
 };
