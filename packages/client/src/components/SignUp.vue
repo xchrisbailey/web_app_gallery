@@ -20,6 +20,7 @@
                 sm="8"
                 >
                 <v-text-field
+                v-model="firstName"
                 label="First Name"
                 filled
                 >
@@ -33,6 +34,7 @@
                 sm="8"
                 >
                 <v-text-field
+                v-model="lastName"
                 label="Last Name"
                 filled
                 >
@@ -46,6 +48,7 @@
                 sm="8"
                 >
                 <v-text-field
+                v-model="email"
                 label="E-mail"
                 filled
                 >
@@ -59,6 +62,7 @@
                 sm="8"
                 >
                 <v-text-field
+                v-model="password"
                 label="password"
                 filled
                 >
@@ -94,8 +98,22 @@ export default {
     },
 
     data: () => ({
+        password: undefined,
+        email:undefined,
+        fistName:undefined,
+        lastName:undefined,
+        error: false,
+        errorMsg: '',
 
+        rules: {
+            //authentication
+        }
     }),
+    methods:{
+        submit() {
+            //authentication 
+        }
+    }
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="signIn">
-      <SignUp msg="Sing Up to enjoy all the features of our WebApp Gallery"/>
+      <SignUp msg="Sing Up to to the WebApp Gallery"/>
   </div>
 </template>
 

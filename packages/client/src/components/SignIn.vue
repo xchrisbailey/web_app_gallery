@@ -68,8 +68,18 @@ export default {
     },
 
     data: () => ({
+        error: false,
+        errorMsg: '',
 
+        rules: {
+            //authentication 
+        },
     }),
+    methods: {
+        submit(){
+            //authentication
+        }
+    }
 };
 </script>
 
