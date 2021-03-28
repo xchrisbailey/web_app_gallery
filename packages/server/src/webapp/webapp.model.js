@@ -10,19 +10,12 @@ const webAppSchema = new mongoose.Schema(
     appleMobileWebCapable: { type: 'boolean', default: false },
     themeColor: { type: String },
     backgroundColor: { type: String },
-    icon: {
-      src: { type: String },
-      purpose: { type: String },
-    },
-    screenshot: {
-      src: { type: String },
-      size: {
-        height: { type: Number },
-        width: { type: Number },
+    icons: [
+      {
+        src: { type: String },
+        purpose: { type: String },
       },
-      label: { type: String },
-      platform: { type: String },
-    },
+    ],
   },
   { timestamps: true },
 );

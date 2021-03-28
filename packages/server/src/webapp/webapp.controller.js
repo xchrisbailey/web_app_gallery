@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 const r = require('../utils/resHelpers');
 const webAppService = require('./webapp.service');
 
@@ -25,7 +26,25 @@ const getWebApps = async (req, res) => {
   }
 };
 
-const createWebApp = async (req, res) => {};
+const createWebApp = async (req, res) => {
+  try {
+    const rawManifestRes = await fetch(req.body.manifestURL);
+    const manifest = await rawManifestRes.json();
+    const data = {
+      ...req.body,
+      startURL: manifest.start_url,
+      name: manifest.name,
+      themeColor: manifest.theme_color,
+      backgroundColor: manifest.backgroundColor,
+      icons: manifest.icons,
+    };
+
+    const response = await webAppService.createWebApp(data);
+    r.data(res, 201, response);
+  } catch (e) {
+    r.error(res, 400, e.message);
+  }
+};
 
 module.exports = {
   getWebApp,

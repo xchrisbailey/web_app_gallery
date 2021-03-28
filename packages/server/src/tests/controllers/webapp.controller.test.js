@@ -217,19 +217,21 @@ describe('create new web application', () => {
 
   it('should 201 and create new application', async () => {
     const req = mockRequest();
-    req.body.manifestUrl = manifestURL;
+    req.body.manifestURL = manifestURL;
+    req.body.description = 'Yahoo sports application';
     const res = mockResponse();
 
     await webAppController.createWebApp(req, res);
 
     expect(res.status).toHaveBeenCalledWith(201);
-    expect(res.body.data).toHaveBeenCalledWith(
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ status: 'ok' }),
+    );
+    expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        start_url: manifestSampleData.start_url,
-        name: manifestSampleData.name,
-        short_name: manifestSampleData.short_name,
-        background_color: manifestSampleData.background_color,
-        theme_color: manifestSampleData.theme_color,
+        data: expect.objectContaining({
+          startURL: manifestSampleData.start_url,
+        }),
       }),
     );
   });
@@ -242,26 +244,10 @@ describe('create new web application', () => {
     await webAppController.createWebApp(req, res);
 
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.body).toHaveBeenCalledWith(
+    expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         status: 'error',
-        message: 'error processing manifest url',
-      }),
-    );
-  });
-
-  it('should 400 if no manifest url provided', async () => {
-    const req = mockRequest();
-    req.body.manifestUrl = '';
-    const res = mockResponse();
-
-    await webAppController.createWebApp(req, res);
-
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.body).toHaveBeenCalledWith(
-      expect.objectContaining({
-        status: 'error',
-        message: 'must provide a manifest url',
+        message: 'Only absolute URLs are supported',
       }),
     );
   });
