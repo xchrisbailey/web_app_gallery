@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
+const axios = require('axios');
 
 const db = require('../db');
 const { mockRequest, mockResponse } = require('../utils/interceptors');
@@ -10,6 +11,9 @@ const webAppController = require('../../webapp/webapp.controller.js');
 beforeAll(async () => await db.connect());
 beforeEach(async () => await db.clear());
 afterAll(async () => await db.close());
+afterEach(() => jest.resetAllMocks());
+
+jest.mock('axios');
 
 const sampleWebApp = {
   manifestURL: 'https://maps.google.com',
@@ -149,70 +153,14 @@ describe('get list of web applications', () => {
 });
 
 describe('create new web application', () => {
-  const manifestURL = 'https://sports.yahoo.com/manifest.json';
+  const manifestURL = 'https://news.google.com/_/DotsSplashUi/manifest.json';
 
   const manifestSampleData = {
-    name: 'Yahoo Sports',
-    short_name: 'Yahoo Sports',
-    start_url: '/?utm_source=a2hs',
-    background_color: '#ffffff',
-    theme_color: '#ffffff',
-    display: 'minimal-ui',
-    orientation: 'portrait',
-    gcm_sender_id: '972471620958',
-    prefer_related_applications: true,
-    icons: [
-      {
-        sizes: '48x48',
-        src: 'https://s.yimg.com/cv/apiv2/sports/web/app/Sports_48.png',
-        type: 'image/png',
-      },
-      {
-        sizes: '72x72',
-        src: 'https://s.yimg.com/cv/apiv2/sports/web/app/Sports_72.png',
-        type: 'image/png',
-      },
-      {
-        sizes: '96x96',
-        src: 'https://s.yimg.com/cv/apiv2/sports/web/app/Sports_96.png',
-        type: 'image/png',
-      },
-      {
-        sizes: '114x114',
-        src: 'https://s.yimg.com/cv/apiv2/sports/web/app/Sports_114.png',
-        type: 'image/png',
-      },
-      {
-        sizes: '128x128',
-        src: 'https://s.yimg.com/cv/apiv2/sports/web/app/Sports_128.png',
-        type: 'image/png',
-      },
-      {
-        sizes: '144x144',
-        src: 'https://s.yimg.com/cv/apiv2/sports/web/app/Sports_144.png',
-        type: 'image/png',
-      },
-      {
-        sizes: '152x152',
-        src: 'https://s.yimg.com/cv/apiv2/sports/web/app/Sports_152.png',
-        type: 'image/png',
-      },
-      {
-        sizes: '192x192',
-        src: 'https://s.yimg.com/cv/apiv2/sports/web/app/Sports_192.png',
-        type: 'image/png',
-      },
-      {
-        sizes: '384x384',
-        src: 'https://s.yimg.com/cv/apiv2/sports/web/app/Sports_384.png',
-        type: 'image/png',
-      },
-      {
-        sizes: '512x512',
-        src: 'https://s.yimg.com/cv/apiv2/sports/web/app/Sports_512.png',
-        type: 'image/png',
-      },
-    ],
+    name: 'Google News',
+    short_name: 'News',
+    start_url: '/?lfhs=2',
+    display: 'standalone',
+    theme_color: 'white',
   };
 
   it('should 201 and create new application', async () => {
@@ -220,6 +168,10 @@ describe('create new web application', () => {
     req.body.manifestURL = manifestURL;
     req.body.description = 'Yahoo sports application';
     const res = mockResponse();
+
+    axios.get.mockImplementation(() =>
+      Promise.resolve({ data: manifestSampleData }),
+    );
 
     await webAppController.createWebApp(req, res);
 
@@ -245,10 +197,20 @@ describe('create new web application', () => {
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({
-        status: 'error',
-        message: 'Only absolute URLs are supported',
-      }),
+      expect.objectContaining({ status: 'error' }),
+    );
+  });
+
+  it('should 400 when missing required data', async () => {
+    const req = mockRequest();
+    req.body.manifestURL = manifestURL;
+    const res = mockResponse();
+
+    await webAppController.createWebApp(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ status: 'error' }),
     );
   });
 });

@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const axios = require('axios');
 const r = require('../utils/resHelpers');
 const webAppService = require('./webapp.service');
 
@@ -28,15 +28,14 @@ const getWebApps = async (req, res) => {
 
 const createWebApp = async (req, res) => {
   try {
-    const rawManifestRes = await fetch(req.body.manifestURL);
-    const manifest = await rawManifestRes.json();
+    const manifest = await axios.get(req.body.manifestURL);
     const data = {
       ...req.body,
-      startURL: manifest.start_url,
-      name: manifest.name,
-      themeColor: manifest.theme_color,
-      backgroundColor: manifest.backgroundColor,
-      icons: manifest.icons,
+      startURL: manifest.data.start_url,
+      name: manifest.data.name,
+      themeColor: manifest.data.theme_color,
+      backgroundColor: manifest.data.backgroundColor,
+      icons: manifest.data.icons,
     };
 
     const response = await webAppService.createWebApp(data);
