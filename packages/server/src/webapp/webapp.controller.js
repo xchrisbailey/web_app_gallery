@@ -28,8 +28,14 @@ const getWebApps = async (req, res) => {
 
 const createWebApp = async (req, res) => {
   try {
+    if (!req.body.appUrl || req.body.appUrl === '')
+      throw new Error('url cannot be empty');
+    const url = req.body.appUrl.match(/\/$/)
+      ? req.body.appUrl
+      : `${req.body.appUrl}/`;
+
     const { appDescription, manifest, manifestURL } = await getManifestInfo(
-      req.body.appUrl,
+      url,
     );
 
     const appData = {
@@ -50,6 +56,7 @@ const createWebApp = async (req, res) => {
     const response = await webAppService.createWebApp(appData);
     r.data(res, 201, response);
   } catch (e) {
+    console.log(e.message);
     r.error(res, 400, e.message);
   }
 };

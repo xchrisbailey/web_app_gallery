@@ -2,7 +2,7 @@ const supertest = require('supertest');
 
 const db = require('../../test/db');
 const { dummyUser } = require('../../test/data');
-const app = require('../app.js');
+const app = require('../app');
 
 const request = supertest(app);
 

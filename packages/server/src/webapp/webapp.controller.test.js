@@ -1,18 +1,33 @@
 require('dotenv').config();
 
+const axios = require('axios');
 const mongoose = require('mongoose');
 
 const db = require('../../test/db');
-const { dummyWebApp, dummyGoogleManifest } = require('../../test/data');
+const {
+  dummyWebApp,
+  dummyGoogleManifest,
+  dummyGoogleHtml,
+} = require('../../test/data');
 const { mockRequest, mockResponse } = require('../../test/utils/interceptors');
 const WebApp = require('./webapp.model');
 const webAppController = require('./webapp.controller.js');
 
+jest.mock('axios');
+
+axios.get.mockImplementation((u) => {
+  if (u.match(/\.json$/)) {
+    return Promise.resolve({ data: dummyGoogleManifest });
+  } else if (u === '' || !u) {
+    return Promise.reject(new Error('not found'));
+  } else {
+    return Promise.resolve({ data: dummyGoogleHtml });
+  }
+});
+
 beforeAll(async () => await db.connect());
 beforeEach(async () => await db.clear());
 afterAll(async () => await db.close());
-afterEach(() => jest.resetAllMocks());
-
 afterEach(() => {
   jest.clearAllMocks();
 });
@@ -143,7 +158,7 @@ describe('get list of web applications', () => {
 });
 
 describe('create new web application', () => {
-  const appUrl = 'https://news.google.com/';
+  const appUrl = 'https://news.google.com';
 
   it('should 201 and create new application', async () => {
     const req = mockRequest();

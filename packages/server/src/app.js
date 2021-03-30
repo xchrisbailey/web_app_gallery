@@ -8,7 +8,8 @@ const cors = require('cors');
 
 const logger = require('./utils/logger');
 
-const userRouter = require('./user/user.router.js');
+const userRouter = require('./user/user.router');
+const webAppRouter = require('./webapp/webapp.router');
 
 // create instance of app
 const app = express();
@@ -24,5 +25,6 @@ app.use(expressPinoLogger({ logger: logger }));
 
 // routers
 app.use('/api/', userRouter);
+app.use('/api/', webAppRouter);
 
 module.exports = app;
