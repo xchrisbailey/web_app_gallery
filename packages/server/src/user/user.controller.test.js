@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const db = require('../../test/db');
+const { dummyUser } = require('../../test/data');
 const { mockRequest, mockResponse } = require('../../test/utils/interceptors');
 const userController = require('./user.controller');
 const userService = require('./user.service');
@@ -13,44 +14,36 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-const newUser = {
-  email: 'chris@example.com',
-  firstName: 'chris',
-  lastName: 'bailey',
-  password: 'qwe123',
-};
-
 describe('createUser', () => {
   it('should 201 and return correct value', async () => {
     const req = mockRequest();
-    req.body = newUser;
+    req.body = dummyUser;
     const res = mockResponse();
     const userServiceSpy = jest.spyOn(userService, 'create');
 
     await userController.createUser(req, res);
 
-    expect(userServiceSpy).toHaveBeenCalledWith(newUser);
+    expect(userServiceSpy).toHaveBeenCalledWith(dummyUser);
     expect(res.json).toHaveBeenCalledTimes(1);
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({ status: 'ok' }),
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ email: newUser.email }),
+        data: expect.objectContaining({ email: dummyUser.email }),
       }),
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ firstName: newUser.firstName }),
+        data: expect.objectContaining({ firstName: dummyUser.firstName }),
       }),
     );
   });
 
   it('should 400 when missing data', async () => {
     const invalidUser = {
-      email: 'chris@example.com',
-      firstName: 'chris',
-      password: 'qwe123',
+      ...dummyUser,
+      lastName: '',
     };
 
     const req = mockRequest();
@@ -71,18 +64,18 @@ describe('createUser', () => {
 
 describe('loginUser', () => {
   it('should 200 and return user and auth cookie', async () => {
-    await userService.create(newUser);
+    await userService.create(dummyUser);
 
     const req = mockRequest();
-    req.body = { email: newUser.email, password: newUser.password };
+    req.body = { email: dummyUser.email, password: dummyUser.password };
     const res = mockResponse();
     const userServiceSpy = jest.spyOn(userService, 'login');
 
     await userController.loginUser(req, res);
 
     expect(userServiceSpy).toHaveBeenCalledWith(
-      newUser.email,
-      newUser.password,
+      dummyUser.email,
+      dummyUser.password,
     );
     expect(res.cookie).toHaveBeenCalledTimes(1);
     expect(res.cookie.token).not.toBeNull();
@@ -92,32 +85,32 @@ describe('loginUser', () => {
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ email: newUser.email }),
+        data: expect.objectContaining({ email: dummyUser.email }),
       }),
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ firstName: newUser.firstName }),
+        data: expect.objectContaining({ firstName: dummyUser.firstName }),
       }),
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ lastName: newUser.lastName }),
+        data: expect.objectContaining({ lastName: dummyUser.lastName }),
       }),
     );
   });
 
   it('should 400 and return error when invalid login', async () => {
-    await userService.create(newUser);
+    await userService.create(dummyUser);
 
     const req = mockRequest();
-    req.body = { email: newUser.email, password: 'zxc123' };
+    req.body = { email: dummyUser.email, password: 'zxc123' };
     const res = mockResponse();
     const userServiceSpy = jest.spyOn(userService, 'login');
 
     await userController.loginUser(req, res);
 
-    expect(userServiceSpy).toHaveBeenCalledWith(newUser.email, 'zxc123');
+    expect(userServiceSpy).toHaveBeenCalledWith(dummyUser.email, 'zxc123');
     expect(res.cookie).toHaveBeenCalledTimes(0);
     expect(res.cookie.token).toBeUndefined();
     assertError(res, 400, 'Invalid login credentials');
@@ -141,20 +134,20 @@ describe('logoutUser', () => {
 describe('getProfile', () => {
   it('should 200 and return user profile', async () => {
     const req = mockRequest();
-    req.user = newUser;
+    req.user = dummyUser;
     const res = mockResponse();
 
     userController.getProfile(req, res);
 
     expect(res.json).toBeCalledWith(
-      expect.objectContaining({ status: 'ok', data: newUser }),
+      expect.objectContaining({ status: 'ok', data: dummyUser }),
     );
   });
 });
 
 describe('deleteUser', () => {
   it('should 200 and return success message', async () => {
-    const user = await userService.create(newUser);
+    const user = await userService.create(dummyUser);
 
     const req = mockRequest();
     req.user = user;
@@ -180,7 +173,7 @@ describe('updateUser', () => {
       firstName: 'christopher',
     };
 
-    const user = await userService.create(newUser);
+    const user = await userService.create(dummyUser);
 
     const req = mockRequest();
     req.user = user;
@@ -204,7 +197,7 @@ describe('updateUser', () => {
   });
 
   it('should return 400 if no valid update fields provided', async () => {
-    const user = await userService.create(newUser);
+    const user = await userService.create(dummyUser);
 
     const req = mockRequest();
     req.user = user;
@@ -221,7 +214,7 @@ describe('updateUser', () => {
 
 describe('updatePassword', () => {
   it('should send user and new password to user service', async () => {
-    const user = await userService.create(newUser);
+    const user = await userService.create(dummyUser);
 
     const req = mockRequest();
     req.user = user;
@@ -241,7 +234,7 @@ describe('updatePassword', () => {
   });
 
   it('should return 400 if update could not be performed', async () => {
-    const user = await userService.create(newUser);
+    const user = await userService.create(dummyUser);
 
     const req = mockRequest();
     req.user = user;

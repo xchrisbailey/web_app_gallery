@@ -1,6 +1,7 @@
 const faker = require('faker');
 
 const db = require('../../test/db');
+const { dummyUser } = require('../../test/data');
 const userService = require('./user.service');
 const User = require('./user.model');
 
@@ -8,27 +9,20 @@ beforeAll(async () => await db.connect());
 beforeEach(async () => await db.clear());
 afterAll(async () => await db.close());
 
-const u = {
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
-};
-
 describe('create user', () => {
   it('should return new user', async () => {
-    const newUser = await userService.create(u);
+    const newUser = await userService.create(dummyUser);
 
-    expect(newUser.firstName).toBe(u.firstName);
-    expect(newUser.lastName).toBe(u.lastName);
-    expect(newUser.email).toBe(u.email);
+    expect(newUser.firstName).toBe(dummyUser.firstName);
+    expect(newUser.lastName).toBe(dummyUser.lastName);
+    expect(newUser.email).toBe(dummyUser.email);
     expect(newUser._id).not.toBeNull();
   });
 
   it('should error with missing fields', async () => {
     try {
       const newUser = await userService.create({
-        ...u,
+        ...dummyUser,
         firstName: '',
       });
       expect(newUser).toBeUndefined();
@@ -42,7 +36,7 @@ describe('create user', () => {
   it('should error when password is too short', async () => {
     try {
       const newUser = await userService.create({
-        ...u,
+        ...dummyUser,
         password: '123',
       });
 
@@ -57,7 +51,7 @@ describe('create user', () => {
   it('should error when email is invalid', async () => {
     try {
       const newUser = await userService.create({
-        ...u,
+        ...dummyUser,
         email: 'chrisexamplecom',
       });
 
@@ -71,8 +65,8 @@ describe('create user', () => {
 
   it('should not allow duplicate email addresses', async () => {
     try {
-      await userService.create(u);
-      await userService.create(u);
+      await userService.create(dummyUser);
+      await userService.create(dummyUser);
     } catch (e) {
       expect(e.message).toContain('duplicate key');
     }
@@ -81,8 +75,8 @@ describe('create user', () => {
 
 describe('login', () => {
   it('should return user when given proper credentials', async () => {
-    const lu = await userService.create(u);
-    const res = await userService.login(u.email, u.password);
+    const lu = await userService.create(dummyUser);
+    const res = await userService.login(dummyUser.email, dummyUser.password);
     expect(res.firstName).toBe(lu.firstName);
     expect(res.lastName).toBe(lu.lastName);
     expect(res.email).toBe(lu.email);
@@ -99,8 +93,8 @@ describe('login', () => {
 
   it('should error when passwords do not match', async () => {
     try {
-      await userService.create(u);
-      await userService.login(u.email, faker.internet.password());
+      await userService.create(dummyUser);
+      await userService.login(dummyUser.email, faker.internet.password());
     } catch (e) {
       expect(e.message).toBe('Invalid login credentials');
     }
@@ -109,7 +103,7 @@ describe('login', () => {
 
 describe('update', () => {
   it('should update valid fields', async () => {
-    const lu = await userService.create(u);
+    const lu = await userService.create(dummyUser);
 
     let res = await userService.update(lu, { firstName: 'christopher' });
     expect(res.firstName).toBe('christopher');
@@ -123,7 +117,7 @@ describe('update', () => {
 
   it('should error when invalid update sent', async () => {
     try {
-      const lu = await userService.create(u);
+      const lu = await userService.create(dummyUser);
       await userService.update(lu, { password: faker.internet.password() });
     } catch (e) {
       expect(e.message).toBe('No valid updates provided');
@@ -133,24 +127,24 @@ describe('update', () => {
 
 describe('updatePass', () => {
   it('should update a users password', async () => {
-    const lu = await User.create(u);
+    const lu = await User.create(dummyUser);
     const newPassword = faker.internet.password();
     let res = await userService.updatePass(lu, newPassword);
 
     try {
-      await userService.login(u.email, u.password);
+      await userService.login(dummyUser.email, dummyUser.password);
     } catch (e) {
       expect(e.message).toBe('Invalid login credentials');
     }
 
-    res = await userService.login(u.email, newPassword);
+    res = await userService.login(dummyUser.email, newPassword);
     expect(res.email).toBe(lu.email);
   });
 });
 
 describe('remove', () => {
   it('should delete requested account', async () => {
-    const lu = await userService.create(u);
+    const lu = await userService.create(dummyUser);
     expect(await userService.remove(lu)).toBeTruthy();
 
     const check = await User.findById(lu._id);

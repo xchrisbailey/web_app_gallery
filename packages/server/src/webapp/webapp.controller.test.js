@@ -3,6 +3,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 const db = require('../../test/db');
+const { dummyWebApp, dummyGoogleManifest } = require('../../test/data');
 const { mockRequest, mockResponse } = require('../../test/utils/interceptors');
 const WebApp = require('./webapp.model');
 const webAppController = require('./webapp.controller.js');
@@ -12,21 +13,13 @@ beforeEach(async () => await db.clear());
 afterAll(async () => await db.close());
 afterEach(() => jest.resetAllMocks());
 
-const sampleWebApp = {
-  manifestURL: 'https://maps.google.com',
-  startURL: 'https://maps.google.com',
-  name: 'google maps',
-  description: 'mobile maps',
-  appleMobileWebCapable: true,
-};
-
 afterEach(() => {
   jest.clearAllMocks();
 });
 
 describe('requests single web app', () => {
   it('should 200 and return the web app', async () => {
-    const app = await WebApp.create(sampleWebApp);
+    const app = await WebApp.create(dummyWebApp);
 
     const req = mockRequest();
     req.params.id = app._id;
@@ -86,7 +79,7 @@ describe('get list of web applications', () => {
 
   it('should 200 and set return limit', async () => {
     for (let i = 0; i < 10; i++) {
-      await WebApp.create(sampleWebApp);
+      await WebApp.create(dummyWebApp);
     }
 
     const req = mockRequest();
@@ -106,7 +99,7 @@ describe('get list of web applications', () => {
 
   it('should 200 and return requested page', async () => {
     for (let i = 0; i < 10; i++) {
-      await WebApp.create(sampleWebApp);
+      await WebApp.create(dummyWebApp);
     }
 
     const req = mockRequest();
@@ -129,7 +122,7 @@ describe('get list of web applications', () => {
 
   it('should 400 and return error if page does not exist', async () => {
     for (let i = 0; i < 10; i++) {
-      await WebApp.create(sampleWebApp);
+      await WebApp.create(dummyWebApp);
     }
 
     const req = mockRequest();
@@ -152,14 +145,6 @@ describe('get list of web applications', () => {
 describe('create new web application', () => {
   const appUrl = 'https://news.google.com/';
 
-  const manifestSampleData = {
-    name: 'Google News',
-    short_name: 'News',
-    start_url: '/?lfhs=2',
-    display: 'standalone',
-    theme_color: 'white',
-  };
-
   it('should 201 and create new application', async () => {
     const req = mockRequest();
     req.body.appUrl = appUrl;
@@ -174,7 +159,7 @@ describe('create new web application', () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         data: expect.objectContaining({
-          startURL: manifestSampleData.start_url,
+          startURL: dummyGoogleManifest.start_url,
         }),
       }),
     );
