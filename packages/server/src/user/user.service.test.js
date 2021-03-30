@@ -1,8 +1,8 @@
 const faker = require('faker');
 
-const db = require('../db');
-const userService = require('../../user/user.service');
-const User = require('../../user/user.model');
+const db = require('../../test/db');
+const userService = require('./user.service');
+const User = require('./user.model');
 
 beforeAll(async () => await db.connect());
 beforeEach(async () => await db.clear());

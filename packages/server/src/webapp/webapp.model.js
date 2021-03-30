@@ -7,7 +7,7 @@ const webAppSchema = new mongoose.Schema(
     startURL: { type: String, required: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
-    appleMobileWebCapable: { type: 'boolean', default: false },
+    appleMobileWebAppCapable: { type: 'boolean', default: false },
     themeColor: { type: String },
     backgroundColor: { type: String },
     icons: [

@@ -1,4 +1,4 @@
-const axios = require('axios');
+const getManifestInfo = require('../utils/getManifestInfo');
 const r = require('../utils/resHelpers');
 const webAppService = require('./webapp.service');
 
@@ -28,19 +28,29 @@ const getWebApps = async (req, res) => {
 
 const createWebApp = async (req, res) => {
   try {
-    const manifest = await axios.get(req.body.manifestURL);
-    const data = {
-      ...req.body,
+    const { appDescription, manifest, manifestURL } = await getManifestInfo(
+      req.body.appUrl,
+    );
+
+    const appData = {
+      manifestURL: manifestURL,
       startURL: manifest.data.start_url,
       name: manifest.data.name,
       themeColor: manifest.data.theme_color,
       backgroundColor: manifest.data.backgroundColor,
       icons: manifest.data.icons,
+      description: manifest.data.description
+        ? manifest.data.description
+        : appDescription,
+      appleMobileWebAppCapable: req.body.appleMobileWebAppCapable
+        ? req.body.appleMobileWebAppCapable
+        : false,
     };
 
-    const response = await webAppService.createWebApp(data);
+    const response = await webAppService.createWebApp(appData);
     r.data(res, 201, response);
   } catch (e) {
+    console.log(e.message);
     r.error(res, 400, e.message);
   }
 };

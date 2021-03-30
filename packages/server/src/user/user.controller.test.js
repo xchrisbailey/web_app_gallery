@@ -1,9 +1,9 @@
 require('dotenv').config();
 
-const db = require('../db');
-const { mockRequest, mockResponse } = require('../utils/interceptors');
-const userController = require('../../user/user.controller');
-const userService = require('../../user/user.service');
+const db = require('../../test/db');
+const { mockRequest, mockResponse } = require('../../test/utils/interceptors');
+const userController = require('./user.controller');
+const userService = require('./user.service');
 
 beforeAll(async () => await db.connect());
 beforeEach(async () => await db.clear());

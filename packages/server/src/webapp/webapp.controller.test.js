@@ -1,19 +1,16 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-const axios = require('axios');
 
-const db = require('../db');
-const { mockRequest, mockResponse } = require('../utils/interceptors');
-const WebApp = require('../../webapp/webapp.model');
-const webAppController = require('../../webapp/webapp.controller.js');
+const db = require('../../test/db');
+const { mockRequest, mockResponse } = require('../../test/utils/interceptors');
+const WebApp = require('./webapp.model');
+const webAppController = require('./webapp.controller.js');
 
 beforeAll(async () => await db.connect());
 beforeEach(async () => await db.clear());
 afterAll(async () => await db.close());
 afterEach(() => jest.resetAllMocks());
-
-jest.mock('axios');
 
 const sampleWebApp = {
   manifestURL: 'https://maps.google.com',
@@ -153,7 +150,7 @@ describe('get list of web applications', () => {
 });
 
 describe('create new web application', () => {
-  const manifestURL = 'https://news.google.com/_/DotsSplashUi/manifest.json';
+  const appUrl = 'https://news.google.com/';
 
   const manifestSampleData = {
     name: 'Google News',
@@ -165,13 +162,8 @@ describe('create new web application', () => {
 
   it('should 201 and create new application', async () => {
     const req = mockRequest();
-    req.body.manifestURL = manifestURL;
-    req.body.description = 'Yahoo sports application';
+    req.body.appUrl = appUrl;
     const res = mockResponse();
-
-    axios.get.mockImplementation(() =>
-      Promise.resolve({ data: manifestSampleData }),
-    );
 
     await webAppController.createWebApp(req, res);
 
@@ -191,19 +183,6 @@ describe('create new web application', () => {
   it('should 400 if data cannot be retreived from manifest', async () => {
     const req = mockRequest();
     req.body.manifestUrl = '';
-    const res = mockResponse();
-
-    await webAppController.createWebApp(req, res);
-
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ status: 'error' }),
-    );
-  });
-
-  it('should 400 when missing required data', async () => {
-    const req = mockRequest();
-    req.body.manifestURL = manifestURL;
     const res = mockResponse();
 
     await webAppController.createWebApp(req, res);

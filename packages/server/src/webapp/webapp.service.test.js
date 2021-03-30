@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const db = require('../db');
-const webAppService = require('../../webapp/webapp.service.js');
-const WebApp = require('../../webapp/webapp.model');
+const db = require('../../test/db');
+const webAppService = require('./webapp.service.js');
+const WebApp = require('./webapp.model');
 
 beforeAll(async () => await db.connect());
 afterEach(async () => await db.clear());

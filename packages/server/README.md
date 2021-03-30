@@ -53,4 +53,4 @@ from inside server directory
 
 ## Documentation
 
-checkout `feat/swagger` branch, run the dev server and goto `http://localhost:3000/api/docs`
+API documentation can be found [here](https://the-html-5.github.io/wagSwag/)

@@ -1,7 +1,7 @@
 const supertest = require('supertest');
 
-const db = require('../db');
-const app = require('../../app.js');
+const db = require('../../test/db');
+const app = require('../app.js');
 
 const request = supertest(app);
 
