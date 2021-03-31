@@ -1,11 +1,23 @@
+import { sampleApps, sampleError } from "@/sampleData";
 import { WebApp, ApiResponse, PaginatedApiResponse } from "@/types";
 import axios from "axios";
 
 const baseURL = window.location.origin.split(":")[0] + ":3000" + "/api";
 
 export async function getApp(id: string): Promise<WebApp> {
-  const request = axios.get<ApiResponse<WebApp>>(baseURL + "/webapp/" + id);
-  const response = await request;
+  // const request = axios.get<ApiResponse<WebApp>>(baseURL + "/webapp/" + id);
+  // const response = await request;
+  let response: { data: ApiResponse<WebApp> };
+  if (sampleApps.status === "ok" && sampleApps.data[parseInt(id)]) {
+    response = {
+      data: {
+        status: "ok",
+        data: sampleApps.data[parseInt(id)]
+      }
+    };
+  } else {
+    response = { data: sampleError };
+  }
   if (response.data.status === "error") {
     throw response.data.message;
   }
