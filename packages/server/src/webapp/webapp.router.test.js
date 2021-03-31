@@ -27,3 +27,15 @@ describe('POST /webapp', () => {
     expect(res.body.message).toBe('url cannot be empty');
   });
 });
+
+describe('GET /webapp/:id', () => {
+  it.todo('should return single webapp');
+  it.todo('should should return error when app does not exist');
+});
+
+describe('GET /webapp', () => {
+  it.todo('should return list of webapps');
+  it.todo('should error with out of bound query page');
+  it.todo('should return specified limit of webapps');
+  it.todo('should return specified webapp query page');
+});
