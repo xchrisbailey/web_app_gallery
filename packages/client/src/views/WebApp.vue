@@ -1,7 +1,13 @@
 <template>
   <v-card flat :loading="loading">
     <div class="d-flex flex-no-wrap">
-      <v-avatar class="ma-3" rounded="xl" size="120" color="grey">
+      <v-avatar
+        class="ma-3"
+        rounded="xl"
+        size="120"
+        color="grey"
+        :class="{ maskable: appData.icon.purpose == 'maskable' }"
+      >
         <img :src="appData.icon.src" alt="" v-if="appData" />
       </v-avatar>
       <div class="name-and-photo">
@@ -39,6 +45,11 @@
 <style lang="scss" scoped>
 .v-card__title {
   word-break: unset;
+}
+
+.maskable img {
+  width: 110%;
+  height: 110%;
 }
 
 @media (min-width: 600px) {
