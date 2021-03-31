@@ -136,3 +136,20 @@ export interface Review {
   name: string;
   lastUpdated: number;
 }
+
+export interface WebAppPage {
+  totalDocs: number;
+  limit: number;
+  page: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  nextPage: number | null;
+  hasPrevPage: boolean;
+  prevPage: number | null;
+  pagingCounter: number;
+  data: WebApp[];
+}
+
+export type ApiResponse<T> =
+  | { status: "error"; message: string }
+  | ({ status: "ok" } & T);
