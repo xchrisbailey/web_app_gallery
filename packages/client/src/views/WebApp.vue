@@ -4,7 +4,7 @@
       <v-avatar class="ma-3" rounded="xl" size="120" color="grey">
         <img :src="appData.icon.src" alt="" v-if="appData" />
       </v-avatar>
-      <div>
+      <div class="name-and-photo">
         <v-card-title
           class="text-h4"
           v-text="(appData && appData.name) || ''"
@@ -39,6 +39,23 @@
 <style lang="scss" scoped>
 .v-card__title {
   word-break: unset;
+}
+
+@media (min-width: 600px) {
+  .name-and-photo {
+    display: flex;
+    flex-grow: 1;
+
+    @media (max-width: 800px) {
+      justify-content: space-between;
+    }
+
+    .v-card__actions {
+      flex-grow: 1;
+      max-width: 200px;
+      margin: 0 12px;
+    }
+  }
 }
 </style>
 
