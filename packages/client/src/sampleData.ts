@@ -1,27 +1,6 @@
-import { Review, WebApp } from './types';
+import { ApiResponse, Review, WebApp } from './types';
 
-interface DataReturn {
-  status: 'ok' | 'error';
-  data?: WebApp | WebApp[] | Review | Review[];
-  message?: string;
-}
-
-interface AppsReturn extends DataReturn {
-  status: 'ok';
-  data: WebApp[];
-}
-
-interface ReviewsReturn extends DataReturn {
-  status: 'ok';
-  data: Review[];
-}
-
-interface ErrorReturn extends DataReturn {
-  status: 'error';
-  message: string;
-}
-
-export const sampleApps: AppsReturn = {
+export const sampleApps: ApiResponse<WebApp[]> = {
   status: 'ok',
   data: [
     {
@@ -74,7 +53,7 @@ export const sampleApps: AppsReturn = {
   ]
 };
 
-export const sampleReviews: ReviewsReturn = {
+export const sampleReviews: ApiResponse<Review[]> = {
   status: 'ok',
   data: [
     {
@@ -96,14 +75,14 @@ export const sampleReviews: ReviewsReturn = {
     {
       rating: 1,
       review:
-        "I hate this app it doesn't even work. When ever I try to open it it says app crashed.",
+        'I hate this app it doesn't even work. When ever I try to open it it says app crashed.',
       name: 'Eeyore',
       lastUpdated: 1615837503
     }
   ]
 };
 
-export const sampleError: ErrorReturn = {
+export const sampleError: ApiResponse<any> = {
   status: 'error',
   message: 'Amet rem vel a harum'
 };

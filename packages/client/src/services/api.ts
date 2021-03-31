@@ -1,4 +1,4 @@
-import { WebApp, WebAppPage, ApiResponse } from "@/types";
+import { WebApp, ApiResponse, PaginatedApiResponse } from "@/types";
 import axios from "axios";
 
 export async function getApp(id: string): Promise<WebApp> {
@@ -7,11 +7,11 @@ export async function getApp(id: string): Promise<WebApp> {
   if (response.data.status === "error") {
     throw response.data.message;
   }
-  return response.data;
+  return response.data.data;
 }
 
 export async function submitApp(url: string): Promise<WebApp> {
-  const request = axios.post<ApiResponse<{ data: WebApp }>>("/api/webapp", {
+  const request = axios.post<ApiResponse<WebApp>>("/api/webapp", {
     data: { appUrl: url, appleMobileWebAppCapable: true } // TODO make appleMobileWebAppCapable dynamic
   });
   const response = await request;
@@ -39,7 +39,7 @@ export class WebAppQuery {
 
   async getMore(): Promise<WebApp[]> {
     if (this.hasNextPage()) {
-      const request = axios.get<ApiResponse<WebAppPage>>("/api/webapp", {
+      const request = axios.get<PaginatedApiResponse<WebApp>>("/api/webapp", {
         params: { page: this.nextPage }
       });
       const response = await request;
