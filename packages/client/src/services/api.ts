@@ -18,6 +18,7 @@ export async function getApp(id: string): Promise<WebApp> {
   } else {
     response = { data: sampleError };
   }
+  await new Promise(resolve => setTimeout(resolve, 1000));
   if (response.data.status === "error") {
     throw response.data.message;
   }
