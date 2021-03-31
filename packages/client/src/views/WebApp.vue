@@ -1,5 +1,8 @@
 <template>
-  <v-card flat :loading="loading">
+  <v-alert type="error" v-if="error">
+    {{ error }}
+  </v-alert>
+  <v-card v-else flat :loading="loading">
     <div class="d-flex flex-no-wrap">
       <v-avatar
         class="ma-3"
@@ -43,6 +46,13 @@
 </template>
 
 <style lang="scss" scoped>
+.v-alert {
+  position: fixed;
+  bottom: 0;
+  width: stretch;
+  margin: 12px;
+}
+
 .v-card__title {
   word-break: unset;
 }
@@ -71,6 +81,7 @@
 </style>
 
 <script lang="ts">
+import { getApp } from "@/services/api";
 import { WebApp } from "@/types";
 import Vue from "vue";
 import { sampleApps } from "../sampleData";
@@ -80,14 +91,19 @@ export default Vue.extend({
 
   data: () => ({
     appData: null as WebApp | null,
-    loading: true
+    loading: true,
+    error: undefined as string | undefined
   }),
 
   created: function() {
-    setTimeout(() => {
-      this.loading = false;
-      this.appData = sampleApps[parseInt(this.$route.params.id)];
-    }, 1_000);
+    getApp(this.$route.params.id)
+      .then(app => {
+        this.loading = false;
+        this.appData = app;
+      })
+      .catch(error => {
+        this.error = error;
+      });
   }
 });
 </script>
