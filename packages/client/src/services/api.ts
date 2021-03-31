@@ -1,8 +1,10 @@
 import { WebApp, ApiResponse, PaginatedApiResponse } from "@/types";
 import axios from "axios";
 
+const baseURL = window.location.origin.split(":")[0] + ":3000" + "/api";
+
 export async function getApp(id: string): Promise<WebApp> {
-  const request = axios.get<ApiResponse<WebApp>>(`/api/webapp/${id}`);
+  const request = axios.get<ApiResponse<WebApp>>(baseURL + "/webapp/" + id);
   const response = await request;
   if (response.data.status === "error") {
     throw response.data.message;
@@ -11,7 +13,7 @@ export async function getApp(id: string): Promise<WebApp> {
 }
 
 export async function submitApp(url: string): Promise<WebApp> {
-  const request = axios.post<ApiResponse<WebApp>>("/api/webapp", {
+  const request = axios.post<ApiResponse<WebApp>>(baseURL + "/webapp", {
     data: { appUrl: url, appleMobileWebAppCapable: true } // TODO make appleMobileWebAppCapable dynamic
   });
   const response = await request;
@@ -39,9 +41,10 @@ export class WebAppQuery {
 
   async getMore(): Promise<WebApp[]> {
     if (this.hasNextPage()) {
-      const request = axios.get<PaginatedApiResponse<WebApp>>("/api/webapp", {
-        params: { page: this.nextPage }
-      });
+      const request = axios.get<PaginatedApiResponse<WebApp>>(
+        baseURL + "/webapp",
+        { params: { page: this.nextPage } }
+      );
       const response = await request;
       if (response.data.status === "error") {
         throw response.data.message;
