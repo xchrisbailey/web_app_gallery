@@ -6,7 +6,7 @@
         rounded="xl"
         size="120"
         color="grey"
-        :class="{ maskable: appData.icon.purpose == 'maskable' }"
+        :class="{ maskable: appData && appData.icon.purpose == 'maskable' }"
       >
         <img :src="appData.icon.src" alt="" v-if="appData" />
       </v-avatar>
