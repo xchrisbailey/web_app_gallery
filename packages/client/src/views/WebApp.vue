@@ -14,19 +14,10 @@
         <img :src="appData.icon.src" alt="" v-if="appData" />
       </v-avatar>
       <div class="name-and-photo">
-        <v-card-title
-          class="text-h4"
-          v-text="(appData && appData.name) || ''"
-        ></v-card-title>
+        <v-card-title class="text-h4" v-text="(appData && appData.name) || ''"></v-card-title>
 
         <v-card-actions class="pl-4 pr-4">
-          <v-btn
-            block
-            color="primary"
-            :href="appData && appData.startUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <v-btn block color="primary" :href="appData && appData.startUrl" target="_blank" rel="noopener noreferrer">
             Open App
           </v-btn>
         </v-card-actions>
@@ -34,13 +25,7 @@
     </div>
     <v-card-text>
       <p>{{ (appData && appData.description) || "" }}</p>
-      <v-rating
-        length="5"
-        :value="(appData && appData.averageRating) || 0"
-        readonly
-        half-increments
-        dense
-      />
+      <v-rating length="5" :value="(appData && appData.averageRating) || 0" readonly half-increments dense />
     </v-card-text>
   </v-card>
 </template>

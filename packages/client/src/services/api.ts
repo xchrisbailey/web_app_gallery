@@ -53,10 +53,7 @@ export class WebAppQuery {
 
   async getMore(): Promise<WebApp[]> {
     if (this.hasNextPage()) {
-      const request = axios.get<PaginatedApiResponse<WebApp>>(
-        baseURL + "/webapp",
-        { params: { page: this.nextPage } }
-      );
+      const request = axios.get<PaginatedApiResponse<WebApp>>(baseURL + "/webapp", { params: { page: this.nextPage } });
       const response = await request;
       if (response.data.status === "error") {
         throw response.data.message;

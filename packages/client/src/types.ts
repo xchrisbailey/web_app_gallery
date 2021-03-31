@@ -137,9 +137,7 @@ export interface Review {
   lastUpdated: number;
 }
 
-export type ApiResponse<T> =
-  | { status: "error"; message: string }
-  | { status: "ok"; data: T };
+export type ApiResponse<T> = { status: "error"; message: string } | { status: "ok"; data: T };
 
 export type PaginatedApiResponse<T> =
   | { status: "error"; message: string }

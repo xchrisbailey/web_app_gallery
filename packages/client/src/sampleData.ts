@@ -39,8 +39,7 @@ export const sampleApps: ApiResponse<WebApp[]> = {
       manifestURL: "https://proxx.app/manifest.json",
       startUrl: "https://proxx.app/",
       name: "PROXX",
-      description:
-        "Help your crew navigate space by marking out the black holes using proxx, your proximity scanner.",
+      description: "Help your crew navigate space by marking out the black holes using proxx, your proximity scanner.",
       icon: {
         src: "https://proxx.app/assets/icon-maskable-7a2eb399.png",
         purpose: "maskable"
@@ -74,8 +73,7 @@ export const sampleReviews: ApiResponse<Review[]> = {
     },
     {
       rating: 1,
-      review:
-        "I hate this app it doesn't even work. When ever I try to open it it says app crashed.",
+      review: "I hate this app it doesn't even work. When ever I try to open it it says app crashed.",
       name: "Eeyore",
       lastUpdated: 1615837503
     }
