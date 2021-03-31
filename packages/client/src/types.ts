@@ -74,7 +74,7 @@ export const categories: Category[] = [
   "sports",
   "travel",
   "utilities",
-  "weather",
+  "weather"
 ];
 
 export function isCategory(category: any): category is Category {
@@ -123,7 +123,7 @@ export const platforms: Platform[] = [
   "chrome_web_store",
   "play",
   "itunes",
-  "microsoft",
+  "microsoft"
 ];
 
 export function isPlatform(platform: any): platform is Platform {
