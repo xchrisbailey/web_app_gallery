@@ -40,7 +40,13 @@ const routes: Array<RouteConfig> = [
     path:"/signUp",
     name:"signUp",
     component: SignUpView
+  },
+  {
+    path: "/Rating",
+    name: "Rating",
+    component: () => import("../views/Ratings.vue")    
   }
+  
 ];
 
 const router = new VueRouter({
