@@ -23,13 +23,7 @@
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list>
         <v-subheader>Catagories</v-subheader>
-        <v-list-item
-          color="primary"
-          link
-          v-for="(category, i) in catagories"
-          :key="i"
-          :to="category.route"
-        >
+        <v-list-item color="primary" link v-for="(category, i) in catagories" :key="i" :to="category.route">
           <v-list-item-icon>
             <v-icon>{{ category.icon }}</v-icon>
           </v-list-item-icon>
@@ -63,7 +57,7 @@ const catagories = [
 ];
 
 export default Vue.extend({
-  name: 'App',
+  name: "App",
 
   data: () => ({
     drawer: false,
