@@ -16,7 +16,7 @@ describe('POST /webapp', () => {
   it('should create and return new web application', async () => {
     const res = await request
       .post('/api/webapp')
-      .send({ appUrl: 'https://news.google.com' })
+      .send({ appUrl: 'https://news.google.com', category: 'news' })
       .expect(201);
 
     expect(res.body.status).toBe('ok');

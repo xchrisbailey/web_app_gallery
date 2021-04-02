@@ -1,6 +1,38 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
-const aggregatePaginate = require('mongoose-aggregate-paginate-v2');
+
+const categories = [
+  'books',
+  'business',
+  'donations',
+  'education',
+  'entertainment',
+  'finance',
+  'fitness',
+  'food',
+  'fundraising',
+  'games',
+  'government',
+  'health',
+  'kids',
+  'lifestyle',
+  'magazines',
+  'medical',
+  'music',
+  'navigation',
+  'news',
+  'personalization',
+  'photo',
+  'politics',
+  'productivity',
+  'security',
+  'shopping',
+  'social',
+  'sports',
+  'travel',
+  'utilities',
+  'weather',
+];
 
 const webAppSchema = new mongoose.Schema(
   {
@@ -11,6 +43,7 @@ const webAppSchema = new mongoose.Schema(
     appleMobileWebAppCapable: { type: 'boolean', default: false },
     themeColor: { type: String },
     backgroundColor: { type: String },
+    category: { type: String, required: true, enum: categories },
     icons: [
       {
         src: { type: String },

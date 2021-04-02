@@ -25,7 +25,7 @@ const getWebApps = async (req, res) => {
       data = await webAppService.findWebApps(opts);
       if (data.page > data.totalPages) throw new Error('no applications found');
     }
-      r.pageData(res, 200, data);
+    r.pageData(res, 200, data);
   } catch (e) {
     r.error(res, 400, e.message);
   }
@@ -33,8 +33,10 @@ const getWebApps = async (req, res) => {
 
 const createWebApp = async (req, res) => {
   try {
-    if (!req.body.appUrl || req.body.appUrl === '')
+    if (!req.body.appUrl | (req.body.appUrl === ''))
       throw new Error('url cannot be empty');
+    if (!req.body.category || req.body.category === '')
+      throw new Error('must provide a category');
     const url = req.body.appUrl.match(/\/$/)
       ? req.body.appUrl
       : `${req.body.appUrl}/`;
@@ -56,6 +58,7 @@ const createWebApp = async (req, res) => {
       appleMobileWebAppCapable: req.body.appleMobileWebAppCapable
         ? req.body.appleMobileWebAppCapable
         : false,
+      category: req.body.category,
     };
 
     const response = await webAppService.createWebApp(appData);
