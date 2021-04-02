@@ -1,7 +1,10 @@
 const supertest = require('supertest');
+const mongoose = require('mongoose');
 
 const db = require('../../test/db');
 const app = require('../app');
+const { dummyWebApp } = require('../../test/data');
+const WebApp = require('./webapp.model');
 
 const request = supertest(app);
 
@@ -29,8 +32,21 @@ describe('POST /webapp', () => {
 });
 
 describe('GET /webapp/:id', () => {
-  it.todo('should return single webapp');
-  it.todo('should should return error when app does not exist');
+  it('should return single webapp', async () => {
+    const testApp = await WebApp.create(dummyWebApp);
+    const req = await request.get(`/api/webapp/${testApp._id}`).expect(200);
+    expect(req.body.status).toBe('ok');
+    expect(req.body.data.manifestURL).toEqual(testApp.manifestURL);
+    expect(req.body.data.name).toEqual(testApp.name);
+  });
+
+  it('should should return error when app does not exist', async () => {
+    const req = await request
+      .get(`/api/webapp/${mongoose.Types.ObjectId()}`)
+      .expect(400);
+    expect(req.body.status).toBe('error');
+    expect(req.body.message).toBe('web app not found');
+  });
 });
 
 describe('GET /webapp', () => {
