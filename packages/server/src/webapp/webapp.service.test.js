@@ -77,6 +77,21 @@ describe('get single web app', () => {
       expect(res.data.length).toBe(0);
     });
   });
+
+  it('should return search results', async () => {
+    await WebApp.create(dummyWebApp);
+    await WebApp.create({ ...dummyWebApp, name: 'apple' });
+    const res = await webAppService.searchWebApps('google');
+    expect(res.length).toBe(1);
+  });
+
+  it('should return paginated list if no search provided', async () => {
+    await WebApp.create(dummyWebApp);
+    await WebApp.create({ ...dummyWebApp, name: 'apple' });
+
+    const res = await webAppService.searchWebApps('');
+    expect(res.data.length).toBe(2);
+  });
 });
 
 describe('create web app', () => {

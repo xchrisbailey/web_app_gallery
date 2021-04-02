@@ -79,4 +79,13 @@ describe('GET /webapp', () => {
     expect(req.body.data.length).toBe(5);
     expect(req.body.page).toBe(2);
   });
+
+  it('should return matching search requests', async () => {
+    await WebApp.create(dummyWebApp);
+    await WebApp.create({ ...dummyWebApp, name: 'apple' });
+
+    const req = await request.get('/api/webapp?search=google').expect(200);
+    expect(req.body.data.length).toBe(1);
+    expect(req.body.data[0].name).toBe('google maps');
+  });
 });

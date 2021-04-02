@@ -23,6 +23,18 @@ const findWebApps = async (opts = { limit: 10 }) => {
   return res;
 };
 
+const searchWebApps = async (searchQuery) => {
+  if (searchQuery && searchQuery !== '') {
+    const res = await WebApp.find({
+      name: { $regex: searchQuery },
+    });
+
+    return res;
+  }
+
+  return await findWebApps();
+};
+
 // create a new web app and return it
 const createWebApp = async (data) => {
   return await WebApp.create(data);
@@ -31,5 +43,6 @@ const createWebApp = async (data) => {
 module.exports = {
   findWebApp,
   findWebApps,
+  searchWebApps,
   createWebApp,
 };

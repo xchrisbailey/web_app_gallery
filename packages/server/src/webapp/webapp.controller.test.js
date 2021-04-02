@@ -137,6 +137,22 @@ describe('get list of web applications', () => {
     );
   });
 
+  it('should 200 and return matching search results', async () => {
+    await WebApp.create(dummyWebApp);
+    await WebApp.create({ ...dummyWebApp, name: 'apple' });
+
+    const req = mockRequest();
+    req.query.search = 'google';
+    const res = mockResponse();
+
+    await webAppController.getWebApps(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ data: [expect.anything()] }),
+    );
+  });
+
   it('should 400 and return error if page does not exist', async () => {
     for (let i = 0; i < 10; i++) {
       await WebApp.create(dummyWebApp);
