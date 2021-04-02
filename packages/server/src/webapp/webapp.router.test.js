@@ -50,8 +50,33 @@ describe('GET /webapp/:id', () => {
 });
 
 describe('GET /webapp', () => {
-  it.todo('should return list of webapps');
-  it.todo('should error with out of bound query page');
-  it.todo('should return specified limit of webapps');
-  it.todo('should return specified webapp query page');
+  it('should return list of webapps', async () => {
+    for (let i = 0; i < 20; i++) {
+      await WebApp.create(dummyWebApp);
+    }
+
+    const req = await request.get('/api/webapp').expect(200);
+    expect(req.body.status).toBe('ok');
+    expect(req.body.data.length).toBe(10); // default limit
+  });
+
+  it('should error with out of bound query page', async () => {
+    for (let i = 0; i < 20; i++) {
+      await WebApp.create(dummyWebApp);
+    }
+
+    const req = await request.get('/api/webapp?page=5').expect(400);
+    expect(req.body.status).toBe('error');
+  });
+
+  it('should return specified limit of webapps and requested page', async () => {
+    for (let i = 0; i < 20; i++) {
+      await WebApp.create(dummyWebApp);
+    }
+
+    const req = await request.get('/api/webapp?limit=5&page=2').expect(200);
+    expect(req.body.status).toBe('ok');
+    expect(req.body.data.length).toBe(5);
+    expect(req.body.page).toBe(2);
+  });
 });

@@ -20,7 +20,7 @@ const getWebApps = async (req, res) => {
   try {
     const data = await webAppService.findWebApps(opts);
     if (data.page > data.totalPages) throw new Error('no applications found');
-    r.data(res, 200, data);
+    r.pageData(res, 200, data);
   } catch (e) {
     r.error(res, 400, e.message);
   }

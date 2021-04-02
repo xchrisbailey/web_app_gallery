@@ -108,7 +108,7 @@ describe('get list of web applications', () => {
       expect.objectContaining({ status: 'ok' }),
     );
     expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ data: expect.objectContaining({ limit: 2 }) }),
+      expect.objectContaining({ limit: 2 }),
     );
   });
 
@@ -130,7 +130,9 @@ describe('get list of web applications', () => {
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ page: 2, nextPage: 3, prevPage: 1 }),
+        page: 2,
+        nextPage: 3,
+        prevPage: 1,
       }),
     );
   });
