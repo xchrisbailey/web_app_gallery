@@ -101,18 +101,9 @@ export default {
     },
   }),
   methods: {
-    submit: function () {
-      this.$http
-        .post("http://localhost:3000/api/signup", {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          email: this.email,
-          password: this.password,
-        })
-        .then(function (data) {
-          console.log(data);
-        });
-    },
+    // submit: function () {
+
+    // },
   },
 };
 </script>
