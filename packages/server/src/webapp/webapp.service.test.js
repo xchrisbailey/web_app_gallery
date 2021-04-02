@@ -81,8 +81,8 @@ describe('get single web app', () => {
   it('should return search results', async () => {
     await WebApp.create(dummyWebApp);
     await WebApp.create({ ...dummyWebApp, name: 'apple' });
-    const res = await webAppService.searchWebApps('google');
-    expect(res.length).toBe(1);
+    const res = await webAppService.searchWebApps({}, 'google');
+    expect(res.data.length).toBe(1);
   });
 
   it('should return paginated list if no search provided', async () => {

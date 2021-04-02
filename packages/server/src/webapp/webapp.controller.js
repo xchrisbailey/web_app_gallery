@@ -18,14 +18,14 @@ const getWebApps = async (req, res) => {
   };
 
   try {
+    let data;
     if (req.query.search) {
-      const data = await webAppService.searchWebApps(req.query.search);
-      r.data(res, 200, data);
+      data = await webAppService.searchWebApps(opts, req.query.search);
     } else {
-      const data = await webAppService.findWebApps(opts);
+      data = await webAppService.findWebApps(opts);
       if (data.page > data.totalPages) throw new Error('no applications found');
-      r.pageData(res, 200, data);
     }
+      r.pageData(res, 200, data);
   } catch (e) {
     r.error(res, 400, e.message);
   }

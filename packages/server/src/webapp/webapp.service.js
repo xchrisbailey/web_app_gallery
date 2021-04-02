@@ -23,16 +23,20 @@ const findWebApps = async (opts = { limit: 10 }) => {
   return res;
 };
 
-const searchWebApps = async (searchQuery) => {
-  if (searchQuery && searchQuery !== '') {
-    const res = await WebApp.find({
-      name: { $regex: searchQuery },
-    });
+const searchWebApps = async (opts = { limit: 10 }, searchQuery) => {
+  if (!searchQuery || searchQuery === '') return await findWebApps();
 
-    return res;
-  }
+  const res = await WebApp.paginate(
+    { name: { $regex: searchQuery } },
+    {
+      ...opts,
+      customLabels: {
+        docs: 'data',
+      },
+    },
+  );
 
-  return await findWebApps();
+  return res;
 };
 
 // create a new web app and return it
