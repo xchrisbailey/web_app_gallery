@@ -88,4 +88,22 @@ describe('GET /webapp', () => {
     expect(req.body.data.length).toBe(1);
     expect(req.body.data[0].name).toBe('google maps');
   });
+
+  it('should return search and limit request, and paginate accordingly', async () => {
+    for (let i = 0; i < 10; i++) {
+      await WebApp.create(dummyWebApp);
+    }
+    await WebApp.create({ ...dummyWebApp, name: 'apple' });
+
+    let req = await request
+      .get('/api/webapp?search=google&limit=5')
+      .expect(200);
+    expect(req.body.data.length).toBe(5);
+    expect(req.body.data[0].name).toBe('google maps');
+    req = await request
+      .get('/api/webapp?search=google&limit=5&page=2')
+      .expect(200);
+    expect(req.body.data.length).toBe(5);
+    expect(req.body.data[0].name).toBe('google maps');
+  });
 });
