@@ -181,7 +181,7 @@ describe('create new web application', () => {
   it('should 201 and create new application', async () => {
     const req = mockRequest();
     req.body.appUrl = appUrl;
-    req.body.category = 'news'
+    req.body.category = 'news';
     const res = mockResponse();
 
     await webAppController.createWebApp(req, res);
@@ -202,16 +202,19 @@ describe('create new web application', () => {
   it('should 400 if no valid category provided', async () => {
     const req = mockRequest();
     req.body.appUrl = appUrl;
-    req.body.category = ''
+    req.body.category = '';
     const res = mockResponse();
 
     await webAppController.createWebApp(req, res);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ status: 'error', message: 'must provide a category' }),
+      expect.objectContaining({
+        status: 'error',
+        message: 'must provide a category',
+      }),
     );
-  })
+  });
 
   it('should 400 if data cannot be retreived from manifest', async () => {
     const req = mockRequest();
