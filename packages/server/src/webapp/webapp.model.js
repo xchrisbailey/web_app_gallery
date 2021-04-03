@@ -44,6 +44,7 @@ const webAppSchema = new mongoose.Schema(
     themeColor: { type: String },
     backgroundColor: { type: String },
     category: { type: String, required: true, enum: categories },
+    submittedBy: { type: mongoose.Schema.Types.ObjectID, ref: 'User' },
     icons: [
       {
         src: { type: String },
