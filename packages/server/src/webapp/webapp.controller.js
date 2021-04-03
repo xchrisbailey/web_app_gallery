@@ -61,7 +61,7 @@ const createWebApp = async (req, res) => {
       category: req.body.category,
     };
 
-    const response = await webAppService.createWebApp(appData);
+    const response = await webAppService.createWebApp(req.user, appData);
     r.data(res, 201, response);
   } catch (e) {
     r.error(res, 400, e.message);
