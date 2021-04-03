@@ -4,8 +4,8 @@ const r = require('../utils/resHelpers.js');
 
 // middleware to check for valid JWT token and user
 const auth = async (req, res, next) => {
-  const token = req.cookies.token || null; // extracts jwt from 🍪
   try {
+    const token = req.cookies.token || null; // extracts jwt from 🍪
     if (!token) throw new Error('Must be logged in to perform this action');
     const decoded = await jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findOne({ _id: decoded._id }); // find user associated with jwt
