@@ -85,12 +85,12 @@ describe('get single web app', () => {
     expect(res.data.length).toBe(1);
   });
 
-  it('should return paginated list if no search provided', async () => {
+  it('should return app matching requested category', async () => {
     await WebApp.create(dummyWebApp);
-    await WebApp.create({ ...dummyWebApp, name: 'apple' });
+    await WebApp.create({ ...dummyWebApp, category: 'sports' });
 
-    const res = await webAppService.searchWebApps('');
-    expect(res.data.length).toBe(2);
+    const res = await webAppService.findByCategory({}, 'news');
+    expect(res.data.length).toBe(1);
   });
 });
 

@@ -23,10 +23,9 @@ const findWebApps = async (opts = { limit: 10 }) => {
   return res;
 };
 
+// substring search results
 const searchWebApps = async (opts = { limit: 10 }, searchQuery) => {
-  if (!searchQuery || searchQuery === '') return await findWebApps();
-
-  const res = await WebApp.paginate(
+  return await WebApp.paginate(
     { name: { $regex: searchQuery } },
     {
       ...opts,
@@ -35,8 +34,19 @@ const searchWebApps = async (opts = { limit: 10 }, searchQuery) => {
       },
     },
   );
+};
 
-  return res;
+// return results for specified category
+const findByCategory = async (opts = { limit: 10 }, category) => {
+  return await WebApp.paginate(
+    { category },
+    {
+      ...opts,
+      customLabels: {
+        docs: 'data',
+      },
+    },
+  );
 };
 
 // create a new web app and return it
@@ -48,5 +58,6 @@ module.exports = {
   findWebApp,
   findWebApps,
   searchWebApps,
+  findByCategory,
   createWebApp,
 };
