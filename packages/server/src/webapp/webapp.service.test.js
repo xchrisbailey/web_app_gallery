@@ -81,7 +81,7 @@ describe('get single web app', () => {
   it('should return search results', async () => {
     await WebApp.create(dummyWebApp);
     await WebApp.create({ ...dummyWebApp, name: 'apple' });
-    const res = await webAppService.searchWebApps({}, 'google');
+    const res = await webAppService.findWebApps({}, { search: 'google' });
     expect(res.data.length).toBe(1);
   });
 
@@ -89,7 +89,7 @@ describe('get single web app', () => {
     await WebApp.create(dummyWebApp);
     await WebApp.create({ ...dummyWebApp, category: 'sports' });
 
-    const res = await webAppService.findByCategory({}, 'news');
+    const res = await webAppService.findWebApps({}, { category: 'news' });
     expect(res.data.length).toBe(1);
   });
 });

@@ -10,43 +10,22 @@ const findWebApp = async (id) => {
 };
 
 // make mongoose call to find all web apps and return paginated results
-const findWebApps = async (opts = { limit: 10 }) => {
-  const res = await WebApp.paginate(
-    {},
-    {
-      ...opts,
-      customLabels: {
-        docs: 'data',
-      },
+const findWebApps = async (opts = { limit: 10 }, filters = {}) => {
+  let filter;
+  if (filters.search) {
+    filter = { name: { $regex: filters.search } };
+  } else if (filters.category) {
+    filter = { category: filters.category };
+  } else {
+    filter = {};
+  }
+  const res = await WebApp.paginate(filter, {
+    ...opts,
+    customLabels: {
+      docs: 'data',
     },
-  );
+  });
   return res;
-};
-
-// substring search results
-const searchWebApps = async (opts = { limit: 10 }, searchQuery) => {
-  return await WebApp.paginate(
-    { name: { $regex: searchQuery } },
-    {
-      ...opts,
-      customLabels: {
-        docs: 'data',
-      },
-    },
-  );
-};
-
-// return results for specified category
-const findByCategory = async (opts = { limit: 10 }, category) => {
-  return await WebApp.paginate(
-    { category },
-    {
-      ...opts,
-      customLabels: {
-        docs: 'data',
-      },
-    },
-  );
 };
 
 // create a new web app and return it
@@ -57,7 +36,5 @@ const createWebApp = async (data) => {
 module.exports = {
   findWebApp,
   findWebApps,
-  searchWebApps,
-  findByCategory,
   createWebApp,
 };
