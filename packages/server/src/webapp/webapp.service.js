@@ -29,8 +29,14 @@ const findWebApps = async (opts = { limit: 10 }, filters = {}) => {
 };
 
 // create a new web app and return it
-const createWebApp = async (data) => {
-  return await WebApp.create(data);
+const createWebApp = async (user, data) => {
+  const body = {
+    ...data,
+    submittedBy: user,
+  };
+  const app = WebApp.create(body);
+  return app;
+  // return await WebApp.create(data);
 };
 
 module.exports = {

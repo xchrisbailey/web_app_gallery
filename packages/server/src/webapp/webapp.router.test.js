@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const db = require('../../test/db');
 const app = require('../app');
-const { dummyWebApp } = require('../../test/data');
+const { dummyWebApp, dummyUser } = require('../../test/data');
 const WebApp = require('./webapp.model');
 
 const request = supertest(app);
@@ -13,8 +13,10 @@ beforeEach(async () => await db.clear());
 afterAll(async () => await db.close());
 
 describe('POST /webapp', () => {
-  it('should create and return new web application', async () => {
-    const res = await request
+  it('should create and return new web application when authenticated', async () => {
+    const r = supertest.agent(app);
+    await r.post('/api/signup').send(dummyUser);
+    const res = await r
       .post('/api/webapp')
       .send({ appUrl: 'https://news.google.com', category: 'news' })
       .expect(201);
@@ -23,8 +25,20 @@ describe('POST /webapp', () => {
     expect(res.body.data.description).not.toBe('');
   });
 
+  it('should return error when not authenticated', async () => {
+    const res = await request
+      .post('/api/webapp')
+      .send({ appUrl: 'https://news.google.com', category: 'news' })
+      .expect(401);
+
+    expect(res.body.status).toBe('error');
+    expect(res.body.data).not.toBe('must be authenticated');
+  });
+
   it('should return error when url not provided', async () => {
-    const res = await request.post('/api/webapp').send({}).expect(400);
+    const r = supertest.agent(app);
+    await r.post('/api/signup').send(dummyUser);
+    const res = await r.post('/api/webapp').send({}).expect(400);
 
     expect(res.body.status).toBe('error');
     expect(res.body.message).toBe('url cannot be empty');
