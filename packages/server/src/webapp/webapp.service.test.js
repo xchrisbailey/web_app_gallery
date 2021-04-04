@@ -97,35 +97,18 @@ describe('get single web app', () => {
   });
 
   it('should return search results', async () => {
-    const user = await User.create(dummyUser);
-    await WebApp.create({
-      ...dummyWebApp,
-      submittedBy: user,
-    });
-    await WebApp.create({
-      ...dummyWebApp,
-      name: 'apple',
-      submittedBy: user,
-    });
-
-    const res = await webAppService.searchWebApps({}, 'google');
+    await WebApp.create(dummyWebApp);
+    await WebApp.create({ ...dummyWebApp, name: 'apple' });
+    const res = await webAppService.findWebApps({}, { search: 'google' });
     expect(res.data.length).toBe(1);
   });
 
-  it('should return paginated list if no search provided', async () => {
-    const user = await User.create(dummyUser);
-    await WebApp.create({
-      ...dummyWebApp,
-      submittedBy: user,
-    });
-    await WebApp.create({
-      ...dummyWebApp,
-      name: 'apple',
-      submittedBy: user,
-    });
+  it('should return app matching requested category', async () => {
+    await WebApp.create(dummyWebApp);
+    await WebApp.create({ ...dummyWebApp, category: 'sports' });
 
-    const res = await webAppService.searchWebApps('');
-    expect(res.data.length).toBe(2);
+    const res = await webAppService.findWebApps({}, { category: 'news' });
+    expect(res.data.length).toBe(1);
   });
 });
 

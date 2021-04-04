@@ -120,4 +120,16 @@ describe('GET /webapp', () => {
     expect(req.body.data.length).toBe(5);
     expect(req.body.data[0].name).toBe('google maps');
   });
+
+  it('should return results for requested category', async () => {
+    for (let i = 0; i < 10; i++) {
+      await WebApp.create(dummyWebApp);
+    }
+    await WebApp.create({ ...dummyWebApp, category: 'sports' });
+
+    let req = await request.get('/api/webapp?category=sports').expect(200);
+
+    expect(req.body.data.length).toBe(1);
+    expect(req.body.data[0].category).toBe('sports');
+  });
 });
