@@ -46,6 +46,12 @@ npm run dev
 
 from inside server directory
 
+### Seed development database
+
+`npm run db:seed` will populate the database with two users and 40 entries split between them
+
+`npm run db:clear` will clear the database of all user and webapp entries
+
 ## Tools for development
 
 - if you're on macOS the [mongo.app](https://github.com/MongoApp/MongoApp) makes launching database a breeze (not sure if theres a windows equivalent)
