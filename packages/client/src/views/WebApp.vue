@@ -66,8 +66,8 @@
 </style>
 
 <script lang="ts">
-import { getApp } from "@/services/api";
-import { WebApp } from "@/types";
+import { getApp } from "../services/api";
+import { WebApp } from "../types";
 import Vue from "vue";
 import { sampleApps } from "../sampleData";
 

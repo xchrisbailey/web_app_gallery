@@ -75,7 +75,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { submitUser } from "../services/signUpApi";
+import { SignUp } from '../types';
+
 export default {
   name: "SignIn",
   props: {
@@ -83,28 +86,19 @@ export default {
   },
 
   data: () => ({
-    password: undefined,
-    email: undefined,
-    firstName: undefined,
-    lastName: undefined,
-    error: false,
-    errorMsg: "",
 
     rules: {
-      password: (v) =>
+      password: (v: any) =>
         !!(v || "").match(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/
         ) ||
         "Password must contain an upper case letter, a numeric character, and a special character",
-      required: (v) => !!v || "This field is required",
-      email: (v) => !!(v || "").match(/@/) || "Please enter a valid email",
+      required: (v: any) => !!v || "This field is required",
+      email: (v: any) => !!(v || "").match(/@/) || "Please enter a valid email",
     },
-  }),
-  methods: {
     // submit: function () {
-
-    // },
-  },
+    //     },
+    }),
 };
 </script>
 
