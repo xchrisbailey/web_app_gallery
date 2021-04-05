@@ -1,9 +1,11 @@
 import { sampleApps, sampleError } from "@/sampleData";
 import { WebApp, ApiResponse, PaginatedApiResponse } from "@/types";
-import axios from "axios";
+import axiosStatic from "axios";
 
-axios.defaults.validateStatus = null;
-axios.defaults.baseURL = window.location.origin.match(/https?:\/\/[a-z0-9\-.]*/) + ":3000" + "/api";
+const axios = axiosStatic.create({
+  baseURL: window.location.origin.match(/https?:\/\/[a-z0-9\-.]*/) + ":3000" + "/api",
+  validateStatus: null
+});
 
 export async function getApp(id: string): Promise<WebApp> {
   const request = axios.get<ApiResponse<WebApp>>("/webapp/" + id);
