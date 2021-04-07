@@ -57,6 +57,15 @@ const webAppSchema = new mongoose.Schema(
 
 webAppSchema.plugin(mongoosePaginate);
 
+// sanitize sensitive info before returning json
+webAppSchema.methods.toJSON = function () {
+  const webApp = this;
+  const wap = webApp.toObject();
+
+  delete wap.__v;
+
+  return wap;
+};
 const WebApp = mongoose.model('WebApp', webAppSchema);
 
 module.exports = WebApp;
