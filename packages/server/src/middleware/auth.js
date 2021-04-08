@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../user/user.model');
+const { User } = require('../user/');
 const r = require('../utils/resHelpers.js');
 
 // middleware to check for valid JWT token and user

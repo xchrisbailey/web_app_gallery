@@ -40,7 +40,7 @@ describe('POST /signup', () => {
       .expect(400);
     expect(res.body.status).toBe('error');
     expect(res.body.message).toBe(
-      'User validation failed: firstName: first name is required',
+      'User validation failed: firstName: Path `firstName` is required.',
     );
   });
 
@@ -51,7 +51,7 @@ describe('POST /signup', () => {
       .expect(400);
     expect(res.body.status).toBe('error');
     expect(res.body.message).toBe(
-      'User validation failed: email: invalid email address',
+      'User validation failed: email: Invalid email',
     );
   });
 });
@@ -181,7 +181,7 @@ describe('PUT /me/updatePassword', () => {
       .expect(400);
     expect(res.body.status).toBe('error');
     expect(res.body.message).toBe(
-      'User validation failed: password: password must be at least 6 characters long',
+      'User validation failed: password: Path `password` (`zx`) is shorter than the minimum allowed length (6).',
     );
   });
 });

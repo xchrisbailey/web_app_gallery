@@ -57,7 +57,7 @@ describe('createUser', () => {
     assertError(
       res,
       400,
-      'User validation failed: lastName: last name is required',
+      'User validation failed: lastName: Path `lastName` is required.',
     );
   });
 });
@@ -248,7 +248,7 @@ describe('updatePassword', () => {
     assertError(
       res,
       400,
-      'User validation failed: password: password is required',
+      'User validation failed: password: Path `password` is required.',
     );
   });
 });

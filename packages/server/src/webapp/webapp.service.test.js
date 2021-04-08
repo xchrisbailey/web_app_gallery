@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const db = require('../../test/db');
 const { dummyWebApp, dummyUser } = require('../../test/data');
 const webAppService = require('./webapp.service.js');
-const User = require('../user/user.model');
+const { User } = require('../user/');
 const WebApp = require('./webapp.model');
 
 beforeAll(async () => await db.connect());

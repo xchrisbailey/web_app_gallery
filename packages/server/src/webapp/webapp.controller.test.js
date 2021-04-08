@@ -11,8 +11,8 @@ const {
   dummyUser,
 } = require('../../test/data');
 const { mockRequest, mockResponse } = require('../../test/utils/interceptors');
-const User = require('../user/user.model');
-const WebApp = require('./webapp.model');
+const { User } = require('../user');
+const { WebApp } = require('.');
 const webAppController = require('./webapp.controller.js');
 
 jest.mock('axios');
