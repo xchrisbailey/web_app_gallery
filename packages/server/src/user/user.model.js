@@ -1,27 +1,39 @@
 const mongoose = require('mongoose');
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
+const validator = require('validator');
 
 const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      required: [true, 'email address is required'],
-      unique: [true, 'this email address is already in use'],
-      match: [/.+@.+\..+/, 'invalid email address'],
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true,
+      validate(value) {
+        if (!validator.isEmail(value)) {
+          throw new Error('Invalid email');
+        }
+      },
     },
     firstName: {
       type: String,
-      required: [true, 'first name is required'],
+      required: true,
+      lowercase: true,
+      trim: true,
     },
     lastName: {
       type: String,
-      required: [true, 'last name is required'],
+      required: true,
+      lowercase: true,
+      trim: true,
     },
     password: {
       type: String,
-      required: [true, 'password is required'],
-      minlength: [6, 'password must be at least 6 characters long'],
+      required: true,
+      minlength: 6,
+      trim: true,
     },
   },
   {
