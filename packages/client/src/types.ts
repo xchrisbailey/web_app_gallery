@@ -1,4 +1,5 @@
 export interface WebApp {
+  _id: string;
   manifestURL: string;
   startURL: string;
   name: string;

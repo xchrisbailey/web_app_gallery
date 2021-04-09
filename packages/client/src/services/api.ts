@@ -29,9 +29,10 @@ export async function submitApp(url: string): Promise<WebApp> {
 export class WebAppQuery {
   private nextPage?: number = 0;
   private webApps: WebApp[] = [];
+  private category: Category;
 
-  constructor() {
-    this.getMore();
+  constructor(category: Category) {
+    this.category = category;
   }
 
   hasNextPage(): boolean {
@@ -44,7 +45,9 @@ export class WebAppQuery {
 
   async getMore(): Promise<WebApp[]> {
     if (this.hasNextPage()) {
-      const request = axios.get<PaginatedApiResponse<WebApp>>("/webapp", { params: { page: this.nextPage } });
+      const request = axios.get<PaginatedApiResponse<WebApp>>("/webapp", {
+        params: { page: this.nextPage, category: this.category }
+      });
       const response = await request;
       if (response.data.status === "error") {
         throw response.data.message;

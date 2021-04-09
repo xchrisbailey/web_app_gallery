@@ -11,10 +11,14 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
+    path: "/categories/:category",
+    name: "Category",
+    component: () => import(/* webpackChunkName: "AppList" */ "../views/AppList.vue")
+  },
+  {
     path: "/apps/:id",
     name: "Web App",
-    component: () =>
-      import(/* webpackChunkName: "WebApp" */ "../views/WebApp.vue")
+    component: () => import(/* webpackChunkName: "WebApp" */ "../views/WebApp.vue")
   },
   {
     path: "/about",
