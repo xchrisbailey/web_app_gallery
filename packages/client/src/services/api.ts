@@ -1,4 +1,3 @@
-import { sampleApps, sampleError } from "@/sampleData";
 import { WebApp, ApiResponse, PaginatedApiResponse } from "@/types";
 import axiosStatic from "axios";
 
