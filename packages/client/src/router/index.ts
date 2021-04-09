@@ -1,8 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
-import SignInView from "../views/SignInView.vue"
-import SignUpView from "../views/SignUpView.vue"
 
 Vue.use(VueRouter);
 
@@ -34,17 +32,17 @@ const routes: Array<RouteConfig> = [
   {
     path:"/signIn",
     name:"signIn",
-    component: SignInView
+    component: () => import(/* webpackChunkName: "signin" */ "../views/SignInView.vue")
   },
   {
     path:"/signUp",
     name:"signUp",
-    component: SignUpView
+    component: () => import(/* webpackChunkName: "signup" */ "../views/SignUpView.vue")
   },
   {
     path: "/Rating",
     name: "Rating",
-    component: () => import("../views/Ratings.vue")    
+    component: () => import(/* webpackChunkName: "review" */ "../views/Ratings.vue")    
   }
   
 ];

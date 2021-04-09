@@ -86,6 +86,10 @@ export default {
   },
 
   data: () => ({
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
 
     rules: {
       password: (v: any) =>
@@ -96,8 +100,9 @@ export default {
       required: (v: any) => !!v || "This field is required",
       email: (v: any) => !!(v || "").match(/@/) || "Please enter a valid email",
     },
-    // submit: function () {
-    //     },
+    submit: function () {
+        submitUser(this.lastName,this.firstName,this.email,this.password)
+        },
     }),
 };
 </script>
