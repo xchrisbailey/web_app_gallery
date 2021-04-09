@@ -3,7 +3,7 @@ const r = require('../utils/resHelpers');
 
 const validate = (schema) => async (req, res, next) => {
   try {
-    const validSchema = pick(schema, ['body']);
+    const validSchema = pick(schema, ['params', 'query', 'body']);
     const object = pick(req, Object.keys(validSchema));
     const { value, error } = Joi.compile(validSchema)
       .prefs({ errors: { label: 'key' } })
