@@ -9,9 +9,9 @@
         rounded="xl"
         size="120"
         color="grey"
-        :class="{ maskable: appData && appData.icon.purpose == 'maskable' }"
+        :class="{ maskable: appData && icon.purpose == 'maskable' }"
       >
-        <img :src="appData.icon.src" alt="" v-if="appData" />
+        <img :src="icon.src" alt="" v-if="appData" />
       </v-avatar>
       <div class="name-and-photo">
         <v-card-title class="text-h4" v-text="(appData && appData.name) || ''"></v-card-title>
@@ -67,15 +67,16 @@
 
 <script lang="ts">
 import { getApp } from "@/services/api";
-import { WebApp } from "@/types";
+import { findIcon } from "@/services/webAppUtils";
+import { Icon, WebApp } from "@/types";
 import Vue from "vue";
-import { sampleApps } from "../sampleData";
 
 export default Vue.extend({
   name: "WebApp",
 
   data: () => ({
     appData: null as WebApp | null,
+    icon: null as Icon | null,
     loading: true,
     error: undefined as string | undefined
   }),
@@ -85,6 +86,8 @@ export default Vue.extend({
       .then(app => {
         this.loading = false;
         this.appData = app;
+
+        this.icon = findIcon(app.icons);
       })
       .catch(error => {
         this.error = error;
