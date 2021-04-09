@@ -5,13 +5,43 @@ export const sampleApps: ApiResponse<WebApp[]> = {
   data: [
     {
       manifestURL: "https://sky.shiiyu.moe/manifest.webmanifest",
-      startUrl: "https://sky.shiiyu.moe/",
+      startURL: "https://sky.shiiyu.moe/",
       name: "SkyCrypt",
       description: "A beautiful site for sharing your SkyBlock profile 🌹",
-      icon: {
-        src: "https://sky.shiiyu.moe/resources/img/app-icons/maskable-192.webp",
-        purpose: "maskable"
-      },
+      category: "utilities",
+      icons: [
+        {
+          src: "/resources/img/app-icons/svg.svg",
+          sizes: "any",
+          type: "image/svg+xml",
+          purpose: "any"
+        },
+        {
+          src: "/resources/img/app-icons/192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "any"
+        },
+        { src: "/resources/img/app-icons/512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+        {
+          src: "/resources/img/app-icons/maskable-svg.svg",
+          sizes: "any",
+          type: "image/svg+xml",
+          purpose: "maskable"
+        },
+        {
+          src: "/resources/img/app-icons/maskable-192.webp",
+          sizes: "192x192",
+          type: "image/webp",
+          purpose: "maskable"
+        },
+        {
+          src: "/resources/img/app-icons/maskable-512.webp",
+          sizes: "512x512",
+          type: "image/webp",
+          purpose: "maskable"
+        }
+      ],
       screenshots: [
         {
           src: "https://sky.shiiyu.moe/resources/img/screenshot.jpg",
@@ -25,25 +55,29 @@ export const sampleApps: ApiResponse<WebApp[]> = {
     },
     {
       manifestURL: "https://example.com/manifest.json",
-      startUrl: "https://example.com/",
+      startURL: "https://example.com/",
       name: "example app",
       description: "this app is an example app",
-      icon: {
-        src: "https://www.w3.org/TR/appmanifest/images/icon-mask-windows.svg",
-        purpose: "maskable"
-      },
+      category: "utilities",
+      icons: [
+        {
+          src: "https://www.w3.org/TR/appmanifest/images/icon-mask-windows.svg",
+          purpose: "maskable"
+        }
+      ],
       appleMobileWebAppCapable: false,
       averageRating: 2.3
     },
     {
       manifestURL: "https://proxx.app/manifest.json",
-      startUrl: "https://proxx.app/",
+      startURL: "https://proxx.app/",
       name: "PROXX",
       description: "Help your crew navigate space by marking out the black holes using proxx, your proximity scanner.",
-      icon: {
-        src: "https://proxx.app/assets/icon-maskable-7a2eb399.png",
-        purpose: "maskable"
-      },
+      category: "games",
+      icons: [
+        { src: "assets/icon-05a70868.png", type: "image/png", sizes: "1024x1024" },
+        { src: "assets/icon-maskable-7a2eb399.png", type: "image/png", sizes: "1024x1024", purpose: "maskable" }
+      ],
       appleMobileWebAppCapable: true,
       themeColor: "#0e103e",
       backgroundColor: "#0e103e",

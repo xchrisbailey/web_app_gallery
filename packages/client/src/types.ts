@@ -1,11 +1,11 @@
 export interface WebApp {
   manifestURL: string;
-  startUrl: string;
+  startURL: string;
   name: string;
   description: string;
-  icon: Icon;
+  icons: Icon[];
   appleMobileWebAppCapable: boolean;
-  categories?: Category[];
+  category: Category;
   screenshots?: Screenshot[];
   themeColor?: string;
   backgroundColor?: string;
@@ -83,7 +83,9 @@ export function isCategory(category: any): category is Category {
 
 export interface Icon {
   src: string;
-  purpose: "any" | "maskable";
+  sizes?: string;
+  purpose?: string;
+  type?: string;
 }
 
 export interface Screenshot {
