@@ -5,14 +5,6 @@ const db = require('../src/utils/db');
 const User = require('../src/user/user.model');
 const WebApp = require('../src/webapp/webapp.model');
 
-db.connect()
-  .then(() => {
-    console.log('🥭 mongo connected');
-  })
-  .catch((e) => {
-    console.log(e);
-  });
-
 const seedDB = async () => {
   const user1 = await User.create({
     email: faker.internet.email(),
@@ -73,9 +65,16 @@ const seedDB = async () => {
   }
 };
 
-seedDB()
+db.connect()
   .then(() => {
-    console.log('database seeded');
-    process.exit(1);
+    console.log('🥭 mongo connected');
+    seedDB()
+      .then(() => {
+        console.log('database seeded');
+        process.exit(1);
+      })
+      .catch((e) => console.error(e));
   })
-  .catch((e) => console.error(e));
+  .catch((e) => {
+    console.log(e);
+  });
