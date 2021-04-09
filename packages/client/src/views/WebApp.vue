@@ -88,6 +88,9 @@ export default Vue.extend({
         this.appData = app;
 
         this.icon = findIcon(app.icons);
+
+        this.appData.startURL = new URL(this.appData.startURL, this.appData.manifestURL).href;
+        this.icon.src = new URL(this.icon.src, this.appData.manifestURL).href;
       })
       .catch(error => {
         this.error = error;
