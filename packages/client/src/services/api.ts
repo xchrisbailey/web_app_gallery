@@ -50,7 +50,7 @@ export class WebAppQuery {
         throw response.data.message;
       }
       this.nextPage = response.data.nextPage ?? undefined;
-      this.webApps.concat(...response.data.data);
+      this.webApps.push(...response.data.data);
       return this.webApps;
     } else {
       throw "no more pages";
