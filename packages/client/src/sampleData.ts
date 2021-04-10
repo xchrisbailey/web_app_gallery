@@ -4,6 +4,7 @@ export const sampleApps: ApiResponse<WebApp[]> = {
   status: "ok",
   data: [
     {
+      _id: "0",
       manifestURL: "https://sky.shiiyu.moe/manifest.webmanifest",
       startURL: "https://sky.shiiyu.moe/",
       name: "SkyCrypt",
@@ -54,6 +55,7 @@ export const sampleApps: ApiResponse<WebApp[]> = {
       averageRating: 4.8
     },
     {
+      _id: "1",
       manifestURL: "https://example.com/manifest.json",
       startURL: "https://example.com/",
       name: "example app",
@@ -69,6 +71,7 @@ export const sampleApps: ApiResponse<WebApp[]> = {
       averageRating: 2.3
     },
     {
+      _id: "1",
       manifestURL: "https://proxx.app/manifest.json",
       startURL: "https://proxx.app/",
       name: "PROXX",
