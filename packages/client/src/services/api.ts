@@ -3,7 +3,7 @@ import axiosStatic from "axios";
 import { processWebApp } from "./webAppUtils";
 
 const axios = axiosStatic.create({
-  baseURL: window.location.origin.match(/https?:\/\/[a-z0-9\-.]*/) + ":3000" + "/api",
+  baseURL: "/api",
   validateStatus: null
 });
 
