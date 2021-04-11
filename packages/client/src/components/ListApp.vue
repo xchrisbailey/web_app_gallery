@@ -1,8 +1,6 @@
 <template>
   <router-link class="wrapper ma-3" :to="'/apps/' + app._id">
-    <v-avatar class="icon" rounded="lg" size="80" color="grey" :class="{ maskable: icon.purpose == 'maskable' }">
-      <img :src="icon.src" alt="" v-if="app" />
-    </v-avatar>
+    <AppIcon class="icon" :icons="app.icons"></AppIcon>
     <h4 class="text-h5 name">{{ app.name }}</h4>
     <v-rating length="5" :value="(appData && appData.averageRating) || 0" readonly half-increments dense />
   </router-link>
@@ -22,36 +20,27 @@
 
   .icon {
     grid-area: icon;
+    width: 80px;
   }
 
   .name {
     grid-area: name;
   }
 }
-
-.maskable img {
-  width: 110%;
-  height: 110%;
-}
 </style>
 
 <script lang="ts">
-import { findIcon } from "@/services/webAppUtils";
-import { Icon, WebApp } from "@/types";
+import { WebApp } from "@/types";
 import Vue, { PropType } from "vue";
+import AppIcon from "@/components/AppIcon.vue";
+
 export default Vue.extend({
   name: "ListApp",
+  components: {
+    AppIcon
+  },
   props: {
     app: Object as PropType<WebApp>
-  },
-  computed: {
-    icon() {
-      const icon = findIcon(this.app.icons as Icon[]);
-      return {
-        src: new URL(icon.src, this.app.manifestURL).href,
-        purpose: icon.purpose
-      };
-    }
   }
 });
 </script>

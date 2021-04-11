@@ -4,15 +4,7 @@
   </v-alert>
   <v-card v-else flat :loading="loading">
     <div class="d-flex flex-no-wrap">
-      <v-avatar
-        class="ma-3"
-        rounded="xl"
-        size="120"
-        color="grey"
-        :class="{ maskable: appData && icon.purpose == 'maskable' }"
-      >
-        <img :src="icon.src" alt="" v-if="appData" />
-      </v-avatar>
+      <AppIcon class="ma-3 icon" :icons="appData.icons"></AppIcon>
       <div class="name-and-photo">
         <v-card-title class="text-h4" v-text="(appData && appData.name) || ''"></v-card-title>
 
@@ -38,13 +30,12 @@
   margin: 12px;
 }
 
-.v-card__title {
-  word-break: unset;
+.icon {
+  width: 120px;
 }
 
-.maskable img {
-  width: 110%;
-  height: 110%;
+.v-card__title {
+  word-break: unset;
 }
 
 @media (min-width: 600px) {
@@ -70,13 +61,16 @@ import { getApp } from "@/services/api";
 import { findIcon } from "@/services/webAppUtils";
 import { Icon, WebApp } from "@/types";
 import Vue from "vue";
+import AppIcon from "@/components/AppIcon.vue";
 
 export default Vue.extend({
   name: "WebApp",
+  components: {
+    AppIcon
+  },
 
   data: () => ({
     appData: null as WebApp | null,
-    icon: null as Icon | null,
     loading: true,
     error: undefined as string | undefined
   }),
@@ -86,11 +80,6 @@ export default Vue.extend({
       .then(app => {
         this.loading = false;
         this.appData = app;
-
-        this.icon = findIcon(app.icons);
-
-        this.appData.startURL = new URL(this.appData.startURL, this.appData.manifestURL).href;
-        this.icon.src = new URL(this.icon.src, this.appData.manifestURL).href;
       })
       .catch(error => {
         this.error = error;
