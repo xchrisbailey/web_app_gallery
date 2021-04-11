@@ -71,7 +71,7 @@ export const sampleApps: ApiResponse<WebApp[]> = {
       averageRating: 2.3
     },
     {
-      _id: "1",
+      _id: "2",
       manifestURL: "https://proxx.app/manifest.json",
       startURL: "https://proxx.app/",
       name: "PROXX",
