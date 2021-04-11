@@ -44,7 +44,7 @@ export class WebAppQuery {
     return this.webApps;
   }
 
-  async getMore(): Promise<WebApp[]> {
+  async getMore() {
     if (this.hasNextPage()) {
       const request = axios.get<PaginatedApiResponse<WebApp>>("/webapp", {
         params: { page: this.nextPage, category: this.category }
@@ -55,7 +55,6 @@ export class WebAppQuery {
       }
       this.nextPage = response.data.nextPage ?? undefined;
       this.webApps.push(...response.data.data.map(processWebApp));
-      return this.webApps;
     } else {
       throw "no more pages";
     }
