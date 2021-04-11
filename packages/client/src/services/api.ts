@@ -1,5 +1,6 @@
 import { WebApp, ApiResponse, PaginatedApiResponse } from "@/types";
 import axiosStatic from "axios";
+import { processWebApp } from "./webAppUtils";
 
 const axios = axiosStatic.create({
   baseURL: window.location.origin.match(/https?:\/\/[a-z0-9\-.]*/) + ":3000" + "/api",
@@ -12,7 +13,7 @@ export async function getApp(id: string): Promise<WebApp> {
   if (response.data.status === "error") {
     throw response.data.message;
   }
-  return response.data.data;
+  return processWebApp(response.data.data);
 }
 
 export async function submitApp(url: string): Promise<WebApp> {
@@ -53,7 +54,7 @@ export class WebAppQuery {
         throw response.data.message;
       }
       this.nextPage = response.data.nextPage ?? undefined;
-      this.webApps.push(...response.data.data);
+      this.webApps.push(...response.data.data.map(processWebApp));
       return this.webApps;
     } else {
       throw "no more pages";

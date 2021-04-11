@@ -1,4 +1,4 @@
-import { Icon } from "@/types";
+import { Icon, WebApp } from "@/types";
 
 /**
  * @param a the first icon to be compared
@@ -28,7 +28,7 @@ function sortIconsBySize(a: Icon, b: Icon) {
  */
 export function findIcon(icons: Icon[]): Icon & { purpose: "maskable" | "any" } {
   const maskableIcons = icons.filter(icon => icon.purpose === "maskable");
-  const anyIcons = icons.filter(icon => icon.purpose === "any" || icon.purpose === undefined);
+  const anyIcons = icons.filter(icon => icon.purpose === "any");
   if (maskableIcons.length > 0) {
     return {
       src: maskableIcons.sort(sortIconsBySize)[0].src,
@@ -42,4 +42,23 @@ export function findIcon(icons: Icon[]): Icon & { purpose: "maskable" | "any" } 
   } else {
     throw "must have an icon";
   }
+}
+
+/**
+ * this function mutates a webApp to have absolute urls no undefined purpose etc.
+ */
+export function processWebApp(app: WebApp) {
+  app.startURL = new URL(app.startURL, app.manifestURL).href;
+  for (const icon of app.icons) {
+    icon.src = new URL(icon.src, app.manifestURL).href;
+    if (icon.purpose == undefined) {
+      icon.purpose = "any";
+    }
+  }
+  if (app.screenshots) {
+    for (const screenshot of app.screenshots) {
+      screenshot.src = new URL(screenshot.src, app.manifestURL).href;
+    }
+  }
+  return app;
 }
