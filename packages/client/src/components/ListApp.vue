@@ -1,5 +1,5 @@
 <template>
-  <router-link class="wrapper ma-3" :to="'/apps/' + app._id">
+  <router-link class="wrapper" :to="'/apps/' + app._id">
     <AppIcon class="icon" :icons="app.icons"></AppIcon>
     <h4 class="text-h5 name">{{ app.name }}</h4>
     <v-rating length="5" :value="app.averageRating" readonly half-increments dense />
