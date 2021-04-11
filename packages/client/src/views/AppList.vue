@@ -11,7 +11,7 @@
 <script lang="ts">
 import Vue from "vue";
 import ListApp from "@/components/ListApp.vue";
-import { WebApp } from "@/types";
+import { isCategory, WebApp } from "@/types";
 import { WebAppQuery } from "@/services/api";
 
 export default Vue.extend({
@@ -30,7 +30,8 @@ export default Vue.extend({
   },
   methods: {
     init() {
-      this.appsQuery = new WebAppQuery(this.$route.params.category);
+      const category = isCategory(this.$route.params.category) ? this.$route.params.category : undefined;
+      this.appsQuery = new WebAppQuery(category);
       console.log(this.$route.params.category);
       this.appsQuery
         .getMore()

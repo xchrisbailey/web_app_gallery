@@ -1,4 +1,4 @@
-import { WebApp, ApiResponse, PaginatedApiResponse } from "@/types";
+import { WebApp, ApiResponse, PaginatedApiResponse, Category } from "@/types";
 import axiosStatic from "axios";
 import { processWebApp } from "./webAppUtils";
 
@@ -30,9 +30,9 @@ export async function submitApp(url: string): Promise<WebApp> {
 export class WebAppQuery {
   private nextPage?: number = 0;
   private webApps: WebApp[] = [];
-  private category: Category;
+  private category?: Category;
 
-  constructor(category: Category) {
+  constructor(category?: Category) {
     this.category = category;
   }
 
