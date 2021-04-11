@@ -44,6 +44,7 @@ export default Vue.extend({
       this.appsQuery = new WebAppQuery(category);
       console.log(this.$route.params.category);
       this.apps = this.appsQuery.getApps();
+      this.hasMore = true;
       this.loadSome();
     },
     loadSome() {
