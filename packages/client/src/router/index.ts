@@ -6,12 +6,8 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/categories/:category",
+    path: "/categories/:category?",
+    alias: "/",
     name: "Category",
     component: () => import(/* webpackChunkName: "AppList" */ "../views/AppList.vue")
   },
