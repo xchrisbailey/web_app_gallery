@@ -13,9 +13,9 @@ describe('create user', () => {
   it('should return new user', async () => {
     const newUser = await userService.create(dummyUser);
 
-    expect(newUser.firstName).toBe(dummyUser.firstName);
-    expect(newUser.lastName).toBe(dummyUser.lastName);
-    expect(newUser.email).toBe(dummyUser.email);
+    expect(newUser.firstName).toBe(dummyUser.firstName.toLowerCase());
+    expect(newUser.lastName).toBe(dummyUser.lastName.toLowerCase());
+    expect(newUser.email).toBe(dummyUser.email.toLowerCase());
     expect(newUser._id).not.toBeNull();
   });
 
@@ -28,7 +28,7 @@ describe('create user', () => {
       expect(newUser).toBeUndefined();
     } catch (e) {
       expect(e.message).toBe(
-        'User validation failed: firstName: first name is required',
+        'User validation failed: firstName: Path `firstName` is required.',
       );
     }
   });
@@ -43,7 +43,7 @@ describe('create user', () => {
       expect(newUser).toBeUndefined();
     } catch (e) {
       expect(e.message).toBe(
-        'User validation failed: password: password must be at least 6 characters long',
+        'User validation failed: password: Path `password` (`123`) is shorter than the minimum allowed length (6).',
       );
     }
   });
@@ -57,9 +57,7 @@ describe('create user', () => {
 
       expect(newUser).toBeUndefined();
     } catch (e) {
-      expect(e.message).toBe(
-        'User validation failed: email: invalid email address',
-      );
+      expect(e.message).toBe('User validation failed: email: Invalid email');
     }
   });
 
