@@ -59,7 +59,7 @@
           <v-container>
             <v-layout align-center>
               <v-flex xs2 md12>
-                <v-btn color="primary" type="submit" @click="submit">
+                <v-btn color="primary" type="submit" :loading="loading" @click="submit">
                   Sign In
                 </v-btn>
               </v-flex>
@@ -75,9 +75,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script >
 import { submitUser } from "../services/signUpApi";
-import { SignUp } from '../types';
+import { getUsers } from "../services/signUpApi";
 
 export default {
   name: "SignIn",
@@ -86,24 +86,31 @@ export default {
   },
 
   data: () => ({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
+      firstName: undefined,
+      lastName: undefined,
+      email: undefined,
+      password: undefined,
+      loading: false,
+      form: false,
 
     rules: {
-      password: (v: any) =>
+      password: (v) =>
         !!(v || "").match(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/
         ) ||
         "Password must contain an upper case letter, a numeric character, and a special character",
-      required: (v: any) => !!v || "This field is required",
-      email: (v: any) => !!(v || "").match(/@/) || "Please enter a valid email",
+      required: (v) => !!v || "This field is required",
+      email: (v) => !!(v || "").match(/@/) || "Please enter a valid email",
     },
-    submit: function () {
-        submitUser(this.lastName,this.firstName,this.email,this.password)
-        },
     }),
+    methods:{
+      submit() {
+        this.loading = true
+        submitUser(this.lastName,this.firstName,this.email,this.password)
+        this.loading = false
+        },
+        
+    }
 };
 </script>
 
