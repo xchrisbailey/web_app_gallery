@@ -20,18 +20,7 @@ const remove = async (user) => {
 };
 
 const update = async (user, updates) => {
-  const allowedUpdates = ['firstName', 'lastName', 'email']; // user updatable fields
-  const validUpdates = {};
-
-  // sanitize incoming updates to those allowed by system
-  for (const k in updates) {
-    if (allowedUpdates.includes(k)) validUpdates[k] = updates[k];
-  }
-
-  if (!Object.keys(validUpdates).length)
-    throw new Error('No valid updates provided');
-
-  for (const u in validUpdates) user[u] = validUpdates[u]; // assign new fields to user object
+  for (const u in updates) user[u] = updates[u];
   await user.save();
   return user;
 };

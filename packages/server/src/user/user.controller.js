@@ -25,7 +25,7 @@ const loginUser = async (req, res) => {
 
 const logoutUser = (_req, res) => {
   try {
-    res.clearCookie('token');
+    res.clearCookie('wagauth');
     r.data(res, 200, {});
   } catch (e) {
     r.error(res, 400, e.message);
@@ -42,7 +42,7 @@ const getProfile = (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     (await userService.remove(req.user)) &&
-      res.clearCookie('token') &&
+      res.clearCookie('wagauth') &&
       r.data(res, 200, { message: 'Account successfully removed' });
   } catch (e) {
     r.error(res, 400, e.message);

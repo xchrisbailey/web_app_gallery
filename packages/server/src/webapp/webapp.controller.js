@@ -18,19 +18,13 @@ const getWebApps = async (req, res) => {
   };
 
   try {
-    let data;
-    if (req.query.search && req.query.search !== '') {
-      data = await webAppService.findWebApps(opts, {
-        search: req.query.search,
-      });
-    } else if (req.query.category && req.query.category !== '') {
-      data = await webAppService.findWebApps(opts, {
-        category: req.query.category,
-      });
-    } else {
-      data = await webAppService.findWebApps(opts);
-      if (data.page > data.totalPages) throw new Error('no applications found');
-    }
+    let filters = {};
+    if (req.query.search !== '') filters.search = req.query.search;
+    if (req.query.category !== '') filters.category = req.query.category;
+
+    const data = await webAppService.findWebApps(opts, filters);
+    if (data.page > data.totalPages) throw new Error('no applications found');
+
     r.pageData(res, 200, data);
   } catch (e) {
     r.error(res, 400, e.message);
@@ -39,10 +33,6 @@ const getWebApps = async (req, res) => {
 
 const createWebApp = async (req, res) => {
   try {
-    if (!req.body.appUrl | (req.body.appUrl === ''))
-      throw new Error('url cannot be empty');
-    if (!req.body.category || req.body.category === '')
-      throw new Error('must provide a category');
     const url = req.body.appUrl.match(/\/$/)
       ? req.body.appUrl
       : `${req.body.appUrl}/`;
