@@ -1,8 +1,12 @@
+const moment = require('moment');
+
 // stores provided JWT in httpOnly cookie
 const authCookie = (res, token) => {
+  const exp = moment().add(5, 'days').unix();
   res.cookie('token', token, {
-    expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), // set cookie expiration to 1 day
-    secure: false, // true if https
+    expires: new Date(exp), // set cookie expiration to 5 days
+    secure: process.env.NODE_ENV === 'production' ? true : false,
+    sameSite: process.env.NODE_ENV === 'production' ? true : false,
     httpOnly: true, // not accessible by JS
   });
 };
