@@ -38,10 +38,13 @@ describe('POST /webapp', () => {
   it('should return error when url not provided', async () => {
     const r = supertest.agent(app);
     await r.post('/api/signup').send(dummyUser);
-    const res = await r.post('/api/webapp').send({}).expect(400);
+    const res = await r
+      .post('/api/webapp')
+      .send({ category: 'news' })
+      .expect(400);
 
     expect(res.body.status).toBe('error');
-    expect(res.body.message).toBe('url cannot be empty');
+    expect(res.body.message).toBe('"appUrl" is required');
   });
 });
 

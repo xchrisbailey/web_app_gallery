@@ -11,8 +11,8 @@ const {
   dummyUser,
 } = require('../../test/data');
 const { mockRequest, mockResponse } = require('../../test/utils/interceptors');
-const User = require('../user/user.model');
-const WebApp = require('./webapp.model');
+const { User } = require('../user');
+const { WebApp } = require('.');
 const webAppController = require('./webapp.controller.js');
 
 jest.mock('axios');
@@ -72,19 +72,6 @@ describe('requests single web app', () => {
     expect(res.json).toHaveBeenCalledWith({
       status: 'error',
       message: 'web app not found',
-    });
-  });
-
-  it('should 400 and return error if no ID provided', async () => {
-    const req = mockRequest();
-    const res = mockResponse();
-
-    await webAppController.getWebApp(req, res);
-
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({
-      status: 'error',
-      message: 'must provide a application id',
     });
   });
 });
@@ -239,7 +226,8 @@ describe('create new web application', () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         status: 'error',
-        message: 'must provide a category',
+        message:
+          'WebApp validation failed: category: Path `category` is required.',
       }),
     );
   });
