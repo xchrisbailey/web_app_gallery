@@ -37,9 +37,12 @@ const createWebApp = async (req, res) => {
       ? req.body.appUrl
       : `${req.body.appUrl}/`;
 
-    const { appDescription, manifest, manifestURL } = await getManifestInfo(
-      url,
-    );
+    const {
+      appleMobileWebAppCapable,
+      appDescription,
+      manifest,
+      manifestURL,
+    } = await getManifestInfo(url);
 
     const appData = {
       manifestURL: manifestURL,
@@ -51,8 +54,8 @@ const createWebApp = async (req, res) => {
       description: manifest.data.description
         ? manifest.data.description
         : appDescription,
-      appleMobileWebAppCapable: req.body.appleMobileWebAppCapable
-        ? req.body.appleMobileWebAppCapable
+      appleMobileWebAppCapable: appleMobileWebAppCapable
+        ? appleMobileWebAppCapable
         : false,
       category: req.body.category,
     };
