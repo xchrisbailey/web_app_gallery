@@ -195,21 +195,6 @@ describe('updateUser', () => {
       }),
     );
   });
-
-  it('should return 400 if no valid update fields provided', async () => {
-    const user = await userService.create(dummyUser);
-
-    const req = mockRequest();
-    req.user = user;
-    req.body = {};
-    const res = mockResponse();
-    const userServiceSpy = jest.spyOn(userService, 'update');
-
-    await userController.updateUser(req, res);
-
-    expect(userServiceSpy).toHaveBeenCalledWith(user, {});
-    assertError(res, 400, 'No valid updates provided');
-  });
 });
 
 describe('updatePassword', () => {

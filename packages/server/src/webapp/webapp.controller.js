@@ -33,10 +33,6 @@ const getWebApps = async (req, res) => {
 
 const createWebApp = async (req, res) => {
   try {
-    if (!req.body.appUrl | (req.body.appUrl === ''))
-      throw new Error('url cannot be empty');
-    if (!req.body.category || req.body.category === '')
-      throw new Error('must provide a category');
     const url = req.body.appUrl.match(/\/$/)
       ? req.body.appUrl
       : `${req.body.appUrl}/`;

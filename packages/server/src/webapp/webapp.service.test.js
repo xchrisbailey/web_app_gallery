@@ -23,22 +23,6 @@ describe('get single web app', () => {
     expect(res.submittedBy._id).toEqual(user._id);
   });
 
-  it('should return error if app does not exists', async () => {
-    try {
-      await webAppService.findWebApp(mongoose.Types.ObjectId());
-    } catch (error) {
-      expect(error.message).toBe('web app not found');
-    }
-  });
-
-  it('should error if not id given', async () => {
-    try {
-      await webAppService.findWebApp();
-    } catch (error) {
-      expect(error.message).toBe('must provide a application id');
-    }
-  });
-
   describe('get web apps', () => {
     it('should return array of web apps', async () => {
       const user = await User.create(dummyUser);

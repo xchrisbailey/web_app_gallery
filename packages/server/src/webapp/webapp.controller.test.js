@@ -74,19 +74,6 @@ describe('requests single web app', () => {
       message: 'web app not found',
     });
   });
-
-  it('should 400 and return error if no ID provided', async () => {
-    const req = mockRequest();
-    const res = mockResponse();
-
-    await webAppController.getWebApp(req, res);
-
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({
-      status: 'error',
-      message: 'must provide a application id',
-    });
-  });
 });
 
 describe('get list of web applications', () => {
@@ -239,7 +226,8 @@ describe('create new web application', () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         status: 'error',
-        message: 'must provide a category',
+        message:
+          'WebApp validation failed: category: Path `category` is required.',
       }),
     );
   });

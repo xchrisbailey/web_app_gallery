@@ -2,8 +2,6 @@ const WebApp = require('./webapp.model');
 
 // find a web app by id and return
 const findWebApp = async (id) => {
-  if (!id || id === '') throw new Error('must provide a application id');
-
   const res = await WebApp.findById(id);
   if (!res) throw new Error('web app not found');
   return res;
@@ -32,7 +30,6 @@ const createWebApp = async (user, data) => {
   };
   const app = WebApp.create(body);
   return app;
-  // return await WebApp.create(data);
 };
 
 module.exports = {
