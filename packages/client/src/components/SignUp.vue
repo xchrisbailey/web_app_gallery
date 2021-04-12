@@ -11,37 +11,19 @@
             {{ "Enter your First Name:" }}
           </v-card-subtitle>
           <v-col cols="12" sm="8">
-            <v-text-field
-              v-model="firstName"
-              label="First Name"
-              :rules="[rules.required]"
-              filled
-            >
-            </v-text-field>
+            <v-text-field v-model="firstName" label="First Name" :rules="[rules.required]" filled> </v-text-field>
           </v-col>
           <v-card-subtitle>
             {{ "Enter your LastName:" }}
           </v-card-subtitle>
           <v-col cols="12" sm="8">
-            <v-text-field
-              v-model="lastName"
-              label="Last Name"
-              :rules="[rules.required]"
-              filled
-            >
-            </v-text-field>
+            <v-text-field v-model="lastName" label="Last Name" :rules="[rules.required]" filled> </v-text-field>
           </v-col>
           <v-card-subtitle>
             {{ "Enter your E-mail:" }}
           </v-card-subtitle>
           <v-col cols="12" sm="8">
-            <v-text-field
-              v-model="email"
-              label="E-mail"
-              :rules="[rules.email, rules.required]"
-              filled
-            >
-            </v-text-field>
+            <v-text-field v-model="email" label="E-mail" :rules="[rules.email, rules.required]" filled> </v-text-field>
           </v-col>
           <v-card-subtitle>
             {{ "Enter your password:" }}
@@ -75,42 +57,47 @@
   </div>
 </template>
 
-<script >
+<script>
 import { submitUser } from "../services/signUpApi";
 import { getUsers } from "../services/signUpApi";
 
 export default {
   name: "SignIn",
   props: {
-    msg: String,
+    msg: String
   },
 
   data: () => ({
-      firstName: undefined,
-      lastName: undefined,
-      email: undefined,
-      password: undefined,
-      loading: false,
-      form: false,
+    firstName: undefined,
+    lastName: undefined,
+    email: undefined,
+    password: undefined,
+    loading: false,
+    form: false,
 
     rules: {
-      password: (v) =>
-        !!(v || "").match(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/
-        ) ||
+      password: v =>
+        !!(v || "").match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/) ||
         "Password must contain an upper case letter, a numeric character, and a special character",
-      required: (v) => !!v || "This field is required",
-      email: (v) => !!(v || "").match(/@/) || "Please enter a valid email",
-    },
-    }),
-    methods:{
-      submit() {
-        this.loading = true
-        submitUser(this.lastName,this.firstName,this.email,this.password)
-        this.loading = false
-        },
-        
+      required: v => !!v || "This field is required",
+      email: v => !!(v || "").match(/@/) || "Please enter a valid email"
     }
+  }),
+  methods: {
+    submit() {
+      this.loading = true;
+      submitUser(this.lastName, this.firstName, this.email, this.password)
+        .then(user => {
+          console.log(user);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    }
+  }
 };
 </script>
 
