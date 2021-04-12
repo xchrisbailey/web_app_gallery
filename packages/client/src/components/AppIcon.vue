@@ -11,8 +11,13 @@ picture {
   aspect-ratio: 1;
 
   @supports not (aspect-ratio: 1) {
-    padding-bottom: 100%;
     position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
 
     img {
       position: absolute;
