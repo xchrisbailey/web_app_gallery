@@ -14,7 +14,10 @@ export async function submitUser(
   userPassword: string
 ): Promise<SignUp> {
   const request = axios.post<ApiResponse<SignUp>>("/signup", {
-    data: { firstName: userFirstName, lastName: userLastName, email: userEmail, password: userPassword }
+    firstName: userFirstName,
+    lastName: userLastName,
+    email: userEmail,
+    password: userPassword
   });
 
   const response = await request;
