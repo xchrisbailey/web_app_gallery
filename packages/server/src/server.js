@@ -1,17 +1,16 @@
 const app = require('./app');
 const db = require('./utils/db');
 
-// connect to mongodb
-db.connect()
-  .then(() => {
+const start = async () => {
+  try {
+    await db.connect();
     console.log('🥭 mongo connected');
-  })
-  .catch((e) => {
-    console.log(e);
-  });
+    app.listen(app.get('port'), function () {
+      console.log(`🚀 listening on port ${app.get('port')}`);
+    });
+  } catch (e) {
+    console.error(e);
+  }
+};
 
-const server = app.listen(app.get('port'), function () {
-  console.log(`🚀 listening on port ${app.get('port')}`);
-});
-
-module.exports = server;
+start();
