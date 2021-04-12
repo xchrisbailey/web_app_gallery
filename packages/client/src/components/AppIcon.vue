@@ -1,5 +1,5 @@
 <template>
-  <picture :class="{ maskable: icon.purpose == 'maskable' }">
+  <picture class="elevation-2" :class="icon.purpose">
     <img :src="icon.src" alt="" />
   </picture>
 </template>
@@ -27,6 +27,9 @@ img {
   width: 100%;
   .maskable > & {
     transform: scale(1.1);
+  }
+  .any > & {
+    transform: scale(0.85);
   }
 }
 </style>
