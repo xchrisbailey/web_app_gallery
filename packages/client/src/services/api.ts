@@ -1,30 +1,33 @@
 import { WebApp, ApiResponse, PaginatedApiResponse, Category } from "@/types";
-import axiosStatic from "axios";
+import axios from "axios";
 import { processWebApp } from "./webAppUtils";
 
-const axios = axiosStatic.create({
-  baseURL: "/api",
-  validateStatus: null
-});
-
 export async function getApp(id: string): Promise<WebApp> {
-  const request = axios.get<ApiResponse<WebApp>>("/webapp/" + id);
-  const response = await request;
-  if (response.data.status === "error") {
-    throw response.data.message;
+  const request = axios.get<ApiResponse<WebApp>>("/api/webapp/" + id);
+  try {
+    const response = await request;
+    return processWebApp(response.data.data);
+  } catch (error) {
+    if (error.response.data.status === "error") {
+      throw error.response.data.message;
+    } else {
+      throw error;
+    }
   }
-  return processWebApp(response.data.data);
 }
 
 export async function submitApp(url: string): Promise<WebApp> {
-  const request = axios.post<ApiResponse<WebApp>>("/webapp", {
-    data: { appUrl: url, appleMobileWebAppCapable: true } // TODO make appleMobileWebAppCapable dynamic
-  });
-  const response = await request;
-  if (response.data.status === "error") {
-    throw response.data.message;
+  const request = axios.post<ApiResponse<WebApp>>("/api/webapp", { appUrl: url });
+  try {
+    const response = await request;
+    return response.data.data;
+  } catch (error) {
+    if (error.response.data.status === "error") {
+      throw error.response.data.message;
+    } else {
+      throw error;
+    }
   }
-  return response.data.data;
 }
 
 export class WebAppQuery {
@@ -46,15 +49,20 @@ export class WebAppQuery {
 
   async getMore() {
     if (this.hasNextPage()) {
-      const request = axios.get<PaginatedApiResponse<WebApp>>("/webapp", {
+      const request = axios.get<PaginatedApiResponse<WebApp>>("/api/webapp", {
         params: { page: this.nextPage, category: this.category }
       });
-      const response = await request;
-      if (response.data.status === "error") {
-        throw response.data.message;
+      try {
+        const response = await request;
+        this.nextPage = response.data.nextPage ?? undefined;
+        this.webApps.push(...response.data.data.map(processWebApp));
+      } catch (error) {
+        if (error.response.data.status === "error") {
+          throw error.response.data.message;
+        } else {
+          throw error;
+        }
       }
-      this.nextPage = response.data.nextPage ?? undefined;
-      this.webApps.push(...response.data.data.map(processWebApp));
     } else {
       throw "no more pages";
     }
