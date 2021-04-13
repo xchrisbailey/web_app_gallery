@@ -36,7 +36,7 @@ const categories = [
 
 const webAppSchema = new mongoose.Schema(
   {
-    manifestURL: { type: String, required: true },
+    manifestURL: { type: String, required: true, unique: true },
     startURL: { type: String, required: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -54,6 +54,25 @@ const webAppSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+webAppSchema.post('save', function (err, doc, next) {
+  let errorMessage;
+
+  const errMap = {
+    manifestURL: 'This web application is already in our system',
+  };
+
+  if (err.code === 11000) {
+    errorMessage = Object.keys(err.keyValue)
+      .map((key) => errMap[key])
+      .join(', ');
+  } else {
+    errorMessage = err.message;
+  }
+
+  if (errorMessage) next(new Error(errorMessage));
+  else next();
+});
 
 webAppSchema.plugin(mongoosePaginate);
 
