@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-const db = require('../../test/db');
-const { dummyWebApp, dummyUser } = require('../../test/data');
+const db = require('../../tests/db');
+const { dummyWebApp, dummyUser } = require('../../tests/data');
 const webAppService = require('./webapp.service.js');
 const { User } = require('../user/');
 const WebApp = require('./webapp.model');
@@ -38,8 +38,10 @@ describe('get single web app', () => {
     it('should allow limit to be set', async () => {
       const user = await User.create(dummyUser);
       for (let i = 0; i < 10; i++) {
+        const manifestURL = `${dummyWebApp.manifestURL}/${i}`;
         await WebApp.create({
           ...dummyWebApp,
+          manifestURL,
           submittedBy: user,
         });
       }
@@ -57,8 +59,10 @@ describe('get single web app', () => {
     it('should return second page when asked and exists', async () => {
       const user = await User.create(dummyUser);
       for (let i = 0; i < 10; i++) {
+        const manifestURL = `${dummyWebApp.manifestURL}/${i}`;
         await WebApp.create({
           ...dummyWebApp,
+          manifestURL,
           submittedBy: user,
         });
       }
@@ -82,16 +86,20 @@ describe('get single web app', () => {
 
   it('should return search results', async () => {
     await WebApp.create(dummyWebApp);
-    await WebApp.create({ ...dummyWebApp, name: 'apple' });
+    await WebApp.create({ ...dummyWebApp, manifestURL: 'test', name: 'apple' });
     const res = await webAppService.findWebApps({}, { search: 'google' });
     expect(res.data.length).toBe(1);
   });
 
   it('should return app matching requested category', async () => {
     await WebApp.create(dummyWebApp);
-    await WebApp.create({ ...dummyWebApp, category: 'sports' });
+    await WebApp.create({
+      ...dummyWebApp,
+      manifestURL: 'test',
+      category: 'sports',
+    });
 
-    const res = await webAppService.findWebApps({}, { category: 'news' });
+    const res = await webAppService.findWebApps({}, { category: 'sports' });
     expect(res.data.length).toBe(1);
   });
 });

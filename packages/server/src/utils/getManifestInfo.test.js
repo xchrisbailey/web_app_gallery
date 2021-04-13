@@ -1,6 +1,6 @@
 const axios = require('axios');
 const getManifestInfo = require('./getManifestInfo');
-const { dummyGoogleManifest, dummyGoogleHtml } = require('../../test/data');
+const { dummyGoogleManifest, dummyGoogleHtml } = require('../../tests/data');
 
 jest.mock('axios');
 

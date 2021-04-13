@@ -1,7 +1,7 @@
 const faker = require('faker');
 
-const db = require('../../test/db');
-const { dummyUser } = require('../../test/data');
+const db = require('../../tests/db');
+const { dummyUser } = require('../../tests/data');
 const userService = require('./user.service');
 const User = require('./user.model');
 
@@ -66,7 +66,7 @@ describe('create user', () => {
       await userService.create(dummyUser);
       await userService.create(dummyUser);
     } catch (e) {
-      expect(e.message).toContain('duplicate key');
+      expect(e.message).toBe('Email address already in use');
     }
   });
 });
