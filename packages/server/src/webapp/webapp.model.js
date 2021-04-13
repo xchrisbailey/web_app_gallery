@@ -47,8 +47,10 @@ const webAppSchema = new mongoose.Schema(
     submittedBy: { type: mongoose.Schema.Types.ObjectID, ref: 'User' },
     icons: [
       {
-        src: { type: String },
+        src: { type: String, required: true },
         purpose: { type: String },
+        sizes: { type: String },
+        type: { type: String },
       },
     ],
   },
