@@ -21,7 +21,7 @@
 import Vue from "vue";
 import ListApp from "@/components/ListApp.vue";
 import { isCategory, WebApp } from "@/types";
-import { WebAppQuery } from "@/services/api";
+import { WebAppQuery } from "@/services/webAppApi";
 
 export default Vue.extend({
   name: "AppList",

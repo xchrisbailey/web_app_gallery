@@ -57,7 +57,7 @@
 </style>
 
 <script lang="ts">
-import { getApp } from "@/services/api";
+import { getApp } from "@/services/webAppApi";
 import { findIcon } from "@/services/webAppUtils";
 import { Icon, WebApp } from "@/types";
 import Vue from "vue";
