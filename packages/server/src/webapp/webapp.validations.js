@@ -19,7 +19,6 @@ const createWebApp = {
   body: Joi.object().keys({
     category: Joi.string().required(),
     appUrl: Joi.string().required(),
-    appleMobileWebAppCapable: Joi.boolean().default(false),
   }),
 };
 

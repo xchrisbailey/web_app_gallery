@@ -6,10 +6,14 @@ const getManifestInfo = async (url) => {
   const { data } = await axios.get(url);
   const $ = cheerio.load(data);
   const appDescription = $('meta[name="description"]').attr('content'); // grab sites description from meta data
+  const appleMobileWebAppCapable = $(
+    'meta[name="apple-mobile-web-app-capable"]',
+  ).attr('content');
   const manifestURL = url + $('link[rel="manifest"]').attr('href'); // construct manifests full url
   const manifest = await axios.get(manifestURL); // fetch manifest.json
 
   return {
+    appleMobileWebAppCapable,
     appDescription,
     manifest,
     manifestURL,
