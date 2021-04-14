@@ -77,8 +77,8 @@ export default {
 
     rules: {
       password: v =>
-        !!(v || "").match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/) ||
-        "Password must contain an upper case letter, a numeric character, and a special character",
+        !!(v || "").match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/) ||
+        "Password must contain an upper case letter and a numeric character",
       required: v => !!v || "This field is required",
       email: v => !!(v || "").match(/@/) || "Please enter a valid email"
     }
@@ -86,7 +86,7 @@ export default {
   methods: {
     submit() {
       this.loading = true;
-      submitUser(this.lastName, this.firstName, this.email, this.password)
+      submitUser(this.firstName, this.lastName, this.email, this.password)
         .then(user => {
           console.log(user);
         })

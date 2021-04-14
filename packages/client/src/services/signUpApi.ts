@@ -8,8 +8,8 @@ const axios = axiosStatic.create({
 });
 
 export async function submitUser(
-  userLastName: string,
   userFirstName: string,
+  userLastName: string,
   userEmail: string,
   userPassword: string
 ): Promise<SignUp> {
