@@ -16,8 +16,8 @@ export async function getApp(id: string): Promise<WebApp> {
   }
 }
 
-export async function submitApp(url: string): Promise<WebApp> {
-  const request = axios.post<ApiResponse<WebApp>>("/api/webapp", { appUrl: url });
+export async function submitApp(appUrl: string, category: Category): Promise<WebApp> {
+  const request = axios.post<ApiResponse<WebApp>>("/api/webapp", { appUrl, category });
   try {
     const response = await request;
     return response.data.data;
