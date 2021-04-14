@@ -1,5 +1,5 @@
 <template>
-  <picture class="elevation-2" :class="icon.purpose">
+  <picture class="elevation-2" :class="icon.purpose || 'any'">
     <img :src="icon.src" alt="" />
   </picture>
 </template>
