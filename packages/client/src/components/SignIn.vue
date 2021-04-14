@@ -11,13 +11,13 @@
             {{ "Enter your E-mail:" }}
           </v-card-subtitle>
           <v-col cols="12" sm="8">
-            <v-text-field label="E-mail" filled> </v-text-field>
+            <v-text-field label="E-mail" filled autocomplete="email"> </v-text-field>
           </v-col>
           <v-card-subtitle>
             {{ "Enter your password:" }}
           </v-card-subtitle>
           <v-col cols="12" sm="8">
-            <v-text-field label="password" filled> </v-text-field>
+            <v-text-field label="password" type="password" filled autocomplete="current-password"> </v-text-field>
           </v-col>
           <v-container>
             <v-layout align-center>
@@ -42,7 +42,7 @@
 export default {
   name: "SignIn",
   props: {
-    msg: String,
+    msg: String
   },
 
   data: () => ({
@@ -51,13 +51,13 @@ export default {
 
     rules: {
       //authentication
-    },
+    }
   }),
   methods: {
     submit() {
       //authentication
-    },
-  },
+    }
+  }
 };
 </script>
 
