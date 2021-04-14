@@ -11,19 +11,40 @@
             {{ "Enter your First Name:" }}
           </v-card-subtitle>
           <v-col cols="12" sm="8">
-            <v-text-field v-model="firstName" label="First Name" :rules="[rules.required]" filled> </v-text-field>
+            <v-text-field
+              v-model="firstName"
+              label="First Name"
+              :rules="[rules.required]"
+              filled
+              autocomplete="given-name"
+            >
+            </v-text-field>
           </v-col>
           <v-card-subtitle>
             {{ "Enter your LastName:" }}
           </v-card-subtitle>
           <v-col cols="12" sm="8">
-            <v-text-field v-model="lastName" label="Last Name" :rules="[rules.required]" filled> </v-text-field>
+            <v-text-field
+              v-model="lastName"
+              label="Last Name"
+              :rules="[rules.required]"
+              filled
+              autocomplete="family-name"
+            >
+            </v-text-field>
           </v-col>
           <v-card-subtitle>
             {{ "Enter your E-mail:" }}
           </v-card-subtitle>
           <v-col cols="12" sm="8">
-            <v-text-field v-model="email" label="E-mail" :rules="[rules.email, rules.required]" filled> </v-text-field>
+            <v-text-field
+              v-model="email"
+              label="E-mail"
+              :rules="[rules.email, rules.required]"
+              filled
+              autocomplete="email"
+            >
+            </v-text-field>
           </v-col>
           <v-card-subtitle>
             {{ "Enter your password:" }}
@@ -35,6 +56,7 @@
               type="password"
               :rules="[rules.password, rules.required]"
               filled
+              autocomplete="new-password"
             >
             </v-text-field>
           </v-col>

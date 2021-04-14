@@ -39,9 +39,7 @@ describe('POST /signup', () => {
       .send({ ...dummyUser, firstName: '' })
       .expect(400);
     expect(res.body.status).toBe('error');
-    expect(res.body.message).toBe(
-      'User validation failed: firstName: first name is required',
-    );
+    expect(res.body.message).toBe('"firstName" is not allowed to be empty');
   });
 
   it('should return error with invalid email address', async () => {
@@ -50,9 +48,7 @@ describe('POST /signup', () => {
       .send({ ...dummyUser, email: 'sameexamplecom' })
       .expect(400);
     expect(res.body.status).toBe('error');
-    expect(res.body.message).toBe(
-      'User validation failed: email: invalid email address',
-    );
+    expect(res.body.message).toBe('"email" must be a valid email');
   });
 });
 
@@ -152,7 +148,7 @@ describe('PUT /me', () => {
       })
       .expect(400);
     expect(res.body.status).toBe('error');
-    expect(res.body.message).toBe('No valid updates provided');
+    expect(res.body.message).toBe('"password" is not allowed');
   });
 });
 
@@ -181,7 +177,7 @@ describe('PUT /me/updatePassword', () => {
       .expect(400);
     expect(res.body.status).toBe('error');
     expect(res.body.message).toBe(
-      'User validation failed: password: password must be at least 6 characters long',
+      'User validation failed: password: Path `password` (`zx`) is shorter than the minimum allowed length (6).',
     );
   });
 });
