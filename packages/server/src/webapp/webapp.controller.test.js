@@ -3,14 +3,14 @@ require('dotenv').config();
 const axios = require('axios');
 const mongoose = require('mongoose');
 
-const db = require('../../test/db');
+const db = require('../../tests/db');
 const {
   dummyWebApp,
   dummyGoogleManifest,
   dummyGoogleHtml,
   dummyUser,
-} = require('../../test/data');
-const { mockRequest, mockResponse } = require('../../test/utils/interceptors');
+} = require('../../tests/data');
+const { mockRequest, mockResponse } = require('../../tests/utils/interceptors');
 const { User } = require('../user');
 const { WebApp } = require('.');
 const webAppController = require('./webapp.controller.js');
@@ -91,7 +91,8 @@ describe('get list of web applications', () => {
 
   it('should 200 and set return limit', async () => {
     for (let i = 0; i < 10; i++) {
-      await WebApp.create({ ...dummyWebApp, submittedBy: user });
+      const manifestURL = `${dummyWebApp.manifestURL}/${i}`;
+      await WebApp.create({ ...dummyWebApp, manifestURL, submittedBy: user });
     }
 
     const req = mockRequest();
@@ -111,7 +112,8 @@ describe('get list of web applications', () => {
 
   it('should 200 and return requested page', async () => {
     for (let i = 0; i < 10; i++) {
-      await WebApp.create({ ...dummyWebApp, submittedBy: user });
+      const manifestURL = `${dummyWebApp.manifestURL}/${i}`;
+      await WebApp.create({ ...dummyWebApp, manifestURL, submittedBy: user });
     }
 
     const req = mockRequest();
@@ -136,7 +138,12 @@ describe('get list of web applications', () => {
 
   it('should 200 and return matching search results', async () => {
     await WebApp.create({ ...dummyWebApp, submittedBy: user });
-    await WebApp.create({ ...dummyWebApp, name: 'apple', submittedBy: user });
+    await WebApp.create({
+      ...dummyWebApp,
+      manifestURL: 'test',
+      name: 'apple',
+      submittedBy: user,
+    });
 
     const req = mockRequest();
     req.query.search = 'google';
@@ -152,7 +159,11 @@ describe('get list of web applications', () => {
 
   it('should 200 and return matching category results', async () => {
     await WebApp.create(dummyWebApp);
-    await WebApp.create({ ...dummyWebApp, category: 'sports' });
+    await WebApp.create({
+      ...dummyWebApp,
+      manifestURL: 'test',
+      category: 'news',
+    });
 
     const req = mockRequest();
     req.query.category = 'news';
@@ -168,7 +179,8 @@ describe('get list of web applications', () => {
 
   it('should 400 and return error if page does not exist', async () => {
     for (let i = 0; i < 10; i++) {
-      await WebApp.create({ ...dummyWebApp, submittedBy: user });
+      const manifestURL = `${dummyWebApp.manifestURL}/${i}`;
+      await WebApp.create({ ...dummyWebApp, manifestURL, submittedBy: user });
     }
 
     const req = mockRequest();

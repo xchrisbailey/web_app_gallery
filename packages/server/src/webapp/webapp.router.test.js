@@ -1,9 +1,9 @@
 const supertest = require('supertest');
 const mongoose = require('mongoose');
 
-const db = require('../../test/db');
+const db = require('../../tests/db');
 const app = require('../app');
-const { dummyWebApp, dummyUser } = require('../../test/data');
+const { dummyWebApp, dummyUser } = require('../../tests/data');
 const WebApp = require('./webapp.model');
 
 const request = supertest(app);
@@ -69,7 +69,8 @@ describe('GET /webapp/:id', () => {
 describe('GET /webapp', () => {
   it('should return list of webapps', async () => {
     for (let i = 0; i < 20; i++) {
-      await WebApp.create(dummyWebApp);
+      const app = { ...dummyWebApp, manifestURL: `test${i}` };
+      await WebApp.create(app);
     }
 
     const req = await request.get('/api/webapp').expect(200);
@@ -79,7 +80,8 @@ describe('GET /webapp', () => {
 
   it('should error with out of bound query page', async () => {
     for (let i = 0; i < 20; i++) {
-      await WebApp.create(dummyWebApp);
+      const app = { ...dummyWebApp, manifestURL: `test${i}` };
+      await WebApp.create(app);
     }
 
     const req = await request.get('/api/webapp?page=5').expect(400);
@@ -88,7 +90,8 @@ describe('GET /webapp', () => {
 
   it('should return specified limit of webapps and requested page', async () => {
     for (let i = 0; i < 20; i++) {
-      await WebApp.create(dummyWebApp);
+      const app = { ...dummyWebApp, manifestURL: `test${i}` };
+      await WebApp.create(app);
     }
 
     const req = await request.get('/api/webapp?limit=5&page=2').expect(200);
@@ -99,7 +102,7 @@ describe('GET /webapp', () => {
 
   it('should return matching search requests', async () => {
     await WebApp.create(dummyWebApp);
-    await WebApp.create({ ...dummyWebApp, name: 'apple' });
+    await WebApp.create({ ...dummyWebApp, manifestURL: 'test', name: 'apple' });
 
     const req = await request.get('/api/webapp?search=google').expect(200);
     expect(req.body.data.length).toBe(1);
@@ -108,9 +111,10 @@ describe('GET /webapp', () => {
 
   it('should return search and limit request, and paginate accordingly', async () => {
     for (let i = 0; i < 10; i++) {
-      await WebApp.create(dummyWebApp);
+      const app = { ...dummyWebApp, manifestURL: `test${i}` };
+      await WebApp.create(app);
     }
-    await WebApp.create({ ...dummyWebApp, name: 'apple' });
+    await WebApp.create({ ...dummyWebApp, manifestURL: 'test', name: 'apple' });
 
     let req = await request
       .get('/api/webapp?search=google&limit=5')
@@ -126,9 +130,14 @@ describe('GET /webapp', () => {
 
   it('should return results for requested category', async () => {
     for (let i = 0; i < 10; i++) {
-      await WebApp.create(dummyWebApp);
+      const app = { ...dummyWebApp, manifestURL: `test${i}` };
+      await WebApp.create(app);
     }
-    await WebApp.create({ ...dummyWebApp, category: 'sports' });
+    await WebApp.create({
+      ...dummyWebApp,
+      manifestURL: 'test',
+      category: 'sports',
+    });
 
     let req = await request.get('/api/webapp?category=sports').expect(200);
 

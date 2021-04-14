@@ -88,16 +88,8 @@ userSchema.pre('save', async function (next) {
 userSchema.post('save', function (err, doc, next) {
   let errorMessage;
 
-  const errMap = {
-    email: 'Email address already in use',
-  };
-
   if (err.code === 11000) {
-    errorMessage = Object.keys(err.keyValue)
-      .map((key) => errMap[key])
-      .join(', ');
-  } else {
-    errorMessage = err.message;
+    errorMessage = 'Email address already in use';
   }
 
   if (errorMessage) next(new Error(errorMessage));

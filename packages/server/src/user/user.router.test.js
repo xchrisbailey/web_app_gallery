@@ -1,7 +1,7 @@
 const supertest = require('supertest');
 
-const db = require('../../test/db');
-const { dummyUser } = require('../../test/data');
+const db = require('../../tests/db');
+const { dummyUser } = require('../../tests/data');
 const app = require('../app');
 
 const request = supertest(app);
@@ -16,7 +16,7 @@ describe('GET /me', () => {
     await r.post('/api/signup').send(dummyUser);
     const res = await r.get('/api/me').send().expect(200);
     expect(res.body.status).toBe('ok');
-    expect(res.body.data.email).toBe(dummyUser.email);
+    expect(res.body.data.email).toBe(dummyUser.email.toLowerCase());
   });
 
   it('should return error if not logged in', async () => {
@@ -30,7 +30,7 @@ describe('POST /signup', () => {
   it('should create a new user', async () => {
     const res = await request.post('/api/signup').send(dummyUser).expect(201);
     expect(res.body.status).toBe('ok');
-    expect(res.body.data.email).toBe(dummyUser.email);
+    expect(res.body.data.email).toBe(dummyUser.email.toLowerCase());
   });
 
   it('should return error with missing information', async () => {
@@ -63,10 +63,10 @@ describe('POST /login', () => {
       .send({ email: dummyUser.email, password: dummyUser.password })
       .expect(200);
     expect(res.body.status).toBe('ok');
-    expect(res.body.data.email).toBe(dummyUser.email);
+    expect(res.body.data.email).toBe(dummyUser.email.toLowerCase());
 
     res = await r.get('/api/me').send().expect(200);
-    expect(res.body.data.email).toBe(dummyUser.email);
+    expect(res.body.data.email).toBe(dummyUser.email.toLowerCase());
   });
 
   it('should error with invalid credentials', async () => {
@@ -130,7 +130,7 @@ describe('PUT /me', () => {
     expect(res.body.status).toBe('ok');
     expect(res.body.data.firstName).toBe('christopher');
     expect(res.body.data.email).toBe('christopher@example.net');
-    expect(res.body.data.lastName).toBe(dummyUser.lastName);
+    expect(res.body.data.lastName).toBe(dummyUser.lastName.toLowerCase());
 
     // get user from database and recheck that data was updated properly
     res = await r.get('/api/me').send().expect(200);

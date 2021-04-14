@@ -47,8 +47,10 @@ const webAppSchema = new mongoose.Schema(
     submittedBy: { type: mongoose.Schema.Types.ObjectID, ref: 'User' },
     icons: [
       {
-        src: { type: String },
+        src: { type: String, required: true },
         purpose: { type: String },
+        sizes: { type: String },
+        type: { type: String },
       },
     ],
   },
@@ -58,16 +60,8 @@ const webAppSchema = new mongoose.Schema(
 webAppSchema.post('save', function (err, doc, next) {
   let errorMessage;
 
-  const errMap = {
-    manifestURL: 'This web application is already in our system',
-  };
-
   if (err.code === 11000) {
-    errorMessage = Object.keys(err.keyValue)
-      .map((key) => errMap[key])
-      .join(', ');
-  } else {
-    errorMessage = err.message;
+    errorMessage = 'This web application is already in our system';
   }
 
   if (errorMessage) next(new Error(errorMessage));
