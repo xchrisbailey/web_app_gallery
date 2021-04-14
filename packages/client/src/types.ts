@@ -1,11 +1,12 @@
 export interface WebApp {
+  _id: string;
   manifestURL: string;
-  startUrl: string;
+  startURL: string;
   name: string;
   description: string;
-  icon: Icon;
+  icons: Icon[];
   appleMobileWebAppCapable: boolean;
-  categories?: Category[];
+  category: Category;
   screenshots?: Screenshot[];
   themeColor?: string;
   backgroundColor?: string;
@@ -74,7 +75,7 @@ export const categories: Category[] = [
   "sports",
   "travel",
   "utilities",
-  "weather",
+  "weather"
 ];
 
 export function isCategory(category: any): category is Category {
@@ -83,7 +84,9 @@ export function isCategory(category: any): category is Category {
 
 export interface Icon {
   src: string;
-  purpose: "any" | "maskable";
+  sizes?: string;
+  purpose?: string;
+  type?: string;
 }
 
 export interface Screenshot {
@@ -123,7 +126,7 @@ export const platforms: Platform[] = [
   "chrome_web_store",
   "play",
   "itunes",
-  "microsoft",
+  "microsoft"
 ];
 
 export function isPlatform(platform: any): platform is Platform {
@@ -136,3 +139,21 @@ export interface Review {
   name: string;
   lastUpdated: number;
 }
+
+export type ApiResponse<T> = { status: "error"; message: string } | { status: "ok"; data: T };
+
+export type PaginatedApiResponse<T> =
+  | { status: "error"; message: string }
+  | {
+      status: "ok";
+      data: T[];
+      totalDocs: number;
+      limit: number;
+      page: number;
+      totalPages: number;
+      hasNextPage: boolean;
+      nextPage: number | null;
+      hasPrevPage: boolean;
+      prevPage: number | null;
+      pagingCounter: number;
+    };
