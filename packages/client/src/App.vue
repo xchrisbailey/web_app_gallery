@@ -67,6 +67,9 @@
   > * {
     flex: 0;
   }
+  .spacer {
+    min-height: 96px;
+  }
 }
 
 .statusbar {
