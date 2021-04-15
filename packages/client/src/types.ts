@@ -91,7 +91,7 @@ export interface Icon {
 
 export interface Screenshot {
   src: string;
-  size?: { height: number; width: number };
+  sizes?: string;
   label?: string;
   platform?: Platform;
 }
