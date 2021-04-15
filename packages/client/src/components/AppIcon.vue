@@ -9,6 +9,7 @@ picture {
   overflow: hidden;
   border-radius: 20%;
   aspect-ratio: 1;
+  background-color: white;
 
   @supports not (aspect-ratio: 1) {
     position: relative;

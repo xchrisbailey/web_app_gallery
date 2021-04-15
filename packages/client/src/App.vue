@@ -122,6 +122,14 @@ export default Vue.extend({
   data: () => ({
     drawer: null,
     catagories
-  })
+  }),
+
+  beforeCreate() {
+    const darkMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    this.$vuetify.theme.dark = darkMediaQuery.matches;
+    darkMediaQuery.addEventListener("change", event => {
+      this.$vuetify.theme.dark = event.matches;
+    });
+  }
 });
 </script>
