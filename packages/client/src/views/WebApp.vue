@@ -12,7 +12,7 @@
 
     <p class="description">{{ (appData && appData.description) || "" }}</p>
 
-    <div class="screenshots">
+    <div class="screenshots" v-if="appData.screenshots">
       <img
         v-for="screenshot in appData.screenshots"
         :key="screenshot.src"
@@ -39,10 +39,7 @@
   grid-template-columns: auto 1fr;
   grid-template-areas:
     "icon name"
-    "icon button"
-    "description description"
-    "screenshots screenshots"
-    "rating rating";
+    "icon button";
 
   > * {
     margin: 0;
@@ -67,11 +64,11 @@
 }
 
 .description {
-  grid-area: description;
+  grid-column: 1 / -1;
 }
 
 .screenshots {
-  grid-area: screenshots;
+  grid-column: 1 / -1;
   overflow-x: auto;
   img {
     height: 450px;
@@ -80,17 +77,13 @@
 }
 
 .v-rating {
-  grid-area: rating;
+  grid-column: 1 / -1;
 }
 
 @media (min-width: 600px) {
   .container {
     grid-template-columns: auto auto 1fr;
-    grid-template-areas:
-      "icon name button"
-      "description description description"
-      "screenshots screenshots screenshots"
-      "rating rating rating";
+    grid-template-areas: "icon name button";
   }
 
   .button {
