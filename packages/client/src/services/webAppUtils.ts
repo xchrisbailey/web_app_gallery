@@ -1,5 +1,12 @@
 import { Icon, WebApp } from "@/types";
 
+function parseSizes(sizes: string) {
+  return sizes.split(" ").map(size => {
+    const [x, y] = size.split("x");
+    return { x: parseInt(x), y: parseInt(y) };
+  });
+}
+
 /**
  * finds the best icon from a list
  *
@@ -27,8 +34,16 @@ export function findIcon(icons: Icon[]): Icon {
         return b;
       } else {
         if (a.sizes && b.sizes) {
-          const aSize = Math.max(...a.sizes.split(" ").map(size => parseInt(size.split("x")[0])));
-          const bSize = Math.max(...b.sizes.split(" ").map(size => parseInt(size.split("x")[0])));
+          const aSize = Math.max(
+            ...parseSizes(a.sizes)
+              .filter(size => size.x === size.y)
+              .map(size => size.x)
+          );
+          const bSize = Math.max(
+            ...parseSizes(b.sizes)
+              .filter(size => size.x === size.y)
+              .map(size => size.x)
+          );
           if (aSize > bSize) {
             return a;
           } else if (bSize > aSize) {
