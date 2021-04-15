@@ -3,24 +3,25 @@
     <v-alert type="error" v-if="error">
       {{ error }}
     </v-alert>
-    <v-card flat :loading="loading">
-      <div class="d-flex flex-no-wrap">
-        <AppIcon class="ma-3 icon" :icons="appData.icons"></AppIcon>
-        <div class="name-and-photo">
-          <v-card-title class="text-h4" v-text="(appData && appData.name) || ''"></v-card-title>
+    <AppIcon class="icon" :icons="appData.icons"></AppIcon>
+    <h4 class="name text-h4">{{ (appData && appData.name) || "" }}</h4>
 
-          <v-card-actions class="pl-4 pr-4">
-            <v-btn block color="primary" :href="appData && appData.startURL" target="_blank" rel="noopener noreferrer">
-              Open App
-            </v-btn>
-          </v-card-actions>
-        </div>
-      </div>
-      <v-card-text>
-        <p>{{ (appData && appData.description) || "" }}</p>
-        <v-rating length="5" :value="(appData && appData.averageRating) || 0" readonly half-increments dense />
-      </v-card-text>
-    </v-card>
+    <v-btn class="button" color="primary" :href="appData && appData.startURL" target="_blank" rel="noopener noreferrer">
+      Open App
+    </v-btn>
+
+    <p class="description">{{ (appData && appData.description) || "" }}</p>
+
+    <div class="screenshots">
+      <img
+        v-for="screenshot in appData.screenshots"
+        :key="screenshot.src"
+        :src="screenshot.src"
+        :alt="screenshot.label"
+      />
+    </div>
+
+    <v-rating length="5" :value="(appData && appData.averageRating) || 0" readonly half-increments dense />
   </v-container>
 </template>
 
@@ -32,27 +33,70 @@
   margin: 12px;
 }
 
-.icon {
-  width: 120px;
+.container {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "icon name"
+    "icon button"
+    "description description"
+    "screenshots screenshots"
+    "rating rating";
+
+  > * {
+    margin: 0;
+  }
 }
 
-.v-card__title {
+.name {
+  grid-area: name;
+  align-self: center;
   word-break: unset;
 }
 
+.icon {
+  grid-area: icon;
+  display: block;
+  width: 120px;
+}
+
+.button {
+  grid-area: button;
+  max-width: 100px;
+}
+
+.description {
+  grid-area: description;
+}
+
+.screenshots {
+  grid-area: screenshots;
+  overflow-x: auto;
+  img {
+    height: 450px;
+    border-radius: 12px;
+  }
+}
+
+.v-rating {
+  grid-area: rating;
+}
+
 @media (min-width: 600px) {
-  .name-and-photo {
-    display: flex;
-    flex-grow: 1;
+  .container {
+    grid-template-columns: auto auto 1fr;
+    grid-template-areas:
+      "icon name button"
+      "description description description"
+      "screenshots screenshots screenshots"
+      "rating rating rating";
+  }
 
+  .button {
+    place-self: center stretch;
     @media (max-width: 800px) {
-      justify-content: space-between;
-    }
-
-    .v-card__actions {
-      flex-grow: 1;
-      max-width: 200px;
-      margin: 0 12px;
+      place-self: center end;
     }
   }
 }
