@@ -36,6 +36,13 @@
           </v-list-item-icon>
           <v-list-item-title>{{ name }}</v-list-item-title>
         </v-list-item>
+        <v-spacer></v-spacer>
+        <v-list-item color="primary" link :to="'/apps/submit'">
+          <v-list-item-icon>
+            <v-icon>mdi-plus</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Submit New App</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
@@ -51,6 +58,14 @@
 }
 .search {
   max-width: 300px;
+}
+.v-list {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  > * {
+    flex: 0;
+  }
 }
 </style>
 
