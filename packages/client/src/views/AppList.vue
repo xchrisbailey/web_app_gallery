@@ -14,8 +14,10 @@
 .container {
   display: grid;
   gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   button {
     margin: 12px auto;
+    grid-column: 1 / -1;
   }
 }
 </style>
