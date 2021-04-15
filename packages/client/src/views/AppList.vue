@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <ListApp v-for="app in apps" :key="app._id" :app="app"></ListApp>
-    <v-btn v-if="hasMore" id="load-more" v-on:click="loadSome()" color="primary" text :loading="loading">
+    <v-btn v-if="hasMore" v-on:click="loadSome()" color="primary" text :loading="loading">
       load more
     </v-btn>
     <v-alert type="error" v-if="error">
@@ -11,9 +11,12 @@
 </template>
 
 <style lang="scss" scoped>
-#load-more {
-  display: block;
-  margin: 12px auto;
+.container {
+  display: grid;
+  gap: 12px;
+  button {
+    margin: 12px auto;
+  }
 }
 </style>
 
