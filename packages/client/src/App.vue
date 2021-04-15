@@ -65,6 +65,8 @@ const catagories = new Map<Category | "submit", { name: string; icon: string }>(
   ["travel", { name: "Travel", icon: "mdi-train-car" }],
   ["utilities", { name: "Utilities", icon: "mdi-tools" }],
   ["music", { name: "Music", icon: "mdi-music" }],
+  ["news", { name: "News", icon: "mdi-newspaper" }],
+  ["shopping", { name: "Shopping", icon: "mdi-shopping" }]
 ]);
 
 export default Vue.extend({
