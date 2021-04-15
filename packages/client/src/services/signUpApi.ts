@@ -3,7 +3,7 @@ import { SignUp, ApiResponse } from "@/types";
 import axiosStatic from "axios";
 
 const axios = axiosStatic.create({
-  baseURL: window.location.origin.match(/https?:\/\/[a-z0-9\-.]*/) + ":3000" + "/api",
+  baseURL: window.location.origin.match(/https?:\/\/[a-z0-9\-.]*/) + ":3322" + "/api",
   validateStatus: null
 });
 
