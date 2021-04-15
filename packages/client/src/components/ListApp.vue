@@ -24,6 +24,10 @@
 
   .name {
     grid-area: name;
+    overflow: hidden;
+    overflow: clip;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 </style>
