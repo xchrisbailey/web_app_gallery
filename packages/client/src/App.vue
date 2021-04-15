@@ -24,11 +24,17 @@
     <v-navigation-drawer app v-model="drawer">
       <v-list>
         <v-subheader>Catagories</v-subheader>
-        <v-list-item color="primary" link v-for="(category, i) in catagories" :key="i" :to="category.route">
+        <v-list-item
+          color="primary"
+          link
+          v-for="[category, { name, icon }] in catagories.entries()"
+          :key="category"
+          :to="'/categories/' + category"
+        >
           <v-list-item-icon>
-            <v-icon>{{ category.icon }}</v-icon>
+            <v-icon>{{ icon }}</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>{{ category.name }}</v-list-item-title>
+          <v-list-item-title>{{ name }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -50,15 +56,16 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { Category } from "./types";
 
 // TODO make catagories dynamic
-const catagories = [
-  { name: "Games", icon: "mdi-google-controller", route: "/categories/games" },
-  { name: "Social", icon: "mdi-account", route: "/categories/social" },
-  { name: "Travel", icon: "mdi-train-car", route: "/categories/travel" },
-  { name: "Utilities", icon: "mdi-tools", route: "/categories/utilities" },
-  { name: "Music", icon: "mdi-music", route: "/categories/music" }
-];
+const catagories = new Map<Category | "submit", { name: string; icon: string }>([
+  ["games", { name: "Games", icon: "mdi-google-controller" }],
+  ["social", { name: "Social", icon: "mdi-account" }],
+  ["travel", { name: "Travel", icon: "mdi-train-car" }],
+  ["utilities", { name: "Utilities", icon: "mdi-tools" }],
+  ["music", { name: "Music", icon: "mdi-music" }],
+]);
 
 export default Vue.extend({
   name: "App",
