@@ -1,13 +1,13 @@
 <template>
-  <v-alert type="error" v-if="error">
-    {{ error }}
-  </v-alert>
-  <div v-else>
+  <v-container>
     <ListApp v-for="app in apps" :key="app._id" :app="app"></ListApp>
     <v-btn v-if="hasMore" id="load-more" v-on:click="loadSome()" color="primary" text :loading="loading">
       load more
     </v-btn>
-  </div>
+    <v-alert type="error" v-if="error">
+      {{ error }}
+    </v-alert>
+  </v-container>
 </template>
 
 <style lang="scss" scoped>

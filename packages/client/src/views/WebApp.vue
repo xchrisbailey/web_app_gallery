@@ -1,25 +1,27 @@
 <template>
-  <v-alert type="error" v-if="error">
-    {{ error }}
-  </v-alert>
-  <v-card v-else flat :loading="loading">
-    <div class="d-flex flex-no-wrap">
-      <AppIcon class="ma-3 icon" :icons="appData.icons"></AppIcon>
-      <div class="name-and-photo">
-        <v-card-title class="text-h4" v-text="(appData && appData.name) || ''"></v-card-title>
+  <v-container>
+    <v-alert type="error" v-if="error">
+      {{ error }}
+    </v-alert>
+    <v-card flat :loading="loading">
+      <div class="d-flex flex-no-wrap">
+        <AppIcon class="ma-3 icon" :icons="appData.icons"></AppIcon>
+        <div class="name-and-photo">
+          <v-card-title class="text-h4" v-text="(appData && appData.name) || ''"></v-card-title>
 
-        <v-card-actions class="pl-4 pr-4">
-          <v-btn block color="primary" :href="appData && appData.startURL" target="_blank" rel="noopener noreferrer">
-            Open App
-          </v-btn>
-        </v-card-actions>
+          <v-card-actions class="pl-4 pr-4">
+            <v-btn block color="primary" :href="appData && appData.startURL" target="_blank" rel="noopener noreferrer">
+              Open App
+            </v-btn>
+          </v-card-actions>
+        </div>
       </div>
-    </div>
-    <v-card-text>
-      <p>{{ (appData && appData.description) || "" }}</p>
-      <v-rating length="5" :value="(appData && appData.averageRating) || 0" readonly half-increments dense />
-    </v-card-text>
-  </v-card>
+      <v-card-text>
+        <p>{{ (appData && appData.description) || "" }}</p>
+        <v-rating length="5" :value="(appData && appData.averageRating) || 0" readonly half-increments dense />
+      </v-card-text>
+    </v-card>
+  </v-container>
 </template>
 
 <style lang="scss" scoped>

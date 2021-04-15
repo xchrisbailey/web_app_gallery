@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <router-link to="/">
         <v-app-bar-title>Web App Gallery</v-app-bar-title>
@@ -10,6 +10,7 @@
       <v-spacer></v-spacer>
 
       <v-text-field
+        class="search"
         hide-details
         prepend-inner-icon="mdi-magnify"
         placeholder="Search"
@@ -20,7 +21,7 @@
       ></v-text-field>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" absolute temporary>
+    <v-navigation-drawer app v-model="drawer">
       <v-list>
         <v-subheader>Catagories</v-subheader>
         <v-list-item color="primary" link v-for="(category, i) in catagories" :key="i" :to="category.route">
@@ -42,6 +43,9 @@
 .v-app-bar-title {
   color: white;
 }
+.search {
+  max-width: 300px;
+}
 </style>
 
 <script lang="ts">
@@ -60,7 +64,7 @@ export default Vue.extend({
   name: "App",
 
   data: () => ({
-    drawer: false,
+    drawer: null,
     catagories
   })
 });
