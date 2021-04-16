@@ -51,7 +51,7 @@ export default Vue.extend({
       this.loading = true;
       (this.appsQuery as WebAppQuery)
         .getMore()
-        .then(apps => {
+        .then(() => {
           this.hasMore = (this.appsQuery as WebAppQuery).hasNextPage();
         })
         .catch(error => {
