@@ -1,4 +1,4 @@
-// https://docs.cypress.io/api/introduction/api.html
+/// <reference types="cypress" />
 
 describe("App bar", () => {
   it("has a link to home page called Web App Gallery", () => {
