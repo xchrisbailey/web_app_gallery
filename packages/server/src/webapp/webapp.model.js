@@ -45,6 +45,7 @@ const webAppSchema = new mongoose.Schema(
     backgroundColor: { type: String },
     category: { type: String, required: true, enum: categories },
     submittedBy: { type: mongoose.Schema.Types.ObjectID, ref: 'User' },
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
     icons: [
       {
         src: { type: String, required: true },
