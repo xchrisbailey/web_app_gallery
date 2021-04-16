@@ -53,6 +53,13 @@ const webAppSchema = new mongoose.Schema(
         type: { type: String },
       },
     ],
+    screenshots: [
+      {
+        src: { type: String, required: true },
+        sizes: { type: String },
+        type: { type: String },
+      },
+    ],
   },
   { timestamps: true },
 );

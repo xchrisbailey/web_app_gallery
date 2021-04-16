@@ -51,6 +51,7 @@ const createWebApp = async (req, res) => {
       themeColor: manifest.data.theme_color,
       backgroundColor: manifest.data.backgroundColor,
       icons: manifest.data.icons,
+      screenshots: manifest.data.icons ? manifest.data.screenshots : null,
       description: manifest.data.description
         ? manifest.data.description
         : appDescription,
