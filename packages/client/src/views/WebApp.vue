@@ -70,9 +70,15 @@
 .screenshots {
   grid-column: 1 / -1;
   overflow-x: auto;
+  white-space: nowrap;
+  scroll-snap-type: x;
   img {
     height: 450px;
     border-radius: 12px;
+    scroll-snap-align: center;
+    &:not(:last-of-type) {
+      margin-right: 12px;
+    }
   }
 }
 
