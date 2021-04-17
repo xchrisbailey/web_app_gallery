@@ -4,11 +4,11 @@ beforeEach(() => {
   cy.intercept(
     {
       method: "GET",
-      url: "/api/webapp/skycrypy"
+      url: "/api/webapp/skycrypt"
     },
     { fixture: "skycrypt.json" }
   );
-  cy.visit("/apps/skycrypy");
+  cy.visit("/apps/skycrypt");
 });
 
 describe("App Details", () => {
