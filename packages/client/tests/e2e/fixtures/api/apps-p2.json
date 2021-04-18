@@ -1,0 +1,1067 @@
+{
+    "status": "ok",
+    "data": [
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6daf021b8839d0450686",
+            "manifestURL": "https://twitter.com/manifest.json",
+            "startURL": "https://twitter.com/?utm_source=homescreen&utm_medium=shortcut",
+            "name": "Twitter",
+            "themeColor": "#ffffff",
+            "icons": [
+                {
+                    "_id": "607b6daf021b8839d0450687",
+                    "src": "https://abs.twimg.com/responsive-web/client-web-legacy/icon-default.ee534d85.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6daf021b8839d0450688",
+                    "src": "https://abs.twimg.com/responsive-web/client-web-legacy/icon-default-large.8e027b65.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6daf021b8839d0450689",
+                    "purpose": "maskable",
+                    "src": "https://abs.twimg.com/responsive-web/client-web-legacy/icon-default-maskable.2fd29c85.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6daf021b8839d045068a",
+                    "purpose": "maskable",
+                    "src": "https://abs.twimg.com/responsive-web/client-web-legacy/icon-default-maskable-large.ee2b7aa5.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [
+                {
+                    "_id": "607b6daf021b8839d045068b",
+                    "src": "https://abs.twimg.com/responsive-web/client-web-legacy/twitter-lite-data-saver-marketing.9343a915.png",
+                    "sizes": "586x1041",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6daf021b8839d045068c",
+                    "src": "https://abs.twimg.com/responsive-web/client-web-legacy/twitter-lite-explore-marketing.f1a09635.png",
+                    "sizes": "586x1041",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6daf021b8839d045068d",
+                    "src": "https://abs.twimg.com/responsive-web/client-web-legacy/twitter-lite-timeline-marketing.ff3ea885.png",
+                    "sizes": "586x1041",
+                    "type": "image/png"
+                }
+            ],
+            "description": "Get breaking news, politics, trending music, world events, sports scores, and the latest global news stories as they unfold - all with less data.",
+            "category": "social",
+            "createdAt": "2021-04-17T23:22:23.360Z",
+            "updatedAt": "2021-04-17T23:22:23.360Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6dca021b8839d045068e",
+            "manifestURL": "https://tinder.com/manifest.json",
+            "startURL": "index.html?utm_source=homescreen",
+            "name": "Tinder",
+            "themeColor": "#fff",
+            "icons": [
+                {
+                    "_id": "607b6dca021b8839d045068f",
+                    "src": "/static/android-chrome-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6dca021b8839d0450690",
+                    "src": "/static/android-chrome-512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6dca021b8839d0450691",
+                    "src": "/static/android-chrome-192x192-maskable.png",
+                    "sizes": "192x192",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6dca021b8839d0450692",
+                    "src": "/static/android-chrome-512x512-maskable.png",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                }
+            ],
+            "screenshots": [],
+            "description": "With 20 billion matches to date, Tinder is the world’s most popular app for meeting new people.",
+            "category": "social",
+            "createdAt": "2021-04-17T23:22:50.402Z",
+            "updatedAt": "2021-04-17T23:22:50.402Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6ddf021b8839d0450693",
+            "manifestURL": "https://www.trivago.com/manifest.webmanifest",
+            "startURL": "/?from=A2HS&iDisableRedirect=1",
+            "name": "trivago",
+            "themeColor": "#ffffff",
+            "icons": [
+                {
+                    "_id": "607b6ddf021b8839d0450694",
+                    "src": "favicon_16x16.png",
+                    "sizes": "16x16",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d0450695",
+                    "src": "favicon_32x32.png",
+                    "sizes": "32x32",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d0450696",
+                    "src": "favicon_48x48.png",
+                    "sizes": "48x48",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d0450697",
+                    "src": "favicon_70x70.png",
+                    "sizes": "70x70",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d0450698",
+                    "src": "favicon_72x72.png",
+                    "sizes": "72x72",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d0450699",
+                    "src": "favicon_96x96.png",
+                    "sizes": "96x96",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d045069a",
+                    "src": "favicon_144x144.png",
+                    "sizes": "144x144",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d045069b",
+                    "src": "favicon_150x150.png",
+                    "sizes": "150x150",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d045069c",
+                    "src": "favicon_180x180.png",
+                    "sizes": "180x180",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d045069d",
+                    "src": "favicon_192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d045069e",
+                    "src": "favicon_310x150.png",
+                    "sizes": "310x150",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d045069f",
+                    "src": "favicon_310x310.png",
+                    "sizes": "310x310",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6ddf021b8839d04506a0",
+                    "src": "favicon_512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [],
+            "description": "Compare hotel prices from hundreds of travel sites and get great deals. Save time and money on finding your ideal accommodation with millions of reviews and photos on trivago.com",
+            "category": "travel",
+            "createdAt": "2021-04-17T23:23:11.080Z",
+            "updatedAt": "2021-04-17T23:23:11.080Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6df0021b8839d04506a1",
+            "manifestURL": "https://sky.shiiyu.moe/manifest.webmanifest",
+            "startURL": "/",
+            "name": "SkyCrypt",
+            "themeColor": "#282828",
+            "icons": [
+                {
+                    "_id": "607b6df0021b8839d04506a2",
+                    "src": "/resources/img/app-icons/svg.svg",
+                    "sizes": "any",
+                    "type": "image/svg+xml",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506a3",
+                    "src": "/resources/img/app-icons/192.webp",
+                    "sizes": "192x192",
+                    "type": "image/webp",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506a4",
+                    "src": "/resources/img/app-icons/512.webp",
+                    "sizes": "512x512",
+                    "type": "image/webp",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506a5",
+                    "src": "/resources/img/app-icons/192.png",
+                    "sizes": "192x192",
+                    "type": "image/png",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506a6",
+                    "src": "/resources/img/app-icons/512.png",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506a7",
+                    "src": "/resources/img/app-icons/maskable-svg.svg",
+                    "sizes": "any",
+                    "type": "image/svg+xml",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506a8",
+                    "src": "/resources/img/app-icons/maskable-192.webp",
+                    "sizes": "192x192",
+                    "type": "image/webp",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506a9",
+                    "src": "/resources/img/app-icons/maskable-512.webp",
+                    "sizes": "512x512",
+                    "type": "image/webp",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506aa",
+                    "src": "/resources/img/app-icons/maskable-192.png",
+                    "sizes": "192x192",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506ab",
+                    "src": "/resources/img/app-icons/maskable-512.png",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506ac",
+                    "src": "/resources/img/app-icons/monochrome-svg.svg",
+                    "sizes": "any",
+                    "type": "image/svg+xml",
+                    "purpose": "monochrome"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506ad",
+                    "src": "/resources/img/app-icons/monochrome-192.webp",
+                    "sizes": "192x192",
+                    "type": "image/webp",
+                    "purpose": "monochrome"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506ae",
+                    "src": "/resources/img/app-icons/monochrome-512.webp",
+                    "sizes": "512x512",
+                    "type": "image/webp",
+                    "purpose": "monochrome"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506af",
+                    "src": "/resources/img/app-icons/monochrome-192.png",
+                    "sizes": "192x192",
+                    "type": "image/png",
+                    "purpose": "monochrome"
+                },
+                {
+                    "_id": "607b6df0021b8839d04506b0",
+                    "src": "/resources/img/app-icons/monochrome-512.png",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                    "purpose": "monochrome"
+                }
+            ],
+            "screenshots": [
+                {
+                    "_id": "607b6df0021b8839d04506b1",
+                    "src": "/resources/img/screenshot.jpg",
+                    "sizes": "3840x2160",
+                    "type": "image/jpeg"
+                }
+            ],
+            "description": "A beautiful site for sharing your SkyBlock profile 🌹",
+            "category": "utilities",
+            "createdAt": "2021-04-17T23:23:28.359Z",
+            "updatedAt": "2021-04-17T23:23:28.359Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6dfa021b8839d04506b2",
+            "manifestURL": "https://encounters.heromuster.com/manifest.webmanifest",
+            "startURL": "/",
+            "name": "Encounters Builder and Tracker",
+            "themeColor": "#007bff",
+            "icons": [
+                {
+                    "_id": "607b6dfa021b8839d04506b3",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/maskable_icon.png",
+                    "sizes": "196x196",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506b4",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square71x71Logo.scale-400.png",
+                    "sizes": "284x284"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506b5",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square71x71Logo.scale-200.png",
+                    "sizes": "142x142"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506b6",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square71x71Logo.scale-100.png",
+                    "sizes": "71x71"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506b7",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square71x71Logo.scale-150.png",
+                    "sizes": "107x107"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506b8",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square71x71Logo.scale-125.png",
+                    "sizes": "89x89"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506b9",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square150x150Logo.scale-400.png",
+                    "sizes": "600x600"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506ba",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square150x150Logo.scale-200.png",
+                    "sizes": "300x300"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506bb",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square150x150Logo.scale-100.png",
+                    "sizes": "150x150"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506bc",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square150x150Logo.scale-150.png",
+                    "sizes": "225x225"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506bd",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square150x150Logo.scale-125.png",
+                    "sizes": "188x188"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506be",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Wide310x150Logo.scale-400.png",
+                    "sizes": "1240x600"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506bf",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Wide310x150Logo.scale-200.png",
+                    "sizes": "620x300"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506c0",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Wide310x150Logo.scale-100.png",
+                    "sizes": "310x150"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506c1",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Wide310x150Logo.scale-150.png",
+                    "sizes": "465x225"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506c2",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Wide310x150Logo.scale-125.png",
+                    "sizes": "388x188"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506c3",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square310x310Logo.scale-400.png",
+                    "sizes": "1240x1240"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506c4",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square310x310Logo.scale-200.png",
+                    "sizes": "620x620"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506c5",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square310x310Logo.scale-100.png",
+                    "sizes": "310x310"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506c6",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square310x310Logo.scale-150.png",
+                    "sizes": "465x465"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506c7",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square310x310Logo.scale-125.png",
+                    "sizes": "388x388"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506c8",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.scale-400.png",
+                    "sizes": "176x176"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506c9",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.scale-200.png",
+                    "sizes": "88x88"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506ca",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.scale-100.png",
+                    "sizes": "44x44"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506cb",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.scale-150.png",
+                    "sizes": "66x66"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506cc",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.scale-125.png",
+                    "sizes": "55x55"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506cd",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.targetsize-256.png",
+                    "sizes": "256x256"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506ce",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.targetsize-48.png",
+                    "sizes": "48x48"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506cf",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.targetsize-24.png",
+                    "sizes": "24x24"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506d0",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.targetsize-16.png",
+                    "sizes": "16x16"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506d1",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.targetsize-256_altform-unplated.png",
+                    "sizes": "256x256"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506d2",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.targetsize-48_altform-unplated.png",
+                    "sizes": "48x48"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506d3",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.targetsize-24_altform-unplated.png",
+                    "sizes": "24x24"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506d4",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/Square44x44Logo.targetsize-16_altform-unplated.png",
+                    "sizes": "16x16"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506d5",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/StoreLogo.scale-400.png",
+                    "sizes": "200x200"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506d6",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/StoreLogo.scale-200.png",
+                    "sizes": "100x100"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506d7",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/StoreLogo.scale-150.png",
+                    "sizes": "75x75"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506d8",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/StoreLogo.scale-125.png",
+                    "sizes": "63x63"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506d9",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/StoreLogo.scale-100.png",
+                    "sizes": "50x50"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506da",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/StoreLogo.png",
+                    "sizes": "50x50"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506db",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/SplashScreen.scale-400.png",
+                    "sizes": "2480x1200"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506dc",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/SplashScreen.scale-200.png",
+                    "sizes": "1240x600"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506dd",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/SplashScreen.scale-150.png",
+                    "sizes": "930x450"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506de",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/SplashScreen.scale-125.png",
+                    "sizes": "775x375"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506df",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows10/SplashScreen.scale-100.png",
+                    "sizes": "620x300"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506e0",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-smallsquare-24-24.png",
+                    "sizes": "24x24"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506e1",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-smallsquare-30-30.png",
+                    "sizes": "30x30"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506e2",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-smallsquare-42-42.png",
+                    "sizes": "42x42"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506e3",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-smallsquare-54-54.png",
+                    "sizes": "54x54"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506e4",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-splashscreen-1116-540.png",
+                    "sizes": "1116x540"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506e5",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-splashscreen-868-420.png",
+                    "sizes": "868x420"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506e6",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-splashscreen-620-300.png",
+                    "sizes": "620x300"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506e7",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-squarelogo-270-270.png",
+                    "sizes": "270x270"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506e8",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-squarelogo-210-210.png",
+                    "sizes": "210x210"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506e9",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-squarelogo-150-150.png",
+                    "sizes": "150x150"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506ea",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-squarelogo-120-120.png",
+                    "sizes": "120x120"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506eb",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-storelogo-90-90.png",
+                    "sizes": "90x90"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506ec",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-storelogo-70-70.png",
+                    "sizes": "70x70"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506ed",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windows-storelogo-50-50.png",
+                    "sizes": "50x50"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506ee",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-appicon-106-106.png",
+                    "sizes": "106x106"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506ef",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-appicon-62-62.png",
+                    "sizes": "62x62"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506f0",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-appicon-44-44.png",
+                    "sizes": "44x44"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506f1",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-mediumtile-360-360.png",
+                    "sizes": "360x360"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506f2",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-mediumtile-210-210.png",
+                    "sizes": "210x210"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506f3",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-mediumtile-150-150.png",
+                    "sizes": "150x150"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506f4",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-smalltile-170-170.png",
+                    "sizes": "170x170"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506f5",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-smalltile-99-99.png",
+                    "sizes": "99x99"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506f6",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-smalltile-71-71.png",
+                    "sizes": "71x71"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506f7",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-storelogo-120-120.png",
+                    "sizes": "120x120"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506f8",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-storelogo-70-70.png",
+                    "sizes": "70x70"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506f9",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/windows/windowsphone-storelogo-50-50.png",
+                    "sizes": "50x50"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506fa",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/android/android-launchericon-512-512.png",
+                    "sizes": "512x512"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506fb",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/android/android-launchericon-192-192.png",
+                    "sizes": "192x192"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506fc",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/android/android-launchericon-144-144.png",
+                    "sizes": "144x144"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506fd",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/android/android-launchericon-96-96.png",
+                    "sizes": "96x96"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506fe",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/android/android-launchericon-72-72.png",
+                    "sizes": "72x72"
+                },
+                {
+                    "_id": "607b6dfa021b8839d04506ff",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/android/android-launchericon-48-48.png",
+                    "sizes": "48x48"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450700",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-appicon-1024-1024.png",
+                    "sizes": "1024x1024"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450701",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-appicon-180-180.png",
+                    "sizes": "180x180"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450702",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-appicon-152-152.png",
+                    "sizes": "152x152"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450703",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-appicon-120-120.png",
+                    "sizes": "120x120"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450704",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-appicon-76-76.png",
+                    "sizes": "76x76"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450705",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-launchimage-750-1334.png",
+                    "sizes": "750x1334"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450706",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-launchimage-1334-750.png",
+                    "sizes": "1334x750"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450707",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-launchimage-1242-2208.png",
+                    "sizes": "1242x2208"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450708",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-launchimage-2208-1242.png",
+                    "sizes": "2208x1242"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450709",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-launchimage-640-960.png",
+                    "sizes": "640x960"
+                },
+                {
+                    "_id": "607b6dfa021b8839d045070a",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-launchimage-640-1136.png",
+                    "sizes": "640x1136"
+                },
+                {
+                    "_id": "607b6dfa021b8839d045070b",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-launchimage-1536-2048.png",
+                    "sizes": "1536x2048"
+                },
+                {
+                    "_id": "607b6dfa021b8839d045070c",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-launchimage-2048-1536.png",
+                    "sizes": "2048x1536"
+                },
+                {
+                    "_id": "607b6dfa021b8839d045070d",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-launchimage-768-1024.png",
+                    "sizes": "768x1024"
+                },
+                {
+                    "_id": "607b6dfa021b8839d045070e",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/ios/ios-launchimage-1024-768.png",
+                    "sizes": "1024x768"
+                },
+                {
+                    "_id": "607b6dfa021b8839d045070f",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/chrome/chrome-extensionmanagementpage-48-48.png",
+                    "sizes": "48x48"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450710",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/chrome/chrome-favicon-16-16.png",
+                    "sizes": "16x16"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450711",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/chrome/chrome-installprocess-128-128.png",
+                    "sizes": "128x128"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450712",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/firefox/firefox-marketplace-512-512.png",
+                    "sizes": "512x512"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450713",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/firefox/firefox-marketplace-128-128.png",
+                    "sizes": "128x128"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450714",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/firefox/firefox-general-256-256.png",
+                    "sizes": "256x256"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450715",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/firefox/firefox-general-128-128.png",
+                    "sizes": "128x128"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450716",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/firefox/firefox-general-90-90.png",
+                    "sizes": "90x90"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450717",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/firefox/firefox-general-64-64.png",
+                    "sizes": "64x64"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450718",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/firefox/firefox-general-48-48.png",
+                    "sizes": "48x48"
+                },
+                {
+                    "_id": "607b6dfa021b8839d0450719",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/firefox/firefox-general-32-32.png",
+                    "sizes": "32x32"
+                },
+                {
+                    "_id": "607b6dfa021b8839d045071a",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/icons/firefox/firefox-general-16-16.png",
+                    "sizes": "16x16"
+                }
+            ],
+            "screenshots": [
+                {
+                    "_id": "607b6dfa021b8839d045071b",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/screenshots/mobile4.png",
+                    "sizes": "750x1334",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6dfa021b8839d045071c",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/screenshots/mobile3.png",
+                    "sizes": "750x1334",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6dfa021b8839d045071d",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/screenshots/mobile2.png",
+                    "sizes": "750x1334",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6dfa021b8839d045071e",
+                    "src": "https://d107pwazkemjp5.cloudfront.net/screenshots/mobile6.png",
+                    "sizes": "750x1334",
+                    "type": "image/png"
+                }
+            ],
+            "description": "Add NPCs, build encounters, and run your game with this tool for game masters. With offline and mobile support it's never been easier. Supports multiple RPG systems.",
+            "category": "utilities",
+            "createdAt": "2021-04-17T23:23:38.501Z",
+            "updatedAt": "2021-04-17T23:23:38.501Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6e05021b8839d045071f",
+            "manifestURL": "https://squoosh.app/manifest.json",
+            "startURL": "/?utm_medium=PWA&utm_source=launcher",
+            "name": "Squoosh",
+            "themeColor": "#ff3385",
+            "icons": [
+                {
+                    "_id": "607b6e05021b8839d0450720",
+                    "src": "/c/icon-large-cb438cac.png",
+                    "type": "image/png",
+                    "sizes": "1024x1024"
+                },
+                {
+                    "_id": "607b6e05021b8839d0450721",
+                    "src": "/c/icon-large-maskable-c2078ced.png",
+                    "type": "image/png",
+                    "sizes": "1024x1024",
+                    "purpose": "maskable"
+                }
+            ],
+            "screenshots": [
+                {
+                    "_id": "607b6e05021b8839d0450722",
+                    "src": "/c/screenshot1-0ff68546.png",
+                    "type": "image/png",
+                    "sizes": "540x720"
+                },
+                {
+                    "_id": "607b6e05021b8839d0450723",
+                    "src": "/c/screenshot2-1f78c4db.jpg",
+                    "type": "image/jpeg",
+                    "sizes": "540x720"
+                },
+                {
+                    "_id": "607b6e05021b8839d0450724",
+                    "src": "/c/screenshot3-c1e02216.jpg",
+                    "type": "image/jpeg",
+                    "sizes": "540x720"
+                }
+            ],
+            "description": "Compress and compare images with different codecs, right in your browser.",
+            "category": "utilities",
+            "createdAt": "2021-04-17T23:23:49.760Z",
+            "updatedAt": "2021-04-17T23:23:49.760Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6e31021b8839d045072f",
+            "manifestURL": "https://lofi.news/manifest.json",
+            "startURL": "/index.html",
+            "name": "Lofi News",
+            "themeColor": "#000000",
+            "icons": [
+                {
+                    "_id": "607b6e31021b8839d0450730",
+                    "src": "static/images/lofi-news16.png",
+                    "sizes": "16x16",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6e31021b8839d0450731",
+                    "src": "static/images/lofi-news32.png",
+                    "sizes": "32x32",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6e31021b8839d0450732",
+                    "src": "static/images/lofi-news36.png",
+                    "sizes": "36x36",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6e31021b8839d0450733",
+                    "src": "static/images/lofi-news48.png",
+                    "sizes": "48x48",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6e31021b8839d0450734",
+                    "src": "static/images/lofi-news72.png",
+                    "sizes": "72x72",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6e31021b8839d0450735",
+                    "src": "static/images/lofi-news96.png",
+                    "sizes": "96x96",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6e31021b8839d0450736",
+                    "src": "static/images/lofi-news144.png",
+                    "sizes": "144x144",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6e31021b8839d0450737",
+                    "src": "static/images/lofi-news192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6e31021b8839d0450738",
+                    "src": "static/images/lofi-news512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [],
+            "description": "Beat fake news by reading all the sources",
+            "category": "news",
+            "createdAt": "2021-04-17T23:24:33.794Z",
+            "updatedAt": "2021-04-17T23:24:33.794Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6e42021b8839d0450739",
+            "manifestURL": "https://www.olx.in/manifest.json",
+            "startURL": "/?install=true",
+            "name": "OLX Lite",
+            "themeColor": "#3a77ff",
+            "icons": [
+                {
+                    "_id": "607b6e42021b8839d045073a",
+                    "src": "/logo/olx-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6e42021b8839d045073b",
+                    "src": "/logo/olx-512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [],
+            "description": "OLX has 1000's ads available in India of goods for sale from cars, furniture, electronics to jobs and services listings. Buy or sell something today!",
+            "category": "shopping",
+            "createdAt": "2021-04-17T23:24:50.424Z",
+            "updatedAt": "2021-04-17T23:24:50.424Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6f2a021b8839d0450747",
+            "manifestURL": "https://www.google.co.in/maps/preview/pwa/manifest?source=ttpwa&hl=en",
+            "startURL": "/maps?force=tt&source=ttpwa",
+            "name": "Google Maps",
+            "themeColor": "#1A73E8",
+            "icons": [
+                {
+                    "_id": "607b6f2a021b8839d0450748",
+                    "sizes": "192x192",
+                    "src": "https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_192x192.png",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6f2a021b8839d0450749",
+                    "sizes": "512x512",
+                    "src": "https://maps.gstatic.com/mapfiles/maps_lite/pwa/icons/maps15_bnuw3a_round_512x512.png",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [],
+            "description": "Get where you're going, faster",
+            "category": "navigation",
+            "createdAt": "2021-04-17T23:28:42.772Z",
+            "updatedAt": "2021-04-17T23:28:42.772Z"
+        }
+    ],
+    "totalDocs": 19,
+    "limit": 10,
+    "totalPages": 2,
+    "page": 2,
+    "pagingCounter": 11,
+    "hasPrevPage": true,
+    "hasNextPage": false,
+    "prevPage": 1,
+    "nextPage": null
+}
