@@ -7,6 +7,7 @@ const getWebApp = async (req, res) => {
     const data = await webAppService.findWebApp(req.params.id);
     r.data(res, 200, data);
   } catch (e) {
+    console.log(e.message);
     r.error(res, 400, e.message);
   }
 };

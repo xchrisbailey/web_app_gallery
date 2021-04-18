@@ -2,6 +2,7 @@ const WebApp = require('./webapp.model');
 
 // find a web app by id and return
 const findWebApp = async (id) => {
+  console.log(id);
   const res = await WebApp.findById(id);
   if (!res) throw new Error('web app not found');
   return res;

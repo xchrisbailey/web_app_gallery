@@ -17,7 +17,18 @@ const reviewSchema = new mongoose.Schema({
   },
 });
 
-reviewSchema.index({ user: 1, webApp: 1 }, { unique: true });
+// reviewSchema.index({ user: 1, webApp: 1 }, { unique: true });
+
+reviewSchema.post('save', function (err, doc, next) {
+  let errorMessage;
+
+  if (err.code === 11000) {
+    errorMessage = 'You have already reviewed this application';
+  }
+
+  if (errorMessage) next(new Error(errorMessage));
+  else next();
+});
 
 const Review = mongoose.model('review', reviewSchema);
 

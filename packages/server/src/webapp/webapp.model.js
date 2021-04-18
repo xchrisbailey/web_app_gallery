@@ -46,6 +46,7 @@ const webAppSchema = new mongoose.Schema(
     category: { type: String, required: true, enum: categories },
     submittedBy: { type: mongoose.Schema.Types.ObjectID, ref: 'User' },
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
+    avgRating: { type: Number, min: 0, max: 5, default: 0 },
     icons: [
       {
         src: { type: String, required: true },
@@ -64,6 +65,52 @@ const webAppSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+webAppSchema.pre('save', async function (err, doc, next) {
+  const webApp = this;
+  mongoose.models['WebApp'].aggregate(
+    [
+      { $match: { _id: webApp._id } },
+      {
+        $lookup: {
+          from: 'Review',
+          localField: 'reviews',
+          foreignField: '_id',
+          as: 'reviews',
+        },
+      },
+      {
+        $unwind: '$reviews',
+      },
+      {
+        $group: {
+          _id: null,
+          avgRating: {
+            $avg: '$reviews.rating',
+          },
+        },
+      },
+    ],
+    function (err, data) {
+      if (err) throw new Error(err.message);
+      data.map(function (doc) {
+        if (!doc.avgRating) {
+          webApp.avgRating = 0;
+        } else {
+          webApp.avgRating = doc.avgRating;
+        }
+      });
+      next();
+    },
+  );
+
+  /* await webApp.populate('reviews');
+
+  this.avgRating =
+    webApp.reviews.reduce((a, b) => a + (b['rating'] || 0), 0) /
+    webApp.reviews.length;
+  next(); */
+});
 
 webAppSchema.post('save', function (err, doc, next) {
   let errorMessage;

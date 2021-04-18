@@ -23,6 +23,22 @@ describe('create review', () => {
     expect(review).not.toBe(null);
     expect(review.rating).toBe(4);
   });
+
+  it('should not allow user to review same app more than once', async () => {
+    const user = await User.create(dummyUser);
+    const webapp = await WebApp.create({ ...dummyWebApp, submittedBy: user });
+    const data = {
+      rating: 4,
+      review: 'Ipsum doloremque quasi?',
+    };
+    await reviewService.addReview(user, webapp, data);
+
+    try {
+      await reviewService.addReview(user, webapp, data);
+    } catch (e) {
+      expect(e.message).toBe('You have already reviewed this application');
+    }
+  });
 });
 
 describe('delete review', () => {
