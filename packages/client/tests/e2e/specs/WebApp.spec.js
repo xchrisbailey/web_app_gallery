@@ -6,7 +6,7 @@ beforeEach(() => {
       method: "GET",
       url: "/api/webapp/skycrypt"
     },
-    { fixture: "skycrypt.json" }
+    { fixture: "api/apps/skycrypt.json" }
   );
   cy.visit("/apps/skycrypt");
 });
