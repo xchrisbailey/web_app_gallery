@@ -20,7 +20,6 @@ const addReview = async (req, res) => {
 };
 
 const updateReview = async (req, res) => {
-  if (req.body === null) throw new Error('must provide updates');
   try {
     const data = await reviewService.updateReviewById(
       req.user,

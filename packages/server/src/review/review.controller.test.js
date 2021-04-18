@@ -52,6 +52,31 @@ describe('create review', () => {
       }),
     );
   });
+
+  it('should 400 when missing required informaton', async () => {
+    const { req, res } = mockPrepare(
+      {
+        review: 'Lorem alias sit et facere',
+      },
+      user,
+    );
+    req.params.appId = webapp._id;
+
+    const reviewServiceSpy = jest.spyOn(reviewService, 'addReview');
+
+    const bodyCheck = {
+      review: 'Lorem alias sit et facere',
+    };
+
+    await reviewController.addReview(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(reviewServiceSpy).toHaveBeenCalledWith(user, webapp._id, bodyCheck);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        status: 'error',
+      }),
+    );
+  });
 });
 
 describe('update review', () => {

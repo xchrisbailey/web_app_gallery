@@ -30,6 +30,6 @@ reviewSchema.post('save', function (err, doc, next) {
   else next();
 });
 
-const Review = mongoose.model('review', reviewSchema);
+const Review = mongoose.model('Review', reviewSchema);
 
 module.exports = Review;

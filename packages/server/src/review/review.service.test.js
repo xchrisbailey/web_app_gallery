@@ -44,12 +44,16 @@ describe('create review', () => {
 describe('delete review', () => {
   it('should remove the requested review', async () => {
     const user = await User.create(dummyUser);
-    const webapp = await WebApp.create({ ...dummyWebApp, submittedBy: user });
     const data = {
       rating: 4,
       review: 'Sit eveniet cum omnis',
     };
-    const review = await Review.create({ user, webapp, ...data });
+    const review = await Review.create({ user, ...data });
+    await WebApp.create({
+      ...dummyWebApp,
+      submittedBy: user,
+      reviews: [review._id],
+    });
 
     const res = await reviewService.removeReviewById(user, review._id);
     expect(res).toBe(true);
