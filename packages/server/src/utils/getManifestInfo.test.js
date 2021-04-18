@@ -30,7 +30,7 @@ test('should error if invalid url', async () => {
   try {
     await getManifestInfo('googlenews');
   } catch (e) {
-    expect(e.message).toBe('not found');
+    expect(e.message).toBe('Invalid URL: googlenews');
   }
 });
 
