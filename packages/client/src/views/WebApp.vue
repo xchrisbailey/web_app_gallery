@@ -27,6 +27,8 @@
 </template>
 
 <style lang="scss" scoped>
+@import "~vuetify/src/styles/styles.sass";
+
 .v-alert {
   position: fixed;
   bottom: 0;
@@ -73,6 +75,14 @@
   overflow-x: auto;
   white-space: nowrap;
   scroll-snap-type: x;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    margin-right: -12px;
+    margin-left: -12px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
   img {
     height: 450px;
     border-radius: 12px;
