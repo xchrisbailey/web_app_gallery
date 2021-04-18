@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-const { WatchFileKind } = require("typescript");
-
 describe("App List", () => {
   it("lists apps from api", () => {
     cy.intercept(
