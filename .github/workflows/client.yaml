@@ -1,8 +1,10 @@
-name: CI
+name: Client CI
 
 on:
   push:
     branches: [ "**" ]
+    paths:
+      - 'packages/client/**'
 
   workflow_dispatch:
 
