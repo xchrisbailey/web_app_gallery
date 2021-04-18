@@ -18,7 +18,6 @@ describe("App Details", () => {
 
   it("chooses the correct icon", () => {
     cy.get(".icon > img").should("have.attr", "src", "https://sky.shiiyu.moe/resources/img/app-icons/maskable-svg.svg");
-    cy.contains("a", "Open").should("have.attr", "href", "https://sky.shiiyu.moe/");
   });
 
   it("links to start url", () => {
