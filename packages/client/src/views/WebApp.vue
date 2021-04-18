@@ -14,6 +14,7 @@
 
     <div class="screenshots" v-if="appData.screenshots">
       <img
+        class="elevation-2"
         v-for="screenshot in appData.screenshots"
         :key="screenshot.src"
         :src="screenshot.src"
