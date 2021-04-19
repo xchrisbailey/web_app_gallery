@@ -7,16 +7,16 @@ const addReview = async (user, appId, data) => {
   const review = await Review.create({ ...data, user });
 
   // add reference inside the designated web application
-  const app = await WebApp.findByIdAndUpdate(
+  await WebApp.findByIdAndUpdate(
     appId,
     { $push: { reviews: review._id } },
     { new: true, useFindAndModify: false },
   ).populate('reviews');
 
-  app.avgRating =
+  /* app.avgRating =
     app.reviews.reduce((a, b) => a + b['rating'], 0) / app.reviews.length;
 
-  await app.save();
+  await app.save(); */
 
   return review;
 };
@@ -30,16 +30,16 @@ const removeReviewById = async (user, reviewId) => {
   if (result.deletedCount === 0) return false;
 
   // also remove reference in designated app
-  const app = await WebApp.findOneAndUpdate(
+  await WebApp.findOneAndUpdate(
     { reviews: reviewId },
     { $pull: { reviews: mongoose.Types.ObjectId(reviewId) } }, // remove review from the asscociated web application
     { new: true },
   );
 
-  app.avgRating =
+  /* app.avgRating =
     app.reviews.reduce((a, b) => a + b['rating'], 0) / app.reviews.length || 0;
 
-  await app.save();
+  await app.save(); */
   return result !== null;
 };
 

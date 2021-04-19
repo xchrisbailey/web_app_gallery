@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate-v2');
+const aggregatePaginate = require('mongoose-aggregate-paginate-v2');
 
 const categories = [
   'books',
@@ -77,7 +77,7 @@ webAppSchema.post('save', function (err, doc, next) {
   else next();
 });
 
-webAppSchema.plugin(mongoosePaginate);
+webAppSchema.plugin(aggregatePaginate);
 
 // sanitize sensitive info before returning json
 webAppSchema.methods.toJSON = function () {

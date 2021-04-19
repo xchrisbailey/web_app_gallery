@@ -46,7 +46,6 @@ const deleteReview = async (req, res) => {
 const getUserReviews = async (req, res) => {
   try {
     const data = await reviewService.getReviewsByUser(req.user._id);
-    console.log(data);
     r.data(res, 200, data);
   } catch (e) {
     r.error(res, 400, e.message);
