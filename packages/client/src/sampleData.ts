@@ -67,6 +67,7 @@ export const sampleApps: ApiResponse<WebApp[]> = {
           purpose: "maskable"
         }
       ],
+      screenshots: [],
       appleMobileWebAppCapable: false,
       averageRating: 2.3
     },
@@ -81,6 +82,7 @@ export const sampleApps: ApiResponse<WebApp[]> = {
         { src: "assets/icon-05a70868.png", type: "image/png", sizes: "1024x1024" },
         { src: "assets/icon-maskable-7a2eb399.png", type: "image/png", sizes: "1024x1024", purpose: "maskable" }
       ],
+      screenshots: [],
       appleMobileWebAppCapable: true,
       themeColor: "#0e103e",
       backgroundColor: "#0e103e",

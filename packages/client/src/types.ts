@@ -7,7 +7,7 @@ export interface WebApp {
   icons: Icon[];
   appleMobileWebAppCapable: boolean;
   category: Category;
-  screenshots?: Screenshot[];
+  screenshots: Screenshot[];
   themeColor?: string;
   backgroundColor?: string;
   averageRating: number;

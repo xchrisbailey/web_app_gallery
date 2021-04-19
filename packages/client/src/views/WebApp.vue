@@ -12,7 +12,7 @@
 
     <p class="description">{{ (appData && appData.description) || "" }}</p>
 
-    <div class="screenshots" v-if="appData.screenshots">
+    <div class="screenshots" v-if="appData.screenshots.length > 0">
       <img
         class="elevation-2"
         v-for="screenshot in appData.screenshots"
