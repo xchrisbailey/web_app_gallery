@@ -128,7 +128,7 @@ import { submitUser } from "../services/signUpApi";
 import { getUsers } from "../services/signUpApi";
 
 export default {
-  name: "SignIn",
+  name: "SignUp",
   props: {
     msg: String
   },

@@ -2,6 +2,24 @@
   <div class="action">
     <v-container>
       <v-row>
+
+        <v-dialog
+        v-model="success"
+        width="500"
+        >
+        <v-card>
+          <v-card-text>
+            You are logged In 
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <router-link to = "/profile" @click="dialog = false">Profile</router-link>
+          </v-card-actions>
+        </v-card>
+        </v-dialog>
+
+
         <v-card 
         elevation="24" 
         outlined width="600"
@@ -58,7 +76,7 @@
 </template>
 
 <script>
-import { getUsers, logInUser } from '../services/signUpApi';
+import { logInUser } from '../services/signUpApi';
 export default {
   name: "SignIn",
   props: {
@@ -71,6 +89,7 @@ export default {
     loading: false,
     error: false,
     errorMsg: "",
+    success: false,
 
     rules: {
       email: v => !!(v || "").match(/@/) || "Please enter a valid email",
@@ -83,6 +102,7 @@ export default {
       logInUser(this.email,this.password)
       .then(users => {
         console.log(users);
+        this.success = true;
       })
       .catch(err =>{
         console.log(err);

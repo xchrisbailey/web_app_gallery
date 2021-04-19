@@ -1,4 +1,4 @@
-import { SignUp, ApiResponse } from "@/types";
+import { User, ApiResponse } from "@/types";
 
 import axiosStatic from "axios";
 
@@ -12,8 +12,8 @@ export async function submitUser(
   userLastName: string,
   userEmail: string,
   userPassword: string
-): Promise<SignUp> {
-  const request = axios.post<ApiResponse<SignUp>>("/signup", {
+): Promise<User> {
+  const request = axios.post<ApiResponse<User>>("/signup", {
     firstName: userFirstName,
     lastName: userLastName,
     email: userEmail,
@@ -28,10 +28,10 @@ export async function submitUser(
   return response.data.data;
 }
 
-export async function getUsers(
+export async function getUser(
 
-): Promise<SignUp> {
-  const request = axios.get<ApiResponse<SignUp>>("/me");
+): Promise<User> {
+  const request = axios.get<ApiResponse<User>>("/me");
   const response = await request;
   if (response.data.status === "error") {
     throw response.data.message;
@@ -42,8 +42,8 @@ export async function getUsers(
 export async function logInUser(
   userEmail: string,
   userPassword: string
-): Promise<SignUp> {
-  const request = axios.post<ApiResponse<SignUp>>("/login", {
+): Promise<User> {
+  const request = axios.post<ApiResponse<User>>("/login", {
     email: userEmail,
     password: userPassword
   });

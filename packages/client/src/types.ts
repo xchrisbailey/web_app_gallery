@@ -137,7 +137,7 @@ export interface Review {
   lastUpdated: number;
 }
 
-export interface SignUp {
+export interface User {
   lastName: string;
   firstName: string;
   email: string;
