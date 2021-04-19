@@ -184,6 +184,35 @@ describe('delete review', () => {
   });
 });
 
+describe('get user reviews', () => {
+  it('should return reviews created by requested user', async () => {
+    await seedReview();
+
+    const user2 = await User.create({
+      ...dummyUser,
+      email: 'dummy@example.com',
+    });
+    const userTwoReview = await Review.create({
+      rating: 4,
+      review: 'Lorem alias sit et facere',
+      user: user2,
+    });
+
+    await WebApp.findByIdAndUpdate(webapp._id, {
+      $push: { reviews: userTwoReview._id },
+    });
+
+    const { req, res } = mockPrepare({}, user);
+
+    await reviewController.getUserReviews(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ data: [expect.anything()] }),
+    );
+  });
+});
+
 const seedReview = async () => {
   const review = await Review.create({
     rating: 4,

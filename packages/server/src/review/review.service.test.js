@@ -112,3 +112,32 @@ describe('update review', () => {
     }
   });
 });
+
+describe('get user reviews', () => {
+  it('should return only requested users reviews', async () => {
+    const user1 = await User.create(dummyUser);
+    const user2 = await User.create({
+      ...dummyUser,
+      email: 'dummy@example.com',
+    });
+
+    await Review.create({
+      user: user1,
+      rating: 3,
+      review: 'hello world',
+    });
+    await Review.create({
+      user: user2,
+      rating: 4,
+      review: 'hello world im the second',
+    });
+
+    const userOneResponse = await reviewService.getReviewsByUser(user1._id);
+    expect(userOneResponse.length).toBe(1);
+    expect(userOneResponse[0].rating).toBe(3);
+
+    const userTwoResponse = await reviewService.getReviewsByUser(user2._id);
+    expect(userTwoResponse.length).toBe(1);
+    expect(userTwoResponse[0].rating).toBe(4);
+  });
+});

@@ -135,6 +135,27 @@ describe('DELETE /review/:reviewId', () => {
   });
 });
 
+describe('GET /api/me/reviews', () => {
+  it('should return logged in users reviews', async () => {
+    const r = await createAuthorizedSession();
+    await createReview(r);
+
+    const rn = supertest.agent(app);
+    await rn
+      .post('/api/signup')
+      .send({ ...dummyUser, email: 'example@example.com' })
+      .expect(201);
+
+    await createReview(rn);
+
+    const res = await r.get('/api/me/reviews').send().expect(200);
+
+    expect(res.body.status).toBe('ok');
+    expect(res.body.data).toHaveLength(1);
+    expect(res.body.data[0].rating).toBe(3);
+  });
+});
+
 const createAuthorizedSession = async () => {
   const r = supertest.agent(app);
   await r

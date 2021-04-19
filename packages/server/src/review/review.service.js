@@ -31,8 +31,8 @@ const removeReviewById = async (user, reviewId) => {
 
   // also remove reference in designated app
   const app = await WebApp.findOneAndUpdate(
-    { reviews: mongoose.Types.ObjectId(reviewId) },
-    { $pull: { reviews: mongoose.Types.ObjectId(reviewId) } },
+    { reviews: reviewId },
+    { $pull: { reviews: mongoose.Types.ObjectId(reviewId) } }, // remove review from the asscociated web application
     { new: true },
   );
 
@@ -52,8 +52,18 @@ const updateReviewById = async (user, reviewId, updateData) => {
   return review;
 };
 
+const getReviewsByUser = async (uid) => {
+  const reviews = await Review.find({
+    user: { $in: [mongoose.Types.ObjectId(uid)] },
+  });
+
+  if (!reviews || reviews.length === 0) throw new Error('No Reviews Found');
+  return reviews;
+};
+
 module.exports = {
   addReview,
   removeReviewById,
   updateReviewById,
+  getReviewsByUser,
 };

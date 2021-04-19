@@ -7,6 +7,8 @@ const validate = require('../middleware/validate');
 
 const r = new express.Router();
 
+r.get('/me/reviews', auth, reviewController.getUserReviews);
+
 r.post(
   '/webapp/:appId/reviews',
   auth,
