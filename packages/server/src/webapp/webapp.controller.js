@@ -55,9 +55,7 @@ const createWebApp = async (req, res) => {
       description: manifest.data.description
         ? manifest.data.description
         : appDescription,
-      appleMobileWebAppCapable: appleMobileWebAppCapable
-        ? appleMobileWebAppCapable
-        : false,
+      appleMobileWebAppCapable: appleMobileWebAppCapable,
       category: req.body.category,
     };
 

@@ -11,10 +11,14 @@ const getManifestInfo = async (url) => {
   if (!manifestLinkTag)
     throw new Error(`${url} does not contain a valid link to a manifest.json`);
 
+  const appleMobileWebAppCapable =
+    $('meta[name="apple-mobile-web-app-capable"]').attr('content') === 'yes';
+
   const manifestURL = new URL(manifestLinkTag, url).href; // construct manifests full url
   const manifest = await axios.get(manifestURL); // fetch manifest.json
 
   return {
+    appleMobileWebAppCapable,
     appDescription,
     manifest,
     manifestURL,

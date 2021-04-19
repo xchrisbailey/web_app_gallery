@@ -1,4 +1,4 @@
-import { ApiResponse, Review, WebApp } from "./types";
+import { ApiError, ApiResponse, Review, WebApp } from "./types";
 
 export const sampleApps: ApiResponse<WebApp[]> = {
   status: "ok",
@@ -117,7 +117,7 @@ export const sampleReviews: ApiResponse<Review[]> = {
   ]
 };
 
-export const sampleError: ApiResponse<any> = {
+export const sampleError: ApiError = {
   status: "error",
   message: "Amet rem vel a harum"
 };

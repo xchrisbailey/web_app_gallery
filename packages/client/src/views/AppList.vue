@@ -49,10 +49,10 @@ export default Vue.extend({
     },
     loadSome() {
       this.loading = true;
-      this.appsQuery
+      (this.appsQuery as WebAppQuery)
         .getMore()
-        .then(apps => {
-          this.hasMore = this.appsQuery.hasNextPage();
+        .then(() => {
+          this.hasMore = (this.appsQuery as WebAppQuery).hasNextPage();
         })
         .catch(error => {
           this.error = error;
