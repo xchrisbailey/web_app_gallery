@@ -31,7 +31,7 @@ export async function submitApp(appUrl: string, category: Category): Promise<Web
 }
 
 export class WebAppQuery {
-  private nextPage?: number = 0;
+  private nextPage?: number = 1;
   private webApps: WebApp[] = [];
   private category?: Category;
   private pageSize?: number;

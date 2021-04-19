@@ -114,8 +114,7 @@
 
 <script lang="ts">
 import { getApp } from "@/services/webAppApi";
-import { findIcon } from "@/services/webAppUtils";
-import { Icon, WebApp } from "@/types";
+import { WebApp } from "@/types";
 import Vue from "vue";
 import AppIcon from "@/components/AppIcon.vue";
 
