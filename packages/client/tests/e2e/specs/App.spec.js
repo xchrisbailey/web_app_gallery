@@ -25,6 +25,12 @@ describe("Side nav", () => {
       .should("have.attr", "href", "/categories/utilities");
   });
 
+  it("links to submit app", () => {
+    cy.get(".v-navigation-drawer")
+      .contains("a", "Submit New App")
+      .should("have.attr", "href", "/apps/submit");
+  });
+
   it("is visible only after opening on small screens", () => {
     cy.viewport(320, 480);
     cy.get(".v-navigation-drawer").should("not.be.visible");
