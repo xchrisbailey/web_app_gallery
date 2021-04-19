@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-alert type="error" v-if="error">
+    <v-alert class="error" type="error" v-if="error">
       {{ error }}
     </v-alert>
     <AppIcon class="icon" :icons="appData.icons"></AppIcon>
@@ -11,6 +11,10 @@
     </v-btn>
 
     <p class="description">{{ (appData && appData.description) || "" }}</p>
+
+    <v-alert class="iOS-warning" outlined type="warning" text v-if="!appData.appleMobileWebAppCapable && iOS">
+      This app may not work on your device
+    </v-alert>
 
     <div class="screenshots" v-if="appData.screenshots.length > 0">
       <img
@@ -29,7 +33,7 @@
 <style lang="scss" scoped>
 @import "~vuetify/src/styles/styles.sass";
 
-.v-alert {
+.error {
   position: fixed;
   bottom: 0;
   width: stretch;
@@ -67,6 +71,10 @@
 }
 
 .description {
+  grid-column: 1 / -1;
+}
+
+.iOS-warning {
   grid-column: 1 / -1;
 }
 
@@ -127,10 +135,12 @@ export default Vue.extend({
   data: () => ({
     appData: null as WebApp | null,
     loading: true,
-    error: undefined as string | undefined
+    error: undefined as string | undefined,
+    iOS: false
   }),
 
   created: function() {
+    this.iOS = navigator.platform.startsWith("iP");
     getApp(this.$route.params.id)
       .then(app => {
         this.loading = false;
