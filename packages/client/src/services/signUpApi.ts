@@ -19,24 +19,32 @@ export async function submitUser(
     email: userEmail,
     password: userPassword
   });
-
-  const response = await request;
-
-  if (response.data.status === "error") {
-    throw response.data.message;
+  try {
+    const response = await request;
+    return response.data.data;
+  } catch (error) {
+    if (error.response.data.status === "error") {
+      throw error.response.data.message;
+    } else {
+      throw error;
+    }
   }
-  return response.data.data;
 }
 
 export async function getUser(
 
 ): Promise<User> {
   const request = axios.get<ApiResponse<User>>("/me");
-  const response = await request;
-  if (response.data.status === "error") {
-    throw response.data.message;
+  try {
+    const response = await request;
+    return response.data.data;
+  } catch (error) {
+    if (error.response.data.status === "error") {
+      throw error.response.data.message;
+    } else {
+      throw error;
+    }
   }
-  return response.data.data;
 }
 
 export async function logInUser(
@@ -48,11 +56,15 @@ export async function logInUser(
     password: userPassword
   });
 
-  const response = await request;
-
-  if (response.data.status === "error") {
-    throw response.data.message;
+  try {
+    const response = await request;
+    return response.data.data;
+  } catch (error) {
+    if (error.response.data.status === "error") {
+      throw error.response.data.message;
+    } else {
+      throw error;
+    }
   }
-  return response.data.data;
 }
 

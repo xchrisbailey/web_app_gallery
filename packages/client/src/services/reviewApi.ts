@@ -17,10 +17,14 @@ export async function submitReview(
       rating: userRating
     });
   
-    const response = await request;
-  
-    if (response.data.status === "error") {
-      throw response.data.message;
-    }
-    return response.data.data;
+    try {
+        const response = await request;
+        return response.data.data;
+      } catch (error) {
+        if (error.response.data.status === "error") {
+          throw error.response.data.message;
+        } else {
+          throw error;
+        }
+      }
   }

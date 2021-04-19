@@ -140,6 +140,13 @@ export interface Review {
   lastUpdated: number;
 }
 
+export interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
+
 export type ApiResponse<T> = { status: "ok"; data: T };
 
 export type PaginatedApiResponse<T> = {
