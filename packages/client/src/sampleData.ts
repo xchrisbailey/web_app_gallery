@@ -46,7 +46,7 @@ export const sampleApps: ApiResponse<WebApp[]> = {
       screenshots: [
         {
           src: "https://sky.shiiyu.moe/resources/img/screenshot.jpg",
-          size: { height: 2160, width: 3840 }
+          sizes: "3840x2160"
         }
       ],
       themeColor: "#282828",
