@@ -1,6 +1,6 @@
 const axios = require('axios');
 const getManifestInfo = require('./getManifestInfo');
-const { dummyGoogleManifest, dummyGoogleHtml } = require('../../test/data');
+const { dummyGoogleManifest, dummyGoogleHtml } = require('../../tests/data');
 
 jest.mock('axios');
 
@@ -30,7 +30,7 @@ test('should error if invalid url', async () => {
   try {
     await getManifestInfo('googlenews');
   } catch (e) {
-    expect(e.message).toBe('not found');
+    expect(e.message).toBe('Invalid URL: googlenews');
   }
 });
 

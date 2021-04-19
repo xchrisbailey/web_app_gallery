@@ -1,11 +1,12 @@
 export interface WebApp {
+  _id: string;
   manifestURL: string;
-  startUrl: string;
+  startURL: string;
   name: string;
   description: string;
-  icon: Icon;
+  icons: Icon[];
   appleMobileWebAppCapable: boolean;
-  categories?: Category[];
+  category: Category;
   screenshots?: Screenshot[];
   themeColor?: string;
   backgroundColor?: string;
@@ -83,7 +84,9 @@ export function isCategory(category: any): category is Category {
 
 export interface Icon {
   src: string;
-  purpose: "any" | "maskable";
+  sizes?: string;
+  purpose?: string;
+  type?: string;
 }
 
 export interface Screenshot {
@@ -137,27 +140,20 @@ export interface Review {
   lastUpdated: number;
 }
 
-export interface User {
-  lastName: string;
-  firstName: string;
-  email: string;
-  password: string;
-}
+export type ApiResponse<T> = { status: "ok"; data: T };
 
-export type ApiResponse<T> = { status: "error"; message: string } | { status: "ok"; data: T };
+export type PaginatedApiResponse<T> = {
+  status: "ok";
+  data: T[];
+  totalDocs: number;
+  limit: number;
+  page: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  nextPage: number | null;
+  hasPrevPage: boolean;
+  prevPage: number | null;
+  pagingCounter: number;
+};
 
-export type PaginatedApiResponse<T> =
-  | { status: "error"; message: string }
-  | {
-      status: "ok";
-      data: T[];
-      totalDocs: number;
-      limit: number;
-      page: number;
-      totalPages: number;
-      hasNextPage: boolean;
-      nextPage: number | null;
-      hasPrevPage: boolean;
-      prevPage: number | null;
-      pagingCounter: number;
-    };
+export type ApiError = { status: "error"; message: string };

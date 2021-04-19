@@ -10,7 +10,7 @@ const findWebApp = async (id) => {
 // make mongoose call to find all web apps and return paginated results
 const findWebApps = async (opts = { limit: 10 }, filters = {}) => {
   const filter = {};
-  if (filters.search) filter.name = { $regex: filters.search };
+  if (filters.search) filter.name = { $regex: filters.search, $options: 'i' };
   if (filters.category) filter.category = filters.category;
 
   const res = await WebApp.paginate(filter, {
