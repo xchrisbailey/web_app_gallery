@@ -4,7 +4,7 @@ const Review = require('./review.model');
 const WebApp = require('../webapp/webapp.model');
 
 const addReview = async (user, appId, data) => {
-  const review = await Review.create({ ...data, user });
+  const review = await Review.create({ ...data, user, webapp: appId });
 
   // add reference inside the designated web application
   await WebApp.findByIdAndUpdate(
@@ -12,11 +12,6 @@ const addReview = async (user, appId, data) => {
     { $push: { reviews: review._id } },
     { new: true, useFindAndModify: false },
   ).populate('reviews');
-
-  /* app.avgRating =
-    app.reviews.reduce((a, b) => a + b['rating'], 0) / app.reviews.length;
-
-  await app.save(); */
 
   return review;
 };
@@ -36,10 +31,6 @@ const removeReviewById = async (user, reviewId) => {
     { new: true },
   );
 
-  /* app.avgRating =
-    app.reviews.reduce((a, b) => a + b['rating'], 0) / app.reviews.length || 0;
-
-  await app.save(); */
   return result !== null;
 };
 

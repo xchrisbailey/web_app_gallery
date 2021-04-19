@@ -46,7 +46,6 @@ const webAppSchema = new mongoose.Schema(
     category: { type: String, required: true, enum: categories },
     submittedBy: { type: mongoose.Schema.Types.ObjectID, ref: 'User' },
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
-    avgRating: { type: Number, min: 0, max: 5, default: 0 },
     icons: [
       {
         src: { type: String, required: true },
@@ -63,7 +62,9 @@ const webAppSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+  },
 );
 
 webAppSchema.post('save', function (err, doc, next) {
@@ -81,13 +82,14 @@ webAppSchema.plugin(aggregatePaginate);
 
 // sanitize sensitive info before returning json
 webAppSchema.methods.toJSON = function () {
-  const webApp = this;
-  const wap = webApp.toObject();
+  const w = this;
+  const webApp = w.toObject();
 
-  delete wap.__v;
+  delete webApp.__v;
 
-  return wap;
+  return webApp;
 };
+
 const WebApp = mongoose.model('WebApp', webAppSchema);
 
 module.exports = WebApp;
