@@ -45,10 +45,7 @@ export async function getUser(): Promise<User> {
   }
 }
 
-export async function logInUser(
-  userEmail: string,
-  userPassword: string
-): Promise<User> {
+export async function logInUser(userEmail: string, userPassword: string): Promise<User> {
   const request = axios.post<ApiResponse<User>>("/login", {
     email: userEmail,
     password: userPassword
@@ -65,4 +62,3 @@ export async function logInUser(
     }
   }
 }
-
