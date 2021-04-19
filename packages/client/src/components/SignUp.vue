@@ -2,6 +2,45 @@
   <div class="action">
     <v-container md>
       <v-row>
+
+        <v-dialog
+        v-model="success"
+        width="500"
+        >
+        <v-card>
+          <v-card-text>
+            Your Account has been created
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <router-link to = "/signin" @click="dialog = false">sign in</router-link>
+          </v-card-actions>
+        </v-card>
+        </v-dialog>
+
+        <v-dialog
+        v-model="fail"
+        width="500"
+        >
+        <v-card>
+          <v-card-text>
+            This account is already in use
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+            color = "primary"
+            text
+            @click="fail = false"
+            >
+            Try Again
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+        </v-dialog>
+
         <v-card elevation="24" outlined width="600">
           <v-card-title justify-center>
             {{ msg }}
@@ -63,15 +102,20 @@
           <v-container>
             <v-layout align-center>
               <v-flex xs2 md12>
-                <v-btn color="primary" type="submit" :loading="loading" @click="submit">
-                  Sign In
+                <v-btn 
+                color="primary" 
+                type="submit" 
+                :loading="loading" 
+                @click="submit"
+                >
+                  Sign Up
                 </v-btn>
               </v-flex>
             </v-layout>
           </v-container>
           <v-card-text>
             Already have an account, no problem just
-            <router-link to="/signIn">Sing In</router-link>
+            <router-link to="/signIn">Sign In</router-link>
           </v-card-text>
         </v-card>
       </v-row>
@@ -96,6 +140,8 @@ export default {
     password: undefined,
     loading: false,
     form: false,
+    success: false,
+    fail: false,
 
     rules: {
       password: v =>
@@ -111,9 +157,11 @@ export default {
       submitUser(this.firstName, this.lastName, this.email, this.password)
         .then(user => {
           console.log(user);
+          this.success = true;
         })
         .catch(err => {
           console.log(err);
+          this.fail = true;
         })
         .finally(() => {
           this.loading = false;
