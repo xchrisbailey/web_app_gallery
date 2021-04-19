@@ -7,8 +7,11 @@ const getManifestInfo = async (url) => {
   const $ = cheerio.load(data);
   const appDescription = $('meta[name="description"]').attr('content'); // grab sites description from meta data
 
-  const manifestURL = new URL($('link[rel="manifest"]').attr('href'), url).href; // construct manifests full url
+  const manifestLinkTag = $('link[rel="manifest"]').attr('href');
+  if (!manifestLinkTag)
+    throw new Error(`${url} does not contain a valid link to a manifest.json`);
 
+  const manifestURL = new URL(manifestLinkTag, url).href; // construct manifests full url
   const manifest = await axios.get(manifestURL); // fetch manifest.json
 
   return {
