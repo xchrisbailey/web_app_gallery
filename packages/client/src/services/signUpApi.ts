@@ -31,10 +31,8 @@ export async function submitUser(
   }
 }
 
-export async function getUser(
-
-): Promise<User> {
-  const request = axios.get<ApiResponse<User>>("/me");
+export async function getUser(): Promise<User> {
+  const request = axios.get<ApiResponse<User>>("/me", { withCredentials: true });
   try {
     const response = await request;
     return response.data.data;
