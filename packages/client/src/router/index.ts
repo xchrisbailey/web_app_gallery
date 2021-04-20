@@ -1,20 +1,19 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/",
-    name: "Home",
-    component: Home
+    path: "/categories/:category?",
+    alias: "/",
+    name: "Category",
+    component: () => import(/* webpackChunkName: "AppList" */ "../views/AppList.vue")
   },
   {
     path: "/apps/:id",
     name: "Web App",
-    component: () =>
-      import(/* webpackChunkName: "WebApp" */ "../views/WebApp.vue")
+    component: () => import(/* webpackChunkName: "WebApp" */ "../views/WebApp.vue")
   },
   {
     path: "/about",

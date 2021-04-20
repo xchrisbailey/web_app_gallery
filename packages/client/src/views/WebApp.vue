@@ -4,20 +4,12 @@
   </v-alert>
   <v-card v-else flat :loading="loading">
     <div class="d-flex flex-no-wrap">
-      <v-avatar
-        class="ma-3"
-        rounded="xl"
-        size="120"
-        color="grey"
-        :class="{ maskable: appData && appData.icon.purpose == 'maskable' }"
-      >
-        <img :src="appData.icon.src" alt="" v-if="appData" />
-      </v-avatar>
+      <AppIcon class="ma-3 icon" :icons="appData.icons"></AppIcon>
       <div class="name-and-photo">
         <v-card-title class="text-h4" v-text="(appData && appData.name) || ''"></v-card-title>
 
         <v-card-actions class="pl-4 pr-4">
-          <v-btn block color="primary" :href="appData && appData.startUrl" target="_blank" rel="noopener noreferrer">
+          <v-btn block color="primary" :href="appData && appData.startURL" target="_blank" rel="noopener noreferrer">
             Open App
           </v-btn>
         </v-card-actions>
@@ -38,13 +30,12 @@
   margin: 12px;
 }
 
-.v-card__title {
-  word-break: unset;
+.icon {
+  width: 120px;
 }
 
-.maskable img {
-  width: 110%;
-  height: 110%;
+.v-card__title {
+  word-break: unset;
 }
 
 @media (min-width: 600px) {
@@ -66,13 +57,16 @@
 </style>
 
 <script lang="ts">
-import { getApp } from "../services/api";
-import { WebApp } from "../types";
+import { getApp } from "@/services/webAppApi";
+import { WebApp } from "@/types";
 import Vue from "vue";
-import { sampleApps } from "../sampleData";
+import AppIcon from "@/components/AppIcon.vue";
 
 export default Vue.extend({
   name: "WebApp",
+  components: {
+    AppIcon
+  },
 
   data: () => ({
     appData: null as WebApp | null,

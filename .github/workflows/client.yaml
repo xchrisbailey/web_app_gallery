@@ -1,0 +1,45 @@
+name: Client CI
+
+on:
+  push:
+    branches: [ "**" ]
+    paths:
+      - 'packages/client/**'
+
+  workflow_dispatch:
+
+
+jobs:
+  vue-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Install dependencies
+        run: npm ci --prefix packages/client
+
+      - name: Vue lint
+        run: npm run lint --prefix packages/client
+
+  cypress:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cypress
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run serve -prod
+          wait-on: http://localhost:8080/
+          working-directory: packages/client
+          record: true
+        env:
+          CYPRESS_baseUrl: http://localhost:8080/
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

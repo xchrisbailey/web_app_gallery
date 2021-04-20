@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-const db = require('../../test/db');
-const { dummyUser } = require('../../test/data');
-const { mockRequest, mockResponse } = require('../../test/utils/interceptors');
+const db = require('../../tests/db');
+const { dummyUser } = require('../../tests/data');
+const { mockRequest, mockResponse } = require('../../tests/utils/interceptors');
 const userController = require('./user.controller');
 const userService = require('./user.service');
 
@@ -30,12 +30,14 @@ describe('createUser', () => {
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ email: dummyUser.email }),
+        data: expect.objectContaining({ email: dummyUser.email.toLowerCase() }),
       }),
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ firstName: dummyUser.firstName }),
+        data: expect.objectContaining({
+          firstName: dummyUser.firstName.toLowerCase(),
+        }),
       }),
     );
   });
@@ -85,17 +87,21 @@ describe('loginUser', () => {
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ email: dummyUser.email }),
+        data: expect.objectContaining({ email: dummyUser.email.toLowerCase() }),
       }),
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ firstName: dummyUser.firstName }),
+        data: expect.objectContaining({
+          firstName: dummyUser.firstName.toLowerCase(),
+        }),
       }),
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ lastName: dummyUser.lastName }),
+        data: expect.objectContaining({
+          lastName: dummyUser.lastName.toLowerCase(),
+        }),
       }),
     );
   });

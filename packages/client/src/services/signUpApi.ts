@@ -1,11 +1,6 @@
 import { SignUp, ApiResponse } from "@/types";
 
-import axiosStatic from "axios";
-
-const axios = axiosStatic.create({
-  baseURL: window.location.origin.match(/https?:\/\/[a-z0-9\-.]*/) + ":3322" + "/api",
-  validateStatus: null
-});
+import axios from "axios";
 
 export async function submitUser(
   userFirstName: string,
@@ -13,46 +8,53 @@ export async function submitUser(
   userEmail: string,
   userPassword: string
 ): Promise<SignUp> {
-  const request = axios.post<ApiResponse<SignUp>>("/signup", {
+  const request = axios.post<ApiResponse<SignUp>>("/api/signup", {
     firstName: userFirstName,
     lastName: userLastName,
     email: userEmail,
     password: userPassword
   });
 
-  const response = await request;
-
-  if (response.data.status === "error") {
-    throw response.data.message;
+  try {
+    const response = await request;
+    return response.data.data;
+  } catch (error) {
+    if (error.response.data.status === "error") {
+      throw error.response.data.message;
+    } else {
+      throw error;
+    }
   }
-  return response.data.data;
 }
 
-export async function getUsers(
-
-): Promise<SignUp> {
-  const request = axios.get<ApiResponse<SignUp>>("/me");
-  const response = await request;
-  if (response.data.status === "error") {
-    throw response.data.message;
+export async function getUsers(): Promise<SignUp> {
+  const request = axios.get<ApiResponse<SignUp>>("/api/me");
+  try {
+    const response = await request;
+    return response.data.data;
+  } catch (error) {
+    if (error.response.data.status === "error") {
+      throw error.response.data.message;
+    } else {
+      throw error;
+    }
   }
-  return response.data.data;
 }
 
-export async function logInUser(
-  userEmail: string,
-  userPassword: string
-): Promise<SignUp> {
-  const request = axios.post<ApiResponse<SignUp>>("/login", {
+export async function logInUser(userEmail: string, userPassword: string): Promise<SignUp> {
+  const request = axios.post<ApiResponse<SignUp>>("/api/login", {
     email: userEmail,
     password: userPassword
   });
 
-  const response = await request;
-
-  if (response.data.status === "error") {
-    throw response.data.message;
+  try {
+    const response = await request;
+    return response.data.data;
+  } catch (error) {
+    if (error.response.data.status === "error") {
+      throw error.response.data.message;
+    } else {
+      throw error;
+    }
   }
-  return response.data.data;
 }
-
