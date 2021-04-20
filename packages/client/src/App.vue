@@ -18,6 +18,12 @@
         rounded
         dense
         single-line
+        color="white"
+        enterkeyhint="search"
+        clearable
+        v-model="query"
+        v-on:keyup.enter="search"
+        v-on:click:clear="clearSearch"
       ></v-text-field>
     </v-app-bar>
     <div class="statusbar primary"></div>
@@ -56,6 +62,7 @@
 <style lang="scss" scoped>
 .v-app-bar-title {
   color: white;
+  margin-right: 12px;
 }
 .search {
   max-width: 300px;
@@ -124,8 +131,23 @@ export default Vue.extend({
 
   data: () => ({
     drawer: null,
-    catagories
+    catagories,
+    query: ""
   }),
+
+  methods: {
+    search() {
+      if (this.query) {
+        this.$router.push(`/?search=${this.query}`);
+      } else {
+        this.$router.push("/");
+      }
+    },
+    clearSearch() {
+      this.query = "";
+      this.search();
+    }
+  },
 
   beforeCreate() {
     const darkMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");

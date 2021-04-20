@@ -12,6 +12,18 @@ describe("App bar", () => {
   });
 });
 
+describe("Search bar", () => {
+  it("searches", () => {
+    cy.get(".v-input.search")
+      .click()
+      .type("test search{enter}");
+    cy.location().should(loc => {
+      expect(loc.pathname).to.eq("/");
+      expect(loc.search).to.eq("?search=test%20search");
+    });
+  });
+});
+
 describe("Side nav", () => {
   it("links to catagories", () => {
     cy.get(".v-navigation-drawer")
