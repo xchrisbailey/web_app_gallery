@@ -10,6 +10,7 @@ const logger = require('./utils/logger');
 
 const { UserRouter } = require('./user');
 const { WebAppRouter } = require('./webapp');
+const { ReviewRouter } = require('./review');
 
 // create instance of app
 const app = express();
@@ -26,5 +27,6 @@ app.use(expressPinoLogger({ logger: logger }));
 // routers
 app.use('/api/', UserRouter);
 app.use('/api/', WebAppRouter);
+app.use('/api/', ReviewRouter);
 
 module.exports = app;
