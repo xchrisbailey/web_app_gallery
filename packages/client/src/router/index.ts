@@ -29,26 +29,25 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "404" */ "../views/404.vue")
   },
   {
-    path:"/signIn",
-    name:"signIn",
+    path: "/signIn",
+    name: "signIn",
     component: () => import(/* webpackChunkName: "signin" */ "../views/SignInView.vue")
   },
   {
-    path:"/signUp",
-    name:"signUp",
+    path: "/signUp",
+    name: "signUp",
     component: () => import(/* webpackChunkName: "signup" */ "../views/SignUpView.vue")
   },
   {
     path: "/Rating",
     name: "Rating",
-    component: () => import(/* webpackChunkName: "review" */ "../views/Ratings.vue")    
+    component: () => import(/* webpackChunkName: "review" */ "../views/Ratings.vue")
   },
   {
-    path:"/Profile",
-    name:"Profile",
-    component:() => import(/* webpackChunkName: "review" */ "../views/userProfileView.vue")
+    path: "/Profile",
+    name: "Profile",
+    component: () => import(/* webpackChunkName: "review" */ "../views/userProfileView.vue")
   }
-  
 ];
 
 const router = new VueRouter({

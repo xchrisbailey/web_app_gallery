@@ -1,11 +1,6 @@
 import { User, ApiResponse } from "@/types";
 
-import axiosStatic from "axios";
-
-const axios = axiosStatic.create({
-  baseURL: window.location.origin.match(/https?:\/\/[a-z0-9\-.]*/) + ":3000" + "/api",
-  validateStatus: null
-});
+import axios from "axios";
 
 export async function submitUser(
   userFirstName: string,
@@ -13,7 +8,7 @@ export async function submitUser(
   userEmail: string,
   userPassword: string
 ): Promise<User> {
-  const request = axios.post<ApiResponse<User>>("/signup", {
+  const request = axios.post<ApiResponse<User>>("/api/signup", {
     firstName: userFirstName,
     lastName: userLastName,
     email: userEmail,
@@ -32,7 +27,7 @@ export async function submitUser(
 }
 
 export async function getUser(): Promise<User> {
-  const request = axios.get<ApiResponse<User>>("/me", { withCredentials: true });
+  const request = axios.get<ApiResponse<User>>("/api/me", { withCredentials: true });
   try {
     const response = await request;
     return response.data.data;
@@ -46,7 +41,7 @@ export async function getUser(): Promise<User> {
 }
 
 export async function logInUser(userEmail: string, userPassword: string): Promise<User> {
-  const request = axios.post<ApiResponse<User>>("/login", {
+  const request = axios.post<ApiResponse<User>>("/api/login", {
     email: userEmail,
     password: userPassword
   });
