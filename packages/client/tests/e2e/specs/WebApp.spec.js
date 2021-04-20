@@ -37,12 +37,9 @@ describe("App Details", () => {
       { fixture: "api/apps/youtube.json" }
     );
     cy.visit("/apps/youtube");
-    cy.contains("This app may not work on your device").should("not.exist");
-    cy.window().then(win => {
+    Cypress.on("window:before:load", win => {
       Object.defineProperty(win.navigator, "platform", { get: () => "iPhone" });
     });
-    cy.get('[href="/"]').click();
-    cy.go("back");
     cy.contains("This app may not work on your device");
   });
 });
