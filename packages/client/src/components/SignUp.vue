@@ -2,43 +2,32 @@
   <div class="action">
     <v-container md>
       <v-row>
-
-        <v-dialog
-        v-model="success"
-        width="500"
-        >
-        <v-card>
-          <v-card-text>
-            Your Account has been created
-          </v-card-text>
-          <v-divider></v-divider>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <router-link to = "/signin" @click="dialog = false">sign in</router-link>
-          </v-card-actions>
-        </v-card>
+        <v-dialog v-model="success" width="500">
+          <v-card>
+            <v-card-text>
+              Your Account has been created
+            </v-card-text>
+            <v-divider></v-divider>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <router-link to="/signin" @click="dialog = false">sign in</router-link>
+            </v-card-actions>
+          </v-card>
         </v-dialog>
 
-        <v-dialog
-        v-model="fail"
-        width="500"
-        >
-        <v-card>
-          <v-card-text>
-            This account is already in use
-          </v-card-text>
-          <v-divider></v-divider>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-            color = "primary"
-            text
-            @click="fail = false"
-            >
-            Try Again
-            </v-btn>
-          </v-card-actions>
-        </v-card>
+        <v-dialog v-model="fail" width="500">
+          <v-card>
+            <v-card-text>
+              This account is already in use
+            </v-card-text>
+            <v-divider></v-divider>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" text @click="fail = false">
+                Try Again
+              </v-btn>
+            </v-card-actions>
+          </v-card>
         </v-dialog>
 
         <v-card elevation="24" outlined width="600">
@@ -102,12 +91,7 @@
           <v-container>
             <v-layout align-center>
               <v-flex xs2 md12>
-                <v-btn 
-                color="primary" 
-                type="submit" 
-                :loading="loading" 
-                @click="submit"
-                >
+                <v-btn color="primary" type="submit" :loading="loading" @click="submit">
                   Sign Up
                 </v-btn>
               </v-flex>
