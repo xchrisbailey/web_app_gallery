@@ -30,10 +30,20 @@ const findWebApps = async (opts = { limit: 10 }, filters = {}) => {
   if (filters.search) {
     aggregates.push({
       $match: {
-        name: {
-          $regex: filters.search,
-          $options: 'i',
-        },
+        $or: [
+          {
+            name: {
+              $regex: filters.search,
+              $options: 'i',
+            },
+          },
+          {
+            description: {
+              $regex: filters.search,
+              $options: 'i',
+            },
+          },
+        ],
       },
     });
   }
