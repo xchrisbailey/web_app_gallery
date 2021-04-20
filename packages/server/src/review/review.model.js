@@ -26,7 +26,6 @@ reviewSchema.post('save', function (err, doc, next) {
   let errorMessage;
 
   if (err.code === 11000) {
-    console.log(err);
     errorMessage = 'You have already reviewed this application';
   }
 

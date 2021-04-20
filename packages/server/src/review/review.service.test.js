@@ -48,12 +48,13 @@ describe('delete review', () => {
       rating: 4,
       review: 'Sit eveniet cum omnis',
     };
-    const review = await Review.create({ user, ...data });
-    await WebApp.create({
+    [];
+    const webapp = await WebApp.create({
       ...dummyWebApp,
       submittedBy: user,
-      reviews: [review._id],
     });
+
+    const review = await Review.create({ user, webapp, ...data });
 
     const res = await reviewService.removeReviewById(user, review._id);
     expect(res).toBe(true);
@@ -121,14 +122,18 @@ describe('get user reviews', () => {
       email: 'dummy@example.com',
     });
 
+    const webapp = await WebApp.create({ ...dummyWebApp, submittedBy: user1 });
+
     await Review.create({
       user: user1,
       rating: 3,
+      webapp: webapp,
       review: 'hello world',
     });
     await Review.create({
       user: user2,
       rating: 4,
+      webapp: webapp,
       review: 'hello world im the second',
     });
 

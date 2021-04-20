@@ -196,6 +196,7 @@ describe('get user reviews', () => {
       rating: 4,
       review: 'Lorem alias sit et facere',
       user: user2,
+      webapp: webapp,
     });
 
     await WebApp.findByIdAndUpdate(webapp._id, {
@@ -218,6 +219,7 @@ const seedReview = async () => {
     rating: 4,
     review: 'Lorem alias sit et facere',
     user: user,
+    webapp: webapp,
   });
 
   await WebApp.findByIdAndUpdate(webapp._id, {
