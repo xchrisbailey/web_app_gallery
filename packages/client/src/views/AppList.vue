@@ -58,6 +58,7 @@ export default Vue.extend({
         .getMore()
         .then(() => {
           this.hasMore = (this.appsQuery as WebAppQuery).hasNextPage();
+          this.error = undefined;
         })
         .catch(error => {
           this.error = error;
