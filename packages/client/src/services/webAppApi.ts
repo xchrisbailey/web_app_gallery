@@ -35,10 +35,12 @@ export class WebAppQuery {
   private webApps: WebApp[] = [];
   private category?: Category;
   private pageSize?: number;
+  private search?: string;
 
-  constructor(category?: Category, pageSize?: number) {
+  constructor(category?: Category, pageSize?: number, search?: string) {
     this.category = category;
     this.pageSize = pageSize;
+    this.search = search;
   }
 
   hasNextPage(): boolean {
@@ -52,7 +54,7 @@ export class WebAppQuery {
   async getMore() {
     if (this.hasNextPage()) {
       const request = axios.get<PaginatedApiResponse<WebApp>>("/api/webapp", {
-        params: { page: this.nextPage, category: this.category, limit: this.pageSize }
+        params: { page: this.nextPage, category: this.category, limit: this.pageSize, search: this.search }
       });
       try {
         const response = await request;

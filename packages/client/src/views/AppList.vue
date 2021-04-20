@@ -46,8 +46,8 @@ export default Vue.extend({
   methods: {
     init() {
       const category = isCategory(this.$route.params.category) ? this.$route.params.category : undefined;
-      this.appsQuery = new WebAppQuery(category, 24);
-      console.log(this.$route.params.category);
+      const search = typeof this.$route.query.search === "string" ? this.$route.query.search : undefined;
+      this.appsQuery = new WebAppQuery(category, 24, search);
       this.apps = this.appsQuery.getApps();
       this.hasMore = true;
       this.loadSome();

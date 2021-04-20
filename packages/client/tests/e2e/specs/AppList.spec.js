@@ -58,4 +58,16 @@ describe("App List", () => {
     cy.visit("/categories/games");
     cy.wait("@requestGames").should("exist");
   });
+
+  it("searches", () => {
+    cy.intercept({
+      method: "GET",
+      pathname: "/api/webapp",
+      query: {
+        search: "test search"
+      }
+    }).as("requestSearch");
+    cy.visit("/?search=test%20search");
+    cy.wait("@requestSearch").should("exist");
+  });
 });
