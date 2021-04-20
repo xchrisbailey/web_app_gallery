@@ -1,7 +1,5 @@
 <template>
-  <div class="signIn">
-    <SignIn msg="Sign In to the WebApp Gallery" />
-  </div>
+  <SignIn msg="Sign In to the WebApp Gallery" />
 </template>
 
 <script>
