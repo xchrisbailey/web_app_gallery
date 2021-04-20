@@ -1,19 +1,24 @@
 <template>
-  <v-alert type="error" v-if="error">
-    {{ error }}
-  </v-alert>
-  <div v-else>
+  <v-container>
     <ListApp v-for="app in apps" :key="app._id" :app="app"></ListApp>
-    <v-btn v-if="hasMore" id="load-more" v-on:click="loadSome()" color="primary" text :loading="loading">
+    <v-btn v-if="hasMore" v-on:click="loadSome()" color="primary" text :loading="loading">
       load more
     </v-btn>
-  </div>
+    <v-alert type="error" v-if="error">
+      {{ error }}
+    </v-alert>
+  </v-container>
 </template>
 
 <style lang="scss" scoped>
-#load-more {
-  display: block;
-  margin: 12px auto;
+.container {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  button {
+    margin: 12px auto;
+    grid-column: 1 / -1;
+  }
 }
 </style>
 
@@ -41,7 +46,7 @@ export default Vue.extend({
   methods: {
     init() {
       const category = isCategory(this.$route.params.category) ? this.$route.params.category : undefined;
-      this.appsQuery = new WebAppQuery(category);
+      this.appsQuery = new WebAppQuery(category, 24);
       console.log(this.$route.params.category);
       this.apps = this.appsQuery.getApps();
       this.hasMore = true;

@@ -1,5 +1,7 @@
 <template>
-  <h2>Page not found</h2>
+  <v-container>
+    <h2>Page not found</h2>
+  </v-container>
 </template>
 
 <script lang="ts">

@@ -27,4 +27,19 @@ describe("App Details", () => {
   it("has a description", () => {
     cy.contains("A beautiful site for sharing your SkyBlock profile 🌹");
   });
+
+  it("warns iOS compatibility", () => {
+    cy.intercept(
+      {
+        method: "GET",
+        url: "/api/webapp/youtube"
+      },
+      { fixture: "api/apps/youtube.json" }
+    );
+    cy.visit("/apps/youtube");
+    Cypress.on("window:before:load", win => {
+      Object.defineProperty(win.navigator, "platform", { get: () => "iPhone" });
+    });
+    cy.contains("This app may not work on your device");
+  });
 });

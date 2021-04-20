@@ -25,12 +25,23 @@ describe("Side nav", () => {
       .should("have.attr", "href", "/categories/utilities");
   });
 
-  it("is hidden by default", () => {
-    cy.get(".v-navigation-drawer").should("not.be.visible");
+  it("links to submit app", () => {
+    cy.get(".v-navigation-drawer")
+      .contains("a", "Submit New App")
+      .should("have.attr", "href", "/apps/submit");
   });
 
-  it("is visible after opening", () => {
+  it("is visible only after opening on small screens", () => {
+    cy.viewport(320, 480);
+    cy.get(".v-navigation-drawer").should("not.be.visible");
     cy.get("button.v-app-bar__nav-icon").click();
     cy.get(".v-navigation-drawer").should("be.visible");
+  });
+
+  it("is hidden only after closing on large screens", () => {
+    cy.viewport(1400, 800);
+    cy.get(".v-navigation-drawer").should("be.visible");
+    cy.get("button.v-app-bar__nav-icon").click();
+    cy.get(".v-navigation-drawer").should("not.be.visible");
   });
 });

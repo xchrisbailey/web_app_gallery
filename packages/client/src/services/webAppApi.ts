@@ -16,8 +16,8 @@ export async function getApp(id: string): Promise<WebApp> {
   }
 }
 
-export async function submitApp(url: string): Promise<WebApp> {
-  const request = axios.post<ApiResponse<WebApp>>("/api/webapp", { appUrl: url });
+export async function submitApp(appUrl: string, category: Category): Promise<WebApp> {
+  const request = axios.post<ApiResponse<WebApp>>("/api/webapp", { appUrl, category });
   try {
     const response = await request;
     return response.data.data;
@@ -34,9 +34,11 @@ export class WebAppQuery {
   private nextPage?: number = 1;
   private webApps: WebApp[] = [];
   private category?: Category;
+  private pageSize?: number;
 
-  constructor(category?: Category) {
+  constructor(category?: Category, pageSize?: number) {
     this.category = category;
+    this.pageSize = pageSize;
   }
 
   hasNextPage(): boolean {
@@ -50,7 +52,7 @@ export class WebAppQuery {
   async getMore() {
     if (this.hasNextPage()) {
       const request = axios.get<PaginatedApiResponse<WebApp>>("/api/webapp", {
-        params: { page: this.nextPage, category: this.category }
+        params: { page: this.nextPage, category: this.category, limit: this.pageSize }
       });
       try {
         const response = await request;

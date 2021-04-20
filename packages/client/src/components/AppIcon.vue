@@ -1,5 +1,5 @@
 <template>
-  <picture class="elevation-2" :class="icon.purpose">
+  <picture class="elevation-2" :class="icon.purpose || 'any'">
     <img :src="icon.src" alt="" />
   </picture>
 </template>
@@ -9,6 +9,10 @@ picture {
   overflow: hidden;
   border-radius: 20%;
   aspect-ratio: 1;
+
+  &.any {
+    background-color: white;
+  }
 
   @supports not (aspect-ratio: 1) {
     position: relative;
