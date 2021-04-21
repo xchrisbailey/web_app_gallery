@@ -34,10 +34,13 @@ test('should error if invalid url', async () => {
   }
 });
 
-test('should return manifest, manifestURL and a description', async () => {
-  const { appDescription, manifest, manifestURL } = await getManifestInfo(
-    'http://news.google.com/',
-  );
+test('should return manifest, manifestURL, description, and appleWebAppCapable', async () => {
+  const {
+    appDescription,
+    manifest,
+    manifestURL,
+    appleMobileWebAppCapable,
+  } = await getManifestInfo('http://news.google.com/');
 
   expect(appDescription).not.toBe('');
   expect(manifest).toEqual({
@@ -48,4 +51,5 @@ test('should return manifest, manifestURL and a description', async () => {
   expect(manifestURL).toBe(
     'http://news.google.com/_/DotsSplashUi/manifest.json',
   );
+  expect(appleMobileWebAppCapable).toBe(true);
 });

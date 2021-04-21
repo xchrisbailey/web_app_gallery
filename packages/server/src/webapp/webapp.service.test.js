@@ -86,9 +86,27 @@ describe('get single web app', () => {
 
   it('should return search results', async () => {
     await WebApp.create(dummyWebApp);
-    await WebApp.create({ ...dummyWebApp, manifestURL: 'test', name: 'apple' });
-    const res = await webAppService.findWebApps({}, { search: 'google' });
+
+    // name searching
+    await WebApp.create({
+      ...dummyWebApp,
+      manifestURL: 'test2',
+      name: 'apple',
+    });
+    let res = await webAppService.findWebApps({}, { search: 'google' });
     expect(res.data.length).toBe(1);
+    expect(res.data[0].name).toBe('google maps');
+
+    // description search
+    await WebApp.create({
+      ...dummyWebApp,
+      manifestURL: 'test',
+      name: 'orange',
+      description: 'fruit',
+    });
+    res = await webAppService.findWebApps({}, { search: 'fruit' });
+    expect(res.data.length).toBe(1);
+    expect(res.data[0].description).toBe('fruit');
   });
 
   it('should return app matching requested category', async () => {

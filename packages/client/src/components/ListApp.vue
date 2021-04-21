@@ -9,7 +9,6 @@
 <style lang="scss" scoped>
 .wrapper {
   display: grid;
-  margin: 12px;
   gap: 0 12px;
   grid-template-columns: auto 1fr;
   grid-template-areas:
@@ -25,6 +24,10 @@
 
   .name {
     grid-area: name;
+    overflow: hidden;
+    overflow: clip;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 </style>

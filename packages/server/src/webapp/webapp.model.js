@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate-v2');
+const aggregatePaginate = require('mongoose-aggregate-paginate-v2');
 
 const categories = [
   'books',
@@ -45,6 +45,7 @@ const webAppSchema = new mongoose.Schema(
     backgroundColor: { type: String },
     category: { type: String, required: true, enum: categories },
     submittedBy: { type: mongoose.Schema.Types.ObjectID, ref: 'User' },
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
     icons: [
       {
         src: { type: String, required: true },
@@ -61,7 +62,9 @@ const webAppSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+  },
 );
 
 webAppSchema.post('save', function (err, doc, next) {
@@ -75,17 +78,18 @@ webAppSchema.post('save', function (err, doc, next) {
   else next();
 });
 
-webAppSchema.plugin(mongoosePaginate);
+webAppSchema.plugin(aggregatePaginate);
 
 // sanitize sensitive info before returning json
 webAppSchema.methods.toJSON = function () {
-  const webApp = this;
-  const wap = webApp.toObject();
+  const w = this;
+  const webApp = w.toObject();
 
-  delete wap.__v;
+  delete webApp.__v;
 
-  return wap;
+  return webApp;
 };
+
 const WebApp = mongoose.model('WebApp', webAppSchema);
 
 module.exports = WebApp;

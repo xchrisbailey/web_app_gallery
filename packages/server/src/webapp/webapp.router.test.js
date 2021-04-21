@@ -51,18 +51,18 @@ describe('POST /webapp', () => {
 describe('GET /webapp/:id', () => {
   it('should return single webapp', async () => {
     const testApp = await WebApp.create(dummyWebApp);
-    const req = await request.get(`/api/webapp/${testApp._id}`).expect(200);
-    expect(req.body.status).toBe('ok');
-    expect(req.body.data.manifestURL).toEqual(testApp.manifestURL);
-    expect(req.body.data.name).toEqual(testApp.name);
+    const res = await request.get(`/api/webapp/${testApp._id}`).expect(200);
+    expect(res.body.status).toBe('ok');
+    expect(res.body.data.manifestURL).toEqual(testApp.manifestURL);
+    expect(res.body.data.name).toEqual(testApp.name);
   });
 
   it('should should return error when app does not exist', async () => {
-    const req = await request
+    const res = await request
       .get(`/api/webapp/${mongoose.Types.ObjectId()}`)
       .expect(400);
-    expect(req.body.status).toBe('error');
-    expect(req.body.message).toBe('web app not found');
+    expect(res.body.status).toBe('error');
+    expect(res.body.message).toBe('web app not found');
   });
 });
 

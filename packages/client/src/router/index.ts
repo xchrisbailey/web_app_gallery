@@ -11,6 +11,11 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "AppList" */ "../views/AppList.vue")
   },
   {
+    path: "/apps/submit",
+    name: "Submit App",
+    component: () => import(/* webpackChunkName: "SubmitApp" */ "../views/SubmitApp.vue")
+  },
+  {
     path: "/apps/:id",
     name: "Web App",
     component: () => import(/* webpackChunkName: "WebApp" */ "../views/WebApp.vue")
@@ -30,6 +35,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/signIn",
+    alias: "/login",
     name: "signIn",
     component: () => import(/* webpackChunkName: "signin" */ "../views/SignInView.vue")
   },
