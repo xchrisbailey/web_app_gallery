@@ -41,7 +41,7 @@ const updateReviewById = async (user, reviewId, updateData) => {
 const getReviewsByUser = async (uid) => {
   const reviews = await Review.find({
     user: { $in: [mongoose.Types.ObjectId(uid)] },
-  });
+  }).populate('webapp', ['_id', 'name']);
 
   if (!reviews || reviews.length === 0) throw new Error('No Reviews Found');
   return reviews;
