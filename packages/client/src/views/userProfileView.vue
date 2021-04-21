@@ -53,12 +53,22 @@
           </v-card>
         </v-flex>
       </v-layout>
+      <v-layout>
+        <v-flex xs12 md6>
+          <v-card elevation="0">
+            <v-btn @click="signOut"
+            color="error">
+              Sign out
+            </v-btn>
+          </v-card>
+        </v-flex>
+      </v-layout>
     </v-container>
   </div>
 </template>
 
 <script lang="ts">
-import { getUser } from "../services/signUpApi";
+import { getUser, logOutUser } from "../services/signUpApi";
 import { User } from "../types";
 import Vue from "vue";
 
@@ -77,6 +87,18 @@ export default Vue.extend({
       .catch(error => {
         console.log(error);
       });
+  },
+  methods: {
+    signOut(){
+      logOutUser()
+      .then(user => {
+        console.log(user);
+        this.$router.push({ path: '/signIn'})
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    }
   }
 });
 </script>

@@ -57,3 +57,19 @@ export async function logInUser(userEmail: string, userPassword: string): Promis
     }
   }
 }
+
+export async function logOutUser(): Promise<User> {
+  const request = axios.post<ApiResponse<User>>("/api/logout", {
+  });
+
+  try {
+    const response = await request;
+    return response.data.data;
+  } catch (error) {
+    if (error.response.data.status === "error") {
+      throw error.response.data.message;
+    } else {
+      throw error;
+    }
+  }
+}
