@@ -1,14 +1,21 @@
 <template>
   <div id="rating">
     <div>
-      <v-alert type="error" :value="error" dismissible>
-        {{ errorMsg }}
+      <v-alert type="error" :value="error" v-if="error">
+        <v-layout row wrap justify-space-around>
+          <v-flex sx12 md9>
+            {{ errorMsg }}
+          </v-flex>
+          <v-flex xs12 md3>
+            <v-btn @click="goBack" color="warning"> Click Here to go Back</v-btn>
+          </v-flex>
+        </v-layout>
       </v-alert>
     </div>
     <v-container>
       <v-layout row wrap justify-center>
         <v-flex xs4 md1>
-          <h1 class="headline font-weight-bold mb-3">Rating</h1>
+          <h1 class="headline font-weight-bold mb-3">Review</h1>
         </v-flex>
       </v-layout>
       <v-layout row wrap>
@@ -56,7 +63,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { submitReview } from "../services/reviewApi";
 export default {
   name: "rating",
 
@@ -68,7 +76,7 @@ export default {
     errorMsg: "",
 
     rules: {
-      length: len => v => (v || "").length <= len || `Invalid character length, max ${len}`
+      length: (len: number) => (v: any) => (v || "").length <= len || `Invalid character length, max ${len}`
     }
   }),
   methods: {
@@ -79,8 +87,21 @@ export default {
       } else {
         this.loading = true;
         this.error = false;
-        console.log(this.rate, this.userReview);
+        submitReview(this.userReview, this.rate, this.$route.params.id)
+          .then(review => {
+            console.log(review);
+            this.loading = false;
+            this.$router.push({ path: this.$route.params.id})
+          })
+          .catch(error => {
+            this.error = true;
+            this.errorMsg = error;
+            console.log(error);
+          });
       }
+    },
+    goBack(){
+      this.$router.push({ path: '/apps/' + this.$route.params.id})
     }
   }
 };

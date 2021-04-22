@@ -13,6 +13,9 @@
       </v-card>
     </v-dialog>
     <v-card elevation="1" width="600">
+      <v-alert type="error" :value="error" v-if="error" >
+        {{ errorMsg }}
+      </v-alert>
       <v-card-title justify-center>
         {{ msg }}
       </v-card-title>
@@ -55,7 +58,7 @@
 </template>
 
 <script>
-import { getUsers, logInUser } from "../services/signUpApi";
+import { logInUser } from "../services/signUpApi";
 export default {
   name: "SignIn",
   props: {
@@ -85,6 +88,8 @@ export default {
         })
         .catch(err => {
           console.log(err);
+          this.error = true;
+          this.errorMsg = err;
         })
         .finally(() => {
           this.loading = false;

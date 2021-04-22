@@ -13,7 +13,11 @@
     </v-container>
     <v-container>
       <v-row justify="center">
-        <v-avatar color="accent" size="128"> </v-avatar>
+        <v-avatar color="accent" size="128" class="grey lighten-2">
+          <span class="white--text headline" > 
+            <p>{{userInitials}}</p>
+          </span>
+          </v-avatar>
       </v-row>
     </v-container>
     <v-container>
@@ -71,22 +75,27 @@
 import { getUser, logOutUser } from "../services/signUpApi";
 import { User } from "../types";
 import Vue from "vue";
+import initials from "initials";
 
 export default Vue.extend({
   name: "User",
 
   data: () => ({
-    userData: null as User | null
+    userData: null as User | null,
+    userInitials: undefined
+
   }),
 
   created: function() {
     getUser()
       .then(user => {
         this.userData = user;
+        this.userInitials = initials(this.userData.firstName+ " " + this.userData.lastName)
       })
       .catch(error => {
         console.log(error);
       });
+
   },
   methods: {
     signOut(){
@@ -102,3 +111,13 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+p{
+  text-transform: uppercase;
+  font-size: 1.125cm;
+  position:absolute;
+  top:45px;
+  left:39px;
+}
+</style>

@@ -3,7 +3,7 @@ import { User, ApiResponse } from "@/types";
 import axios from "axios";
 
 export async function submitReview(userReview: string, userRating: string, id: string): Promise<User> {
-  const request = axios.post<ApiResponse<User>>("/api/webapp/" + id + "/review", {
+  const request = axios.post<ApiResponse<User>>("/api/webapp/" + id + "/reviews", {
     review: userReview,
     rating: userRating
   });
