@@ -5,6 +5,7 @@ module.exports = {
   },
   pwa: {
     name: "Web App Gallery",
+    themeColor: "#00897b",
     appleMobileWebAppCapable: "yes",
     appleMobileWebAppStatusBarStyle: "black-translucent"
   }
