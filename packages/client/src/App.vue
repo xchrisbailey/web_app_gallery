@@ -152,7 +152,6 @@ export default Vue.extend({
     query(newVal) {
       if (this.$route.query.search !== (newVal || undefined)) {
         this.$router.push({ query: { ...this.$route.query, search: newVal || undefined } });
-        console.log("push");
       }
     },
     "$route.query.search": function(newVal) {
