@@ -39,8 +39,7 @@ export default Vue.extend({
     ListApp
   },
   data: () => ({
-    appsQuery: new WebAppQuery(24),
-    apps: [] as WebApp[]
+    appsQuery: new WebAppQuery(24)
   }),
   created: function() {
     this.init();
