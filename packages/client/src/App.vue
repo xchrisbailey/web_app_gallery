@@ -22,7 +22,6 @@
         enterkeyhint="search"
         clearable
         v-model="query"
-        v-on:keyup.enter="search"
         v-on:click:clear="clearSearch"
       ></v-text-field>
     </v-app-bar>
@@ -136,16 +135,8 @@ export default Vue.extend({
   }),
 
   methods: {
-    search() {
-      if (this.query) {
-        this.$router.push(`/?search=${this.query}`);
-      } else {
-        this.$router.push("/");
-      }
-    },
     clearSearch() {
       this.query = "";
-      this.search();
     }
   },
 
@@ -155,6 +146,17 @@ export default Vue.extend({
     darkMediaQuery.addEventListener("change", event => {
       this.$vuetify.theme.dark = event.matches;
     });
+  },
+
+  watch: {
+    query(newVal) {
+      if (this.$route.query.search !== (newVal || undefined)) {
+        this.$router.push({ query: { ...this.$route.query, search: newVal || undefined } });
+      }
+    },
+    "$route.query.search": function(newVal) {
+      this.query = typeof newVal === "string" ? newVal : "";
+    }
   }
 });
 </script>
