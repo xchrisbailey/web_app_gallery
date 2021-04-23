@@ -29,6 +29,12 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
+  @media (hover: hover) {
+    &:hover .name {
+      text-decoration: underline;
+    }
+  }
 }
 </style>
 
