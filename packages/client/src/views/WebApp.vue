@@ -155,6 +155,7 @@ export default Vue.extend({
 
   created: function() {
     this.iOS = navigator.platform.startsWith("iP");
+    this.appData = (this.$route.params.app as unknown) as WebApp;
     getApp(this.$route.params.id)
       .then(app => {
         this.loading = false;

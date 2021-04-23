@@ -1,5 +1,5 @@
 <template>
-  <router-link class="wrapper" :to="'/apps/' + app._id">
+  <router-link class="wrapper" :to="{ name: 'Web App', params: { app, id: app._id } }">
     <AppIcon class="icon" :icons="app.icons"></AppIcon>
     <h4 class="text-h5 name">{{ app.name }}</h4>
     <v-rating
