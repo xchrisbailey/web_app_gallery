@@ -58,7 +58,14 @@ export default Vue.extend({
   },
   computed: {
     icon(): Icon {
-      return findIcon(this.icons);
+      try {
+        return findIcon(this.icons);
+      } catch (error) {
+        if (error === "must have an icon") {
+          return { src: "" };
+        }
+        throw error;
+      }
     }
   }
 });
