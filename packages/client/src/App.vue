@@ -30,6 +30,12 @@
 
     <v-navigation-drawer app v-model="drawer">
       <v-list>
+        <v-list-item color="primary" link :to="'/profile'">
+          <v-list-item-icon>
+            <v-icon>mdi-account</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>My Account</v-list-item-title>
+        </v-list-item>
         <v-subheader>Catagories</v-subheader>
         <v-list-item
           color="primary"
@@ -97,6 +103,11 @@ nav {
   .v-list {
     padding-top: calc(env(safe-area-inset-top) + 8px);
     padding-bottom: max(env(safe-area-inset-bottom), 8px);
+
+    .v-subheader {
+      margin-top: 24px;
+    }
+
     .v-list-item,
     .v-subheader {
       padding-left: max(env(safe-area-inset-left), 16px);

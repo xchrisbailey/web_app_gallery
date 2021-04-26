@@ -43,6 +43,12 @@ describe("Side nav", () => {
       .should("have.attr", "href", "/apps/submit");
   });
 
+  it("links to profile", () => {
+    cy.get(".v-navigation-drawer")
+      .contains("a", "My Account")
+      .should("have.attr", "href", "/profile");
+  });
+
   it("is visible only after opening on small screens", () => {
     cy.viewport(320, 480);
     cy.get(".v-navigation-drawer").should("not.be.visible");
