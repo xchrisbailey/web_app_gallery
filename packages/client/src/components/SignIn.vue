@@ -12,7 +12,14 @@
         {{ "Enter your E-mail:" }}
       </v-card-subtitle>
       <v-col cols="12" sm="8">
-        <v-text-field v-model="email" label="E-mail" autocomplete="email" :rules="[rules.email, rules.required]">
+        <v-text-field
+          v-model="email"
+          label="E-mail"
+          autocomplete="email"
+          :rules="[rules.email, rules.required]"
+          outlined
+          required
+        >
         </v-text-field>
       </v-col>
       <v-card-subtitle>
@@ -25,6 +32,8 @@
           type="password"
           autocomplete="current-password"
           :rules="[rules.required]"
+          outlined
+          required
         >
         </v-text-field>
       </v-col>

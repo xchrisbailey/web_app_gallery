@@ -37,21 +37,42 @@
         {{ "Enter your First Name:" }}
       </v-card-subtitle>
       <v-col cols="12" sm="8">
-        <v-text-field v-model="firstName" label="First Name" :rules="[rules.required]" autocomplete="given-name">
+        <v-text-field
+          v-model="firstName"
+          label="First Name"
+          :rules="[rules.required]"
+          autocomplete="given-name"
+          outlined
+          required
+        >
         </v-text-field>
       </v-col>
       <v-card-subtitle>
         {{ "Enter your LastName:" }}
       </v-card-subtitle>
       <v-col cols="12" sm="8">
-        <v-text-field v-model="lastName" label="Last Name" :rules="[rules.required]" autocomplete="family-name">
+        <v-text-field
+          v-model="lastName"
+          label="Last Name"
+          :rules="[rules.required]"
+          autocomplete="family-name"
+          outlined
+          required
+        >
         </v-text-field>
       </v-col>
       <v-card-subtitle>
         {{ "Enter your E-mail:" }}
       </v-card-subtitle>
       <v-col cols="12" sm="8">
-        <v-text-field v-model="email" label="E-mail" :rules="[rules.email, rules.required]" autocomplete="email">
+        <v-text-field
+          v-model="email"
+          label="E-mail"
+          :rules="[rules.email, rules.required]"
+          autocomplete="email"
+          outlined
+          required
+        >
         </v-text-field>
       </v-col>
       <v-card-subtitle>
@@ -64,6 +85,8 @@
           type="password"
           :rules="[rules.password, rules.required]"
           autocomplete="new-password"
+          outlined
+          required
         >
         </v-text-field>
       </v-col>
