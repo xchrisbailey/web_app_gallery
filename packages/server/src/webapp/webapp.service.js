@@ -19,6 +19,11 @@ const findWebApp = async (id) => {
         averageRating: { $avg: '$reviews.rating' },
       },
     },
+    {
+      $project: {
+        'reviews.user': 0,
+      },
+    },
   ]);
   if (!res.length) throw new Error('web app not found');
   return res[0];
@@ -68,6 +73,11 @@ const findWebApps = async (opts = { limit: 10 }, filters = {}) => {
     {
       $addFields: {
         averageRating: { $avg: '$reviews.rating' },
+      },
+    },
+    {
+      $project: {
+        'reviews.user': 0,
       },
     },
   );
