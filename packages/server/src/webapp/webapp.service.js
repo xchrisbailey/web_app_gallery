@@ -9,47 +9,17 @@ const findWebApp = async (id) => {
     {
       $lookup: {
         from: 'reviews',
-        let: { reviews: '$reviews' },
-        pipeline: [
-          { $match: { $expr: { $in: ['$_id', '$$reviews'] } } },
-          {
-            $lookup: {
-              from: 'users',
-              let: { user: '$user' },
-              pipeline: [{ $match: { $expr: { $eq: ['$_id', '$$user'] } } }],
-              as: 'user',
-            },
-          },
-        ],
+        foreignField: '_id',
+        localField: 'reviews',
         as: 'reviews',
       },
     },
-    { $unwind: { path: '$reviews', preserveNullAndEmptyArrays: true } },
     {
-      $group: {
-        _id: '$_id',
-        doc: { $first: '$$ROOT' },
-        avgRating: { $avg: '$reviews.rating' },
-      },
-    },
-    {
-      $replaceRoot: {
-        newRoot: {
-          $mergeObjects: [{ avgRating: '$avgRating' }, '$doc'],
-        },
-      },
-    },
-    {
-      $project: {
-        'reviews.user.email': 0,
-        'reviews.user.password': 0,
-        'reviews.user.createdAt': 0,
-        'reviews.user.updatedAt': 0,
-        'reviews.user.__v': 0,
+      $addFields: {
+        averageRating: { $avg: '$reviews.rating' },
       },
     },
   ]);
-
   if (!res.length) throw new Error('web app not found');
   return res[0];
 };
