@@ -47,7 +47,7 @@
             auto-grow
             clearable
             counter="250"
-            :rules="[rules.userReview, rules.length(250)]"
+            :rules="[rules.length(250)]"
           >
           </v-textarea>
         </v-flex>

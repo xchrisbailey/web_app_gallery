@@ -73,3 +73,22 @@ export async function logOutUser(): Promise<User> {
     }
   }
 }
+
+export async function updateUser(userEmail: string, userFirstName: string, userLastName: string): Promise<User> {
+  const request = axios.put<ApiResponse<User>>("/api/me", {
+    firstName: userFirstName,
+    lastName: userLastName,
+    email: userEmail,
+  });
+
+  try {
+    const response = await request;
+    return response.data.data;
+  } catch (error) {
+    if (error.response.data.status === "error") {
+      throw error.response.data.message;
+    } else {
+      throw error;
+    }
+  }
+}
