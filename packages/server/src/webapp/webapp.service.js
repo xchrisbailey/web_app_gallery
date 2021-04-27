@@ -15,13 +15,31 @@ const findWebApp = async (id) => {
       },
     },
     {
+      $unwind: {
+        path: '$reviews',
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $lookup: {
+        from: 'users',
+        foreignField: '_id',
+        localField: 'reviews.user',
+        as: 'reviews.user',
+      },
+    },
+    {
       $addFields: {
         averageRating: { $avg: '$reviews.rating' },
       },
     },
     {
       $project: {
-        'reviews.user': 0,
+        'reviews.user.email': 0,
+        'reviews.user.password': 0,
+        'reviews.user.createdAt': 0,
+        'reviews.user.updatedAt': 0,
+        'reviews.user.__v': 0,
       },
     },
   ]);
