@@ -44,10 +44,14 @@ const createWebApp = async (req, res) => {
       manifestURL,
     } = await getManifestInfo(url);
 
+    const appName = manifest.data.name
+      ? manifest.data.name
+      : manifest.data.short_name;
+
     const appData = {
       manifestURL: manifestURL,
       startURL: manifest.data.start_url,
-      name: manifest.data.name,
+      name: appName,
       themeColor: manifest.data.theme_color,
       backgroundColor: manifest.data.backgroundColor,
       icons: manifest.data.icons,
