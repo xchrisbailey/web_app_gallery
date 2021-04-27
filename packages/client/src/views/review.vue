@@ -40,7 +40,7 @@
       </v-layout>
       <v-layout row wrap>
         <v-flex s4 md5>
-          <p class="text-left">Write down your review below</p>
+          <p class="text-left">Write down your review below (optional)</p>
         </v-flex>
       </v-layout>
       <v-layout row wrap justtify-center>
@@ -86,7 +86,7 @@ export default {
   }),
   methods: {
     submit() {
-      if (this.userReview.length > 250) {
+      if (this.userReview?.length > 250) {
         this.error = true;
         this.errorMsg = "Invalid size of review";
       } else {
