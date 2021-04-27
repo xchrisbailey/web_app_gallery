@@ -96,7 +96,7 @@ export default {
           .then(review => {
             console.log(review);
             this.loading = false;
-            this.$router.push({ path: this.$route.params.id });
+            this.goBack();
           })
           .catch(error => {
             this.error = true;
@@ -106,7 +106,7 @@ export default {
       }
     },
     goBack() {
-      this.$router.push({ path: "/apps/" + this.$route.params.id });
+      this.$router.push({ path: "." });
     }
   }
 };
