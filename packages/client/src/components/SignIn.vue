@@ -1,19 +1,7 @@
 <template>
   <v-container class="action">
-    <v-dialog v-model="success" width="500">
-      <v-card>
-        <v-card-text>
-          You are logged In
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <router-link to="/profile" @click="dialog = false">Profile</router-link>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
     <v-card elevation="1" width="600">
-      <v-alert type="error" :value="error" v-if="error" >
+      <v-alert type="error" :value="error" v-if="error">
         {{ errorMsg }}
       </v-alert>
       <v-card-title justify-center>
@@ -24,7 +12,14 @@
         {{ "Enter your E-mail:" }}
       </v-card-subtitle>
       <v-col cols="12" sm="8">
-        <v-text-field v-model="email" label="E-mail" autocomplete="email" :rules="[rules.email, rules.required]">
+        <v-text-field
+          v-model="email"
+          label="E-mail"
+          autocomplete="email"
+          :rules="[rules.email, rules.required]"
+          outlined
+          required
+        >
         </v-text-field>
       </v-col>
       <v-card-subtitle>
@@ -37,6 +32,8 @@
           type="password"
           autocomplete="current-password"
           :rules="[rules.required]"
+          outlined
+          required
         >
         </v-text-field>
       </v-col>
@@ -71,7 +68,6 @@ export default {
     loading: false,
     error: false,
     errorMsg: "",
-    success: false,
 
     rules: {
       email: v => !!(v || "").match(/@/) || "Please enter a valid email",
@@ -84,7 +80,7 @@ export default {
       logInUser(this.email, this.password)
         .then(users => {
           console.log(users);
-          this.success = true;
+          this.$router.replace(this.$route.query.redirect || "/profile");
         })
         .catch(err => {
           console.log(err);

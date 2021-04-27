@@ -1,8 +1,15 @@
 <template>
   <v-form v-model="valid">
     <v-container>
-      <v-text-field type="url" v-model="url" :rules="urlRules" label="Webapp URL" required></v-text-field>
-      <v-select :items="categories" v-model="category" :rules="categoryRules" label="Category" required></v-select>
+      <v-text-field type="url" v-model="url" :rules="urlRules" label="Webapp URL" outlined required></v-text-field>
+      <v-select
+        :items="categories"
+        v-model="category"
+        :rules="categoryRules"
+        label="Category"
+        outlined
+        required
+      ></v-select>
       <v-btn :loading="loading" :disabled="!valid" color="primary" v-on:click="submit()">Submit App</v-btn>
       <v-alert class="mt-3" outlined type="error" text v-if="error"> {{ error }} </v-alert>
     </v-container>

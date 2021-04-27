@@ -1,0 +1,15 @@
+<svg version="1.1" width="512" height="512" viewBox="-144 -144 800 800" xmlns="http://www.w3.org/2000/svg">
+  <rect x="-144" y="-144" width="800" height="800" fill="#00897b" />
+  <g fill="white">
+    <rect x="32" y="32" width="192" height="192" rx="20" />
+    <circle cx="384" cy="128" r="96" />
+    <polygon points="128,305.44 208,444 48,444" stroke-linejoin="round" stroke-width="32" stroke="white" />
+    <path transform="translate(288 288)" d="
+      M 0, 96
+      C 0, 24 24, 0 96, 0
+      S 192, 24 192, 96
+          168, 192 96, 192
+          0, 168 0, 96
+    "></path>
+  </g>
+</svg>

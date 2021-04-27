@@ -3,7 +3,7 @@
     <v-alert class="error" type="error" v-if="error">
       {{ error }}
     </v-alert>
-    <AppIcon class="icon" :icons="appData.icons"></AppIcon>
+    <AppIcon class="icon" :icons="appData ? appData.icons : []"></AppIcon>
     <h4 class="name text-h4">{{ (appData && appData.name) || "" }}</h4>
 
     <v-btn class="button" color="primary" :href="appData && appData.startURL" target="_blank" rel="noopener noreferrer">
@@ -12,11 +12,17 @@
 
     <p class="description">{{ (appData && appData.description) || "" }}</p>
 
-    <v-alert class="iOS-warning" outlined type="warning" text v-if="!appData.appleMobileWebAppCapable && iOS">
+    <v-alert
+      class="iOS-warning"
+      outlined
+      type="warning"
+      text
+      v-if="appData && !appData.appleMobileWebAppCapable && iOS"
+    >
       This app may not work on your device
     </v-alert>
 
-    <div class="screenshots" v-if="appData.screenshots.length > 0">
+    <div class="screenshots" v-if="appData && appData.screenshots.length > 0">
       <img
         class="elevation-2"
         v-for="screenshot in appData.screenshots"
@@ -26,7 +32,15 @@
       />
     </div>
 
-    <v-rating length="5" :value="(appData && appData.averageRating) || 0" readonly half-increments dense />
+    <v-rating
+      length="5"
+      :value="(appData && appData.averageRating) || 0"
+      readonly
+      half-increments
+      dense
+      color="primary"
+      :background-color="this.$vuetify.theme.dark ? 'primary darken-2' : 'primary lighten-2'"
+    />
 
     <v-btn @click="review" color="primary">Make review</v-btn>
   </v-container>
@@ -142,12 +156,13 @@ export default Vue.extend({
   }),
   methods: {
     review() {
-      this.$router.push({ path: this.$route.params.id+'/review'})
+      this.$router.push({ path: this.$route.params.id + "/review" });
     }
   },
 
   created: function() {
     this.iOS = navigator.platform.startsWith("iP");
+    this.appData = (this.$route.params.app as unknown) as WebApp;
     getApp(this.$route.params.id)
       .then(app => {
         this.loading = false;

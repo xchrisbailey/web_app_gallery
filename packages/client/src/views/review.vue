@@ -25,7 +25,12 @@
       </v-layout>
       <v-layout row wrap justify-space-around>
         <v-flex xs12 md12>
-          <v-rating v-model="rate" hover clearable></v-rating>
+          <v-rating
+            v-model="rate"
+            hover
+            color="primary"
+            :background-color="this.$vuetify.theme.dark ? 'primary darken-2' : 'primary lighten-2'"
+          ></v-rating>
         </v-flex>
       </v-layout>
       <v-layout row wrap>
@@ -54,7 +59,7 @@
       </v-layout>
       <v-layout justify-center>
         <v-flex xs5 md12>
-          <v-btn block :loading="loading" color="error" type="submit" @click="submit">
+          <v-btn block :loading="loading" color="primary" type="submit" @click="submit">
             Submit
           </v-btn>
         </v-flex>
@@ -91,7 +96,7 @@ export default {
           .then(review => {
             console.log(review);
             this.loading = false;
-            this.$router.push({ path: this.$route.params.id})
+            this.$router.push({ path: this.$route.params.id });
           })
           .catch(error => {
             this.error = true;
@@ -100,8 +105,8 @@ export default {
           });
       }
     },
-    goBack(){
-      this.$router.push({ path: '/apps/' + this.$route.params.id})
+    goBack() {
+      this.$router.push({ path: "/apps/" + this.$route.params.id });
     }
   }
 };
