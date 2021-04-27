@@ -1,6 +1,9 @@
 <template>
   <v-container class="action">
     <v-card elevation="1" width="600">
+      <v-alert type="error" :value="error" v-if="error">
+        {{ errorMsg }}
+      </v-alert>
       <v-card-title justify-center>
         {{ msg }}
       </v-card-title>
@@ -9,7 +12,14 @@
         {{ "Enter your E-mail:" }}
       </v-card-subtitle>
       <v-col cols="12" sm="8">
-        <v-text-field v-model="email" label="E-mail" autocomplete="email" :rules="[rules.email, rules.required]">
+        <v-text-field
+          v-model="email"
+          label="E-mail"
+          autocomplete="email"
+          :rules="[rules.email, rules.required]"
+          outlined
+          required
+        >
         </v-text-field>
       </v-col>
       <v-card-subtitle>
@@ -22,6 +32,8 @@
           type="password"
           autocomplete="current-password"
           :rules="[rules.required]"
+          outlined
+          required
         >
         </v-text-field>
       </v-col>
@@ -43,7 +55,7 @@
 </template>
 
 <script>
-import { getUsers, logInUser } from "../services/signUpApi";
+import { logInUser } from "../services/signUpApi";
 export default {
   name: "SignIn",
   props: {
@@ -68,9 +80,12 @@ export default {
       logInUser(this.email, this.password)
         .then(users => {
           console.log(users);
+          this.$router.replace(this.$route.query.redirect || "/profile");
         })
         .catch(err => {
           console.log(err);
+          this.error = true;
+          this.errorMsg = err;
         })
         .finally(() => {
           this.loading = false;

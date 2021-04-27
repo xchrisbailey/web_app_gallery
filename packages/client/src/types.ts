@@ -140,9 +140,9 @@ export interface Review {
   lastUpdated: number;
 }
 
-export interface SignUp {
-  lastName: string;
+export interface User {
   firstName: string;
+  lastName: string;
   email: string;
   password: string;
 }

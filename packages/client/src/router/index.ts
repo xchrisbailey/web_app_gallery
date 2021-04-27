@@ -1,7 +1,14 @@
 import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
+import VueRouter, { NavigationGuardNext, Route, RouteConfig } from "vue-router";
+import { getUser } from "../services/signUpApi";
 
 Vue.use(VueRouter);
+
+function requireAuth(to: Route, from: Route, next: NavigationGuardNext<Vue>) {
+  getUser()
+    .then(() => next())
+    .catch(() => next({ name: "signIn", query: { redirect: to.path } }));
+}
 
 const routes: Array<RouteConfig> = [
   {
@@ -45,9 +52,16 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "signup" */ "../views/SignUpView.vue")
   },
   {
-    path: "/Rating",
+    path: "/apps/:id/review",
     name: "Rating",
-    component: () => import(/* webpackChunkName: "review" */ "../views/Ratings.vue")
+    component: () => import(/* webpackChunkName: "review" */ "../views/review.vue"),
+    beforeEnter: requireAuth
+  },
+  {
+    path: "/Profile",
+    name: "Profile",
+    component: () => import(/* webpackChunkName: "review" */ "../views/userProfileView.vue"),
+    beforeEnter: requireAuth
   }
 ];
 

@@ -41,6 +41,8 @@
       color="primary"
       :background-color="this.$vuetify.theme.dark ? 'primary darken-2' : 'primary lighten-2'"
     />
+
+    <v-btn @click="review" color="primary">Make review</v-btn>
   </v-container>
 </template>
 
@@ -152,6 +154,11 @@ export default Vue.extend({
     error: undefined as string | undefined,
     iOS: false
   }),
+  methods: {
+    review() {
+      this.$router.push({ path: this.$route.params.id + "/review" });
+    }
+  },
 
   created: function() {
     this.iOS = navigator.platform.startsWith("iP");

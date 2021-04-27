@@ -4,7 +4,6 @@
 
 <script>
 import SignUp from "../components/SignUp.vue"; // @ is an alias to /src
-
 export default {
   name: "signUp",
   components: {
