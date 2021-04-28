@@ -9,14 +9,54 @@ const findWebApp = async (id) => {
     {
       $lookup: {
         from: 'reviews',
+        localField: 'reviews',
+        foreignField: '_id',
+        as: 'reviews',
+      },
+    },
+    { $unwind: { path: '$reviews', preserveNullAndEmptyArrays: true } },
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'reviews.user',
+        foreignField: '_id',
+        as: 'reviews.user',
+      },
+    },
+    { $unwind: { path: '$reviews.user', preserveNullAndEmptyArrays: true } },
+    {
+      $group: {
+        _id: '$_id',
+        data: { $first: '$$ROOT' },
+        reviews: { $push: '$reviews' },
+      },
+    },
+    { $addFields: { 'data.reviews': '$reviews' } },
+    {
+      $replaceRoot: {
+        newRoot: '$data',
+      },
+    },
+    /* {
+      $lookup: {
+        from: 'reviews',
         foreignField: '_id',
         localField: 'reviews',
         as: 'reviews',
       },
-    },
+    }, */
     {
       $addFields: {
         averageRating: { $avg: '$reviews.rating' },
+      },
+    },
+    {
+      $project: {
+        'reviews.user.email': 0,
+        'reviews.user.password': 0,
+        'reviews.user.__v': 0,
+        'reviews.user.createdAt': 0,
+        'reviews.user.updatedAt': 0,
       },
     },
   ]);

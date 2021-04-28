@@ -18,6 +18,7 @@ describe('get single web app', () => {
       submittedBy: user,
     });
     const res = await webAppService.findWebApp(sampleApp._id);
+    console.log(res);
     expect(res._id).toEqual(sampleApp._id);
     expect(res.startURL).toBe(sampleApp.startURL);
     expect(res.submittedBy._id).toEqual(user._id);
