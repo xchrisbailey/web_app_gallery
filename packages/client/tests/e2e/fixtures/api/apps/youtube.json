@@ -2,7 +2,7 @@
     "status": "ok",
     "data": {
         "appleMobileWebAppCapable": false,
-        "_id": "607d2279381b0e480c360126",
+        "_id": "000000000000000000000001",
         "manifestURL": "https://youtube.com/manifest.webmanifest",
         "startURL": "/?feature=ytca",
         "name": "YouTube",

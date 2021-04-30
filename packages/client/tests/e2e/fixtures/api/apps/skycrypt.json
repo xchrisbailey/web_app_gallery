@@ -2,7 +2,7 @@
     "status": "ok",
     "data": {
         "appleMobileWebAppCapable": true,
-        "_id": "skycrypt",
+        "_id": "000000000000000000000000",
         "manifestURL": "https://sky.shiiyu.moe//manifest.webmanifest",
         "startURL": "/",
         "name": "SkyCrypt",
