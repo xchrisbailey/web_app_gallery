@@ -4,11 +4,11 @@ beforeEach(() => {
   cy.intercept(
     {
       method: "GET",
-      url: "/api/webapp/skycrypt"
+      url: "/api/webapp/000000000000000000000000"
     },
     { fixture: "api/apps/skycrypt.json" }
   );
-  cy.visit("/apps/skycrypt");
+  cy.visit("/apps/000000000000000000000000");
 });
 
 describe("App Details", () => {
@@ -32,14 +32,19 @@ describe("App Details", () => {
     cy.intercept(
       {
         method: "GET",
-        url: "/api/webapp/youtube"
+        url: "/api/webapp/000000000000000000000001"
       },
       { fixture: "api/apps/youtube.json" }
     );
-    cy.visit("/apps/youtube");
+    cy.visit("/apps/000000000000000000000001");
     Cypress.on("window:before:load", win => {
       Object.defineProperty(win.navigator, "platform", { get: () => "iPhone" });
     });
     cy.contains("This app may not work on your device");
+  });
+
+  it("displays reviews", () => {
+    cy.contains(".review", "This is a review of SkyCrypt").contains("Nate Stringham");
+    cy.contains("Luke Skywalker");
   });
 });

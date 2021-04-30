@@ -197,7 +197,7 @@
         },
         {
             "appleMobileWebAppCapable": false,
-            "_id": "607b6df0021b8839d04506a1",
+            "_id": "000000000000000000000000",
             "manifestURL": "https://sky.shiiyu.moe/manifest.webmanifest",
             "startURL": "/",
             "name": "SkyCrypt",

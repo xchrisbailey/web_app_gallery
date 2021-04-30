@@ -487,7 +487,7 @@
         },
         {
             "appleMobileWebAppCapable": false,
-            "_id": "607b6d4d021b8839d045067b",
+            "_id": "000000000000000000000001",
             "manifestURL": "https://www.youtube.com/manifest.webmanifest",
             "startURL": "/?feature=ytca",
             "name": "YouTube",
