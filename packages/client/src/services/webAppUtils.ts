@@ -73,5 +73,6 @@ export function processWebApp(app: WebApp) {
       screenshot.src = new URL(screenshot.src, app.manifestURL).href;
     }
   }
+  app.reviews = app.reviews.filter(review => Object.keys(review).length !== 0);
   return app;
 }

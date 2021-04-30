@@ -51,7 +51,7 @@
       Rate and Review
     </v-btn>
 
-    <div>
+    <div v-if="appData && appData.reviews.length > 0">
       <Review class="review" v-for="review in appData.reviews" :key="review._id" :review="review"></Review>
     </div>
   </v-container>
@@ -175,6 +175,7 @@ export default Vue.extend({
       .then(app => {
         this.loading = false;
         this.appData = app;
+        console.log(app);
       })
       .catch(error => {
         this.error = error;
