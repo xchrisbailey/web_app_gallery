@@ -178,7 +178,6 @@ export default Vue.extend({
       .then(app => {
         this.loading = false;
         this.appData = app;
-        console.log(app);
       })
       .catch(error => {
         this.error = error;
