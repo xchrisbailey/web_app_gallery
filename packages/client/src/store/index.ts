@@ -1,7 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { getUser } from "../services/signUpApi";
-import { User } from "../types";
 
 Vue.use(Vuex);
 

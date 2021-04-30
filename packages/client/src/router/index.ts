@@ -11,9 +11,6 @@ function requireAuth(to: Route, from: Route, next: NavigationGuardNext<Vue>) {
   } else {
     next({ name: "signIn", query: {redirect: to.path} });
   }
-  // getUser()
-  //   .then(() => next())
-  //   .catch(() => next({ name: "signIn", query: { redirect: to.path } }));
 }
 
 const routes: Array<RouteConfig> = [
