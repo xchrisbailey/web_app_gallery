@@ -32,17 +32,24 @@
       />
     </div>
 
-    <v-rating
-      length="5"
-      :value="(appData && appData.averageRating) || 0"
-      readonly
-      half-increments
-      dense
-      color="primary"
-      :background-color="this.$vuetify.theme.dark ? 'primary darken-2' : 'primary lighten-2'"
-    />
+    <label for="rating">
+      Average Rating:
+      <v-rating
+        id="rating"
+        length="5"
+        :value="(appData && appData.averageRating) || 0"
+        readonly
+        half-increments
+        size="32"
+        dense
+        color="primary"
+        :background-color="this.$vuetify.theme.dark ? 'primary darken-2' : 'primary lighten-2'"
+      />
+    </label>
 
-    <v-btn @click="review" color="primary">Make review</v-btn>
+    <v-btn class="rate" :to="this.$route.params.id + '/review'" color="primary" outlined>
+      Rate and Review
+    </v-btn>
   </v-container>
 </template>
 
@@ -66,6 +73,7 @@
 
   > * {
     margin: 0;
+    grid-column: 1 / -1;
   }
 }
 
@@ -86,16 +94,15 @@
   max-width: 100px;
 }
 
-.description {
-  grid-column: 1 / -1;
+#rating {
+  display: inline-block;
 }
 
-.iOS-warning {
-  grid-column: 1 / -1;
+.rate {
+  justify-self: start;
 }
 
 .screenshots {
-  grid-column: 1 / -1;
   overflow-x: auto;
   white-space: nowrap;
   scroll-snap-type: x;
@@ -115,10 +122,6 @@
       margin-right: 12px;
     }
   }
-}
-
-.v-rating {
-  grid-column: 1 / -1;
 }
 
 @media (min-width: 600px) {
@@ -154,11 +157,6 @@ export default Vue.extend({
     error: undefined as string | undefined,
     iOS: false
   }),
-  methods: {
-    review() {
-      this.$router.push({ path: this.$route.params.id + "/review" });
-    }
-  },
 
   created: function() {
     this.iOS = navigator.platform.startsWith("iP");
