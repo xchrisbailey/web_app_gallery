@@ -7,7 +7,7 @@
             {{ errorMsg }}
           </v-flex>
           <v-flex xs12 md3>
-            <v-btn @click="goBack" color="warning"> Click Here to go Back</v-btn>
+            <v-btn @click="goBack" color="warning">Click Here to go Back</v-btn>
           </v-flex>
         </v-layout>
       </v-alert>
