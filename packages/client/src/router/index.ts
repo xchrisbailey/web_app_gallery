@@ -5,6 +5,7 @@ import store from "../store/index";
 Vue.use(VueRouter);
 
 function requireAuth(to: Route, from: Route, next: NavigationGuardNext<Vue>) {
+
   if (store.getters.userCredential == true) {
     next()
   } else {
@@ -25,7 +26,8 @@ const routes: Array<RouteConfig> = [
   {
     path: "/apps/submit",
     name: "Submit App",
-    component: () => import(/* webpackChunkName: "SubmitApp" */ "../views/SubmitApp.vue")
+    component: () => import(/* webpackChunkName: "SubmitApp" */ "../views/SubmitApp.vue"),
+    beforeEnter: requireAuth
   },
   {
     path: "/apps/:id",

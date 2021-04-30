@@ -80,8 +80,8 @@ export default {
       logInUser(this.email, this.password)
         .then(users => {
           console.log(users);
-          this.$store.dispatch('updateUserCredentials')
-          this.$router.replace(this.$route.query.redirect || "/profile");
+          this.$store.dispatch('singInUser')
+          this.$router.push({ path:"/Profile" });
         })
         .catch(err => {
           console.log(err);

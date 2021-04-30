@@ -7,38 +7,26 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    signInStatus: false,
-    userData: null as User | null,
+    signInStatus: false
   },
   mutations: {
     SET_SIGN_IN_STATUS(state, status){
       state.signInStatus = status
     },
-    SET_USER_INFORMATION(state, status){
-      state.userData = status
-    }
     
   },
   actions: {
-    updateUserCredentials(context){
-      getUser()
-      .then((user) => {
-        context.commit('SET_SIGN_IN_STATUS',true)
-        context.commit('SET_USER_INFORMATION', user)
-      })
-      .catch(error => {
-        console.log(error);
-        context.commit('SET_SIGN_IN_STATUS', false)
-      })
+    signOutUser(context){
+      context.commit('SET_SIGN_IN_STATUS',false)
+    },
+    singInUser(context){
+      context.commit('SET_SIGN_IN_STATUS',true)
     }
   },
-  modules: {},
   getters:{
     userCredential(state){
       return state.signInStatus
-    },
-    userInformation(state){
-      return state.userData
     }
   },
+  
 });

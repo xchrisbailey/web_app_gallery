@@ -135,17 +135,21 @@ export default Vue.extend({
   }),
 
   created: function() {
-   
-        this.userData = this.$store.getters.userInformation;
+    getUser()
+      .then(user => {
+        this.userData = user;
         this.userInitials = initials(this.userData.firstName + " " + this.userData.lastName);
-
+      })
+      .catch(error => {
+        console.log(error);
+      });
   },
   methods: {
     signOut() {
       logOutUser()
         .then(user => {
           console.log(user);
-          this.$store.dispatch('updateUserCredentials')
+          this.$store.dispatch("signOutUser");
           this.$router.push({ path: "/signIn" });
         })
         .catch(error => {
