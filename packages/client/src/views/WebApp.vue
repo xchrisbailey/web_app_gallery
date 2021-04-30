@@ -50,6 +50,10 @@
     <v-btn class="rate" :to="this.$route.params.id + '/review'" color="primary" outlined>
       Rate and Review
     </v-btn>
+
+    <div>
+      <Review class="review" v-for="review in appData.reviews" :key="review._id" :review="review"></Review>
+    </div>
   </v-container>
 </template>
 
@@ -102,6 +106,10 @@
   justify-self: start;
 }
 
+.review:not(:last-of-type) {
+  margin-bottom: 12px;
+}
+
 .screenshots {
   overflow-x: auto;
   white-space: nowrap;
@@ -144,11 +152,13 @@ import { getApp } from "@/services/webAppApi";
 import { WebApp } from "@/types";
 import Vue from "vue";
 import AppIcon from "@/components/AppIcon.vue";
+import Review from "@/components/Review.vue";
 
 export default Vue.extend({
   name: "WebApp",
   components: {
-    AppIcon
+    AppIcon,
+    Review
   },
 
   data: () => ({
