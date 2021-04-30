@@ -81,7 +81,7 @@ export default {
         .then(users => {
           console.log(users);
           this.$store.dispatch('singInUser')
-          this.$router.push({ path:"/Profile" });
+          this.$router.replace(this.$route.query.redirect || "/profile");
         })
         .catch(err => {
           console.log(err);
