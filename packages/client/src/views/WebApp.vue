@@ -60,11 +60,14 @@
 <style lang="scss" scoped>
 @import "~vuetify/src/styles/styles.sass";
 
-.error {
+.v-alert.error {
   position: fixed;
   bottom: 0;
+  right: 0;
+  left: 0;
   width: stretch;
   margin: 12px;
+  z-index: 1;
 }
 
 .container {
