@@ -1,13 +1,18 @@
 import Vue from "vue";
 import VueRouter, { NavigationGuardNext, Route, RouteConfig } from "vue-router";
-import { getUser } from "../services/signUpApi";
+import store from "../store/index";
 
 Vue.use(VueRouter);
 
 function requireAuth(to: Route, from: Route, next: NavigationGuardNext<Vue>) {
-  getUser()
-    .then(() => next())
-    .catch(() => next({ name: "signIn", query: { redirect: to.path } }));
+  if (store.getters.userCredential == true) {
+    next()
+  } else {
+    next({ name: "signIn", query: {redirect: to.path} });
+  }
+  // getUser()
+  //   .then(() => next())
+  //   .catch(() => next({ name: "signIn", query: { redirect: to.path } }));
 }
 
 const routes: Array<RouteConfig> = [
