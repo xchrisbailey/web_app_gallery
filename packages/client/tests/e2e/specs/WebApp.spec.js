@@ -42,4 +42,9 @@ describe("App Details", () => {
     });
     cy.contains("This app may not work on your device");
   });
+
+  it("displays reviews", () => {
+    cy.contains(".review", "This is a review of SkyCrypt").contains("Nate Stringham");
+    cy.contains("Luke Skywalker");
+  });
 });
