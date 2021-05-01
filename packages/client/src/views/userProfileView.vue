@@ -40,7 +40,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn text @click="edit = false" color="primary">Cancel</v-btn>
-            <v-btn text @click="updateProfile" color="primary">Save</v-btn>
+            <v-btn text @click="updateProfile" color="primary" :loading="updatingUserProfile">Save</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -106,7 +106,8 @@ export default Vue.extend({
     edit: false,
     newFirstName: undefined,
     newLastName: undefined,
-    newEmail: undefined
+    newEmail: undefined,
+    updatingUserProfile: false
   }),
 
   created: function() {
@@ -138,12 +139,18 @@ export default Vue.extend({
       this.newEmail = this.userData.email;
     },
     updateProfile() {
+      this.updatingUserProfile = true;
       updateUser(this.newEmail, this.newFirstName, this.newLastName)
         .then(user => {
+          this.edit = false;
           console.log(user);
         })
         .catch(error => {
+          alert(error);
           console.log(error);
+        })
+        .finally(() => {
+          this.updatingUserProfile = false;
         });
     }
   }
