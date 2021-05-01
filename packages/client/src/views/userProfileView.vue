@@ -21,52 +21,43 @@
     <v-container>
       <v-dialog v-model="edit" width="500">
         <v-card>
-        <v-container>
-          <v-layout>
-            <v-flex xs12 md6>
-              <v-card-title>
-                First Name:
-              </v-card-title>
-              <v-card-text>
-                <v-text-field
-            v-model="newFirstName"
-            outlined
-          ></v-text-field>
-              </v-card-text>
-            </v-flex>
-          </v-layout>
-          <v-layout>
-            <v-flex xs12 md6>
-              <v-card-title>
-                Last Name:
-              </v-card-title>
-              <v-card-text>
-                <v-text-field
-            v-model="newLastName"
-            outlined
-          ></v-text-field>
-              </v-card-text>
-            </v-flex>
-          </v-layout>
-          <v-layout>
-            <v-flex xs12 md6>
-              <v-card-title>
-                E-mail:
-              </v-card-title>
-              <v-card-text>
-                <v-text-field
-            v-model="newEmail"
-            outlined
-          ></v-text-field>
-              </v-card-text>
-            </v-flex>
-          </v-layout>
-          <v-layout>
-            <v-flex xs12 md6>
-              <v-btn @click="updateProfile" color="primary"> submit </v-btn>
-            </v-flex>
-          </v-layout>
-        </v-container>
+          <v-container>
+            <v-layout>
+              <v-flex xs12 md6>
+                <v-card-title>
+                  First Name:
+                </v-card-title>
+                <v-card-text>
+                  <v-text-field v-model="newFirstName" outlined></v-text-field>
+                </v-card-text>
+              </v-flex>
+            </v-layout>
+            <v-layout>
+              <v-flex xs12 md6>
+                <v-card-title>
+                  Last Name:
+                </v-card-title>
+                <v-card-text>
+                  <v-text-field v-model="newLastName" outlined></v-text-field>
+                </v-card-text>
+              </v-flex>
+            </v-layout>
+            <v-layout>
+              <v-flex xs12 md6>
+                <v-card-title>
+                  E-mail:
+                </v-card-title>
+                <v-card-text>
+                  <v-text-field v-model="newEmail" outlined></v-text-field>
+                </v-card-text>
+              </v-flex>
+            </v-layout>
+            <v-layout>
+              <v-flex xs12 md6>
+                <v-btn @click="updateProfile" color="primary"> submit </v-btn>
+              </v-flex>
+            </v-layout>
+          </v-container>
         </v-card>
       </v-dialog>
       <v-layout>
@@ -117,7 +108,7 @@
 </template>
 
 <script lang="ts">
-import { getUser, logOutUser, updateUser} from "../services/signUpApi";
+import { getUser, logOutUser, updateUser } from "../services/signUpApi";
 import { User } from "../types";
 import Vue from "vue";
 import initials from "initials";
@@ -149,6 +140,7 @@ export default Vue.extend({
       logOutUser()
         .then(user => {
           console.log(user);
+          this.$store.dispatch("signOutUser");
           this.$router.push({ path: "/signIn" });
         })
         .catch(error => {
@@ -157,13 +149,13 @@ export default Vue.extend({
     },
     editprofile() {
       this.edit = true;
-      this.newFirstName = this.userData.firstName
-      this.newLastName = this.userData.lastName
-      this.newEmail = this.userData.email
+      this.newFirstName = this.userData.firstName;
+      this.newLastName = this.userData.lastName;
+      this.newEmail = this.userData.email;
     },
     updateProfile() {
-      updateUser(this.newEmail,this.newFirstName,this.newLastName)
-      .then(user => {
+      updateUser(this.newEmail, this.newFirstName, this.newLastName)
+        .then(user => {
           console.log(user);
         })
         .catch(error => {

@@ -48,7 +48,7 @@
       </v-container>
       <v-card-text>
         No account, no problem just
-        <router-link to="/signUp">Sign Up</router-link>
+        <router-link :to="{ name: 'signUp', query: { redirect: $route.query.redirect } }">Sign Up</router-link>
       </v-card-text>
     </v-card>
   </v-container>
@@ -80,6 +80,7 @@ export default {
       logInUser(this.email, this.password)
         .then(users => {
           console.log(users);
+          this.$store.dispatch("singInUser");
           this.$router.replace(this.$route.query.redirect || "/profile");
         })
         .catch(err => {

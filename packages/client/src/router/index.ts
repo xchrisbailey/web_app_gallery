@@ -1,13 +1,18 @@
 import Vue from "vue";
 import VueRouter, { NavigationGuardNext, Route, RouteConfig } from "vue-router";
-import { getUser } from "../services/signUpApi";
+import store from "../store/index";
 
 Vue.use(VueRouter);
 
-function requireAuth(to: Route, from: Route, next: NavigationGuardNext<Vue>) {
-  getUser()
-    .then(() => next())
-    .catch(() => next({ name: "signIn", query: { redirect: to.path } }));
+async function requireAuth(to: Route, from: Route, next: NavigationGuardNext<Vue>) {
+  if (store.getters.userCredential === undefined) {
+    await store.dispatch("updateSignInStatus");
+  }
+  if (store.getters.userCredential == true) {
+    next();
+  } else {
+    next({ name: "signIn", query: { redirect: to.path } });
+  }
 }
 
 const routes: Array<RouteConfig> = [
@@ -20,7 +25,8 @@ const routes: Array<RouteConfig> = [
   {
     path: "/apps/submit",
     name: "Submit App",
-    component: () => import(/* webpackChunkName: "SubmitApp" */ "../views/SubmitApp.vue")
+    component: () => import(/* webpackChunkName: "SubmitApp" */ "../views/SubmitApp.vue"),
+    beforeEnter: requireAuth
   },
   {
     path: "/apps/:id([0-9a-f]{24})",
@@ -58,7 +64,7 @@ const routes: Array<RouteConfig> = [
     beforeEnter: requireAuth
   },
   {
-    path: "/Profile",
+    path: "/profile",
     name: "Profile",
     component: () => import(/* webpackChunkName: "review" */ "../views/userProfileView.vue"),
     beforeEnter: requireAuth

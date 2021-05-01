@@ -1,0 +1,9 @@
+{
+    "status": "ok",
+    "data": {
+        "_id": "000000000000000000000000",
+        "firstName": "Luke",
+        "lastName": "Skywalker",
+        "email": "lskywalker@jedi.gov"
+    }
+}
