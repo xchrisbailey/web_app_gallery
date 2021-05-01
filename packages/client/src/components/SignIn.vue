@@ -80,7 +80,7 @@ export default {
       logInUser(this.email, this.password)
         .then(users => {
           console.log(users);
-          this.$store.dispatch('singInUser')
+          this.$store.dispatch("singInUser");
           this.$router.replace(this.$route.query.redirect || "/profile");
         })
         .catch(err => {
