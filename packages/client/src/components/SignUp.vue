@@ -1,5 +1,5 @@
 <template>
-  <v-container class="action">
+  <v-container class="center">
     <v-dialog v-model="success" width="500">
       <v-card>
         <v-card-text>
@@ -154,12 +154,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100%;
-}
-</style>

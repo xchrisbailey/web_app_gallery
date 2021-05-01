@@ -156,6 +156,14 @@ html::-webkit-scrollbar-thumb {
     }
   }
 }
+
+.center {
+  display: grid;
+  place-items: center;
+  &.container {
+    min-height: 100%;
+  }
+}
 </style>
 
 <script lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <v-container class="action">
+  <v-container class="center">
     <v-card elevation="1" width="600">
       <v-alert type="error" :value="error" v-if="error">
         {{ errorMsg }}
@@ -94,12 +94,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100%;
-}
-</style>
