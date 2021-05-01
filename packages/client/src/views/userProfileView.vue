@@ -11,10 +11,8 @@
     </v-container>
     <v-container>
       <v-row justify="center">
-        <v-avatar color="primary" size="128" class="grey lighten-2">
-          <span class="white--text headline">
-            <p class="avatar">{{ userInitials }}</p>
-          </span>
+        <v-avatar color="primary" size="128">
+          <span class="white--text">{{ userInitials }}</span>
         </v-avatar>
       </v-row>
     </v-container>
@@ -175,12 +173,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.avatar {
+.v-avatar span {
   text-transform: uppercase;
-  font-size: 1.125cm;
-  position: absolute;
-  top: 45px;
-  left: 39px;
+  font-size: 48px;
 }
 .editProfile {
   position: absolute;
