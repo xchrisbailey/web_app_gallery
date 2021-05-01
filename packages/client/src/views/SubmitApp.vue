@@ -23,6 +23,9 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "SubmitApp",
+  metaInfo: {
+    title: "New App"
+  },
   data: () => ({
     valid: false,
     loading: false,

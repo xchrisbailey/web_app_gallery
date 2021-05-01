@@ -100,6 +100,10 @@ import initials from "initials";
 export default Vue.extend({
   name: "User",
 
+  metaInfo: {
+    title: "Profile"
+  },
+
   data: () => ({
     userData: null as User | null,
     userInitials: undefined,

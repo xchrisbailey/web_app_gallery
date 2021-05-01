@@ -164,6 +164,12 @@ export default Vue.extend({
     Review
   },
 
+  metaInfo() {
+    return {
+      title: this.appData?.name ?? (this.loading ? "Loading..." : "Error")
+    };
+  },
+
   data: () => ({
     appData: null as WebApp | null,
     loading: true,
