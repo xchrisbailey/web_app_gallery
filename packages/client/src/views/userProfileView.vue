@@ -19,52 +19,33 @@
     <v-container>
       <v-dialog v-model="edit" width="500">
         <v-card>
-        <v-container>
-          <v-layout>
-            <v-flex xs12 md6>
-              <v-card-title>
-                First Name:
-              </v-card-title>
-              <v-card-text>
-                <v-text-field
-            v-model="newFirstName"
-            outlined
-          ></v-text-field>
-              </v-card-text>
-            </v-flex>
-          </v-layout>
-          <v-layout>
-            <v-flex xs12 md6>
-              <v-card-title>
-                Last Name:
-              </v-card-title>
-              <v-card-text>
-                <v-text-field
-            v-model="newLastName"
-            outlined
-          ></v-text-field>
-              </v-card-text>
-            </v-flex>
-          </v-layout>
-          <v-layout>
-            <v-flex xs12 md6>
-              <v-card-title>
-                E-mail:
-              </v-card-title>
-              <v-card-text>
-                <v-text-field
-            v-model="newEmail"
-            outlined
-          ></v-text-field>
-              </v-card-text>
-            </v-flex>
-          </v-layout>
-          <v-layout>
-            <v-flex xs12 md6>
-              <v-btn @click="updateProfile" color="primary"> submit </v-btn>
-            </v-flex>
-          </v-layout>
-        </v-container>
+          <v-card-title>
+            <span class="headline">Edit Profile</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col>
+                  <v-text-field v-model="newFirstName" label="First Name" outlined></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field v-model="newLastName" label="Last Name" outlined></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field v-model="newEmail" label="E-mail" outlined></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn text @click="edit = false" color="primary">Cancel</v-btn>
+            <v-btn text @click="updateProfile" color="primary">Save</v-btn>
+          </v-card-actions>
         </v-card>
       </v-dialog>
       <v-layout>
