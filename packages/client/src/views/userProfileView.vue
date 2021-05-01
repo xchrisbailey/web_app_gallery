@@ -1,108 +1,92 @@
 <template>
   <div id="profile">
     <v-container>
-      <v-layout row>
-        <v-flex xs12 md6>
-          <v-card-title>
+      <v-row>
+        <v-col>
+          <h2 class="text-h3">
             Profile
-          </v-card-title>
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <v-container>
+          </h2>
+        </v-col>
+      </v-row>
       <v-row justify="center">
-        <v-avatar color="primary" size="128" class="grey lighten-2">
-          <span class="white--text headline">
-            <p class="avatar">{{ userInitials }}</p>
-          </span>
+        <v-avatar color="primary" size="128" class="ma-4">
+          <span class="white--text">{{ userInitials }}</span>
         </v-avatar>
       </v-row>
-    </v-container>
-    <v-container>
       <v-dialog v-model="edit" width="500">
         <v-card>
-          <v-container>
-            <v-layout>
-              <v-flex xs12 md6>
-                <v-card-title>
-                  First Name:
-                </v-card-title>
-                <v-card-text>
-                  <v-text-field v-model="newFirstName" outlined></v-text-field>
-                </v-card-text>
-              </v-flex>
-            </v-layout>
-            <v-layout>
-              <v-flex xs12 md6>
-                <v-card-title>
-                  Last Name:
-                </v-card-title>
-                <v-card-text>
-                  <v-text-field v-model="newLastName" outlined></v-text-field>
-                </v-card-text>
-              </v-flex>
-            </v-layout>
-            <v-layout>
-              <v-flex xs12 md6>
-                <v-card-title>
-                  E-mail:
-                </v-card-title>
-                <v-card-text>
-                  <v-text-field v-model="newEmail" outlined></v-text-field>
-                </v-card-text>
-              </v-flex>
-            </v-layout>
-            <v-layout>
-              <v-flex xs12 md6>
-                <v-btn @click="updateProfile" color="primary"> submit </v-btn>
-              </v-flex>
-            </v-layout>
-          </v-container>
+          <v-card-title>
+            <span class="headline">Edit Profile</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col>
+                  <v-text-field v-model="newFirstName" label="First Name" outlined></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field v-model="newLastName" label="Last Name" outlined></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field v-model="newEmail" label="E-mail" outlined></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn text @click="edit = false" color="primary">Cancel</v-btn>
+            <v-btn text @click="updateProfile" color="primary" :loading="updatingUserProfile">Save</v-btn>
+          </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-layout>
-        <v-flex xs12 md6>
+      <v-row>
+        <v-col cols="12" sm="6">
           <v-card-title>
             First Name:
           </v-card-title>
           <v-card-text>
             {{ userData && userData.firstName }}
           </v-card-text>
-        </v-flex>
-      </v-layout>
-      <v-layout>
-        <v-flex xs12 md6>
+        </v-col>
+        <v-col cols="12" sm="6">
           <v-card-title>
             Last Name:
           </v-card-title>
           <v-card-text>
             {{ userData && userData.lastName }}
           </v-card-text>
-        </v-flex>
-      </v-layout>
-      <v-layout>
-        <v-flex xs12 md6>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
           <v-card-title>
             E-mail:
           </v-card-title>
           <v-card-text>
             {{ userData && userData.email }}
           </v-card-text>
-        </v-flex>
-      </v-layout>
-      <v-layout>
-        <v-flex xs12 md6>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" sm="6">
           <v-btn @click="signOut" color="error">
             Sign out
           </v-btn>
-        </v-flex>
-        <v-flex xs12 md6>
-          <v-btn color="primary" fab small dark @click="editprofile">
-            <v-icon>mdi-pencil</v-icon>
+        </v-col>
+        <v-col cols="12" sm="6">
+          <v-btn color="primary" @click="editprofile">
+            <v-icon left dark>
+              mdi-pencil
+            </v-icon>
+            Edit Profile
           </v-btn>
-          <p class="editProfile">Edit Profile</p>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -122,7 +106,8 @@ export default Vue.extend({
     edit: false,
     newFirstName: undefined,
     newLastName: undefined,
-    newEmail: undefined
+    newEmail: undefined,
+    updatingUserProfile: false
   }),
 
   created: function() {
@@ -154,12 +139,18 @@ export default Vue.extend({
       this.newEmail = this.userData.email;
     },
     updateProfile() {
+      this.updatingUserProfile = true;
       updateUser(this.newEmail, this.newFirstName, this.newLastName)
         .then(user => {
+          this.edit = false;
           console.log(user);
         })
         .catch(error => {
+          alert(error);
           console.log(error);
+        })
+        .finally(() => {
+          this.updatingUserProfile = false;
         });
     }
   }
@@ -167,16 +158,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.avatar {
+.v-avatar span {
   text-transform: uppercase;
-  font-size: 1.125cm;
-  position: absolute;
-  top: 45px;
-  left: 39px;
-}
-.editProfile {
-  position: absolute;
-  right: 10.25cm;
-  bottom: 2.75cm;
+  font-size: 48px;
 }
 </style>
