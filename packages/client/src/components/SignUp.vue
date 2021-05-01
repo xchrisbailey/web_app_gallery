@@ -1,18 +1,5 @@
 <template>
   <v-container class="action">
-    <v-dialog v-model="success" width="500">
-      <v-card>
-        <v-card-text>
-          Your Account has been created
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <router-link to="/signin" @click="dialog = false">sign in</router-link>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
     <v-dialog v-model="fail" width="500">
       <v-card>
         <v-card-text>
@@ -102,7 +89,7 @@
       </v-container>
       <v-card-text>
         Already have an account, no problem just
-        <router-link to="/signIn">Sign In</router-link>
+        <router-link :to="{ name: 'signIn', query: { redirect: $route.query.redirect } }">Sign In</router-link>
       </v-card-text>
     </v-card>
   </v-container>
@@ -124,7 +111,6 @@ export default {
     password: undefined,
     loading: false,
     form: false,
-    success: false,
     fail: false,
 
     rules: {
@@ -141,7 +127,8 @@ export default {
       submitUser(this.firstName, this.lastName, this.email, this.password)
         .then(user => {
           console.log(user);
-          this.success = true;
+          this.$store.dispatch("singInUser");
+          this.$router.replace(this.$route.query.redirect || "/profile");
         })
         .catch(err => {
           console.log(err);

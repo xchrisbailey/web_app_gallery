@@ -124,6 +124,7 @@ export default Vue.extend({
       logOutUser()
         .then(user => {
           console.log(user);
+          this.$store.dispatch("signOutUser");
           this.$router.push({ path: "/signIn" });
         })
         .catch(error => {
@@ -132,13 +133,13 @@ export default Vue.extend({
     },
     editprofile() {
       this.edit = true;
-      this.newFirstName = this.userData.firstName
-      this.newLastName = this.userData.lastName
-      this.newEmail = this.userData.email
+      this.newFirstName = this.userData.firstName;
+      this.newLastName = this.userData.lastName;
+      this.newEmail = this.userData.email;
     },
     updateProfile() {
-      updateUser(this.newEmail,this.newFirstName,this.newLastName)
-      .then(user => {
+      updateUser(this.newEmail, this.newFirstName, this.newLastName)
+        .then(user => {
           console.log(user);
         })
         .catch(error => {
