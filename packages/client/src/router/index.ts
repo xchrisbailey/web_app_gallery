@@ -64,7 +64,7 @@ const routes: Array<RouteConfig> = [
     beforeEnter: requireAuth
   },
   {
-    path: "/Profile",
+    path: "/profile",
     name: "Profile",
     component: () => import(/* webpackChunkName: "review" */ "../views/userProfileView.vue"),
     beforeEnter: requireAuth
