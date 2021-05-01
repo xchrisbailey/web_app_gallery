@@ -1,22 +1,18 @@
 <template>
   <div id="profile">
     <v-container>
-      <v-layout row>
-        <v-flex xs12 md6>
-          <v-card-title>
+      <v-row>
+        <v-col>
+          <h2 class="text-h3">
             Profile
-          </v-card-title>
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <v-container>
+          </h2>
+        </v-col>
+      </v-row>
       <v-row justify="center">
-        <v-avatar color="primary" size="128">
+        <v-avatar color="primary" size="128" class="ma-4">
           <span class="white--text">{{ userInitials }}</span>
         </v-avatar>
       </v-row>
-    </v-container>
-    <v-container>
       <v-dialog v-model="edit" width="500">
         <v-card>
           <v-card-title>
@@ -48,57 +44,55 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-layout>
-        <v-flex xs12 md6>
+      <v-row>
+        <v-col cols="12" sm="6">
           <v-card-title>
             First Name:
           </v-card-title>
           <v-card-text>
             {{ userData && userData.firstName }}
           </v-card-text>
-        </v-flex>
-      </v-layout>
-      <v-layout>
-        <v-flex xs12 md6>
+        </v-col>
+        <v-col cols="12" sm="6">
           <v-card-title>
             Last Name:
           </v-card-title>
           <v-card-text>
             {{ userData && userData.lastName }}
           </v-card-text>
-        </v-flex>
-      </v-layout>
-      <v-layout>
-        <v-flex xs12 md6>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
           <v-card-title>
             E-mail:
           </v-card-title>
           <v-card-text>
             {{ userData && userData.email }}
           </v-card-text>
-        </v-flex>
-      </v-layout>
-      <v-layout>
-        <v-flex xs12 md6>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" sm="6">
           <v-btn @click="signOut" color="error">
             Sign out
           </v-btn>
-        </v-flex>
-        <v-flex xs12 md6>
+        </v-col>
+        <v-col cols="12" sm="6">
           <v-btn color="primary" @click="editprofile">
             <v-icon left dark>
               mdi-pencil
             </v-icon>
             Edit Profile
           </v-btn>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
 
 <script lang="ts">
-import { getUser, logOutUser, updateUser} from "../services/signUpApi";
+import { getUser, logOutUser, updateUser } from "../services/signUpApi";
 import { User } from "../types";
 import Vue from "vue";
 import initials from "initials";
