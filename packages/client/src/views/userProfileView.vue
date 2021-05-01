@@ -104,10 +104,12 @@
           </v-btn>
         </v-flex>
         <v-flex xs12 md6>
-          <v-btn color="primary" fab small dark @click="editprofile">
-            <v-icon>mdi-pencil</v-icon>
+          <v-btn color="primary" @click="editprofile">
+            <v-icon left dark>
+              mdi-pencil
+            </v-icon>
+            Edit Profile
           </v-btn>
-          <p class="editProfile">Edit Profile</p>
         </v-flex>
       </v-layout>
     </v-container>
@@ -176,10 +178,5 @@ export default Vue.extend({
 .v-avatar span {
   text-transform: uppercase;
   font-size: 48px;
-}
-.editProfile {
-  position: absolute;
-  right: 10.25cm;
-  bottom: 2.75cm;
 }
 </style>
