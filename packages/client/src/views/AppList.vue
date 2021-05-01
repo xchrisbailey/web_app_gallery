@@ -35,6 +35,10 @@ import { WebAppQuery } from "@/services/webAppApi";
 
 export default Vue.extend({
   name: "AppList",
+  metaInfo: {
+    title: "Web App Gallery",
+    titleTemplate: null
+  },
   components: {
     ListApp
   },

@@ -184,6 +184,10 @@ const catagories = new Map<Category | "submit", { name: string; icon: string }>(
 export default Vue.extend({
   name: "App",
 
+  metaInfo: {
+    titleTemplate: "%s | Web App Gallery"
+  },
+
   data: () => ({
     drawer: null,
     catagories,

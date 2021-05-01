@@ -73,6 +73,10 @@ import { submitReview } from "../services/reviewApi";
 export default {
   name: "rating",
 
+  metaInfo: {
+    title: "Review"
+  },
+
   data: () => ({
     userReview: undefined,
     rate: undefined,
