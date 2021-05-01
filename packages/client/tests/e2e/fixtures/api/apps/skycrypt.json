@@ -2,7 +2,7 @@
     "status": "ok",
     "data": {
         "appleMobileWebAppCapable": true,
-        "_id": "skycrypt",
+        "_id": "000000000000000000000000",
         "manifestURL": "https://sky.shiiyu.moe//manifest.webmanifest",
         "startURL": "/",
         "name": "SkyCrypt",
@@ -115,6 +115,31 @@
             }
         ],
         "screenshots": [],
+        "reviews": [
+            {
+                "_id": "60874df9d5254e1564001616",
+                "rating": 4,
+                "review": "This is a review of SkyCrypt",
+                "user": {
+                    "_id": "607f13ce38998046c8ab16e7",
+                    "firstName": "Nate",
+                    "lastName": "Stringham"
+                },
+                "webapp": "000000000000000000000000",
+                "__v": 0
+            },
+            {
+                "_id": "608b6a31e814b8342849bad0",
+                "rating": 5,
+                "user": {
+                    "_id": "6087e3ddb3bdb93df423de8e",
+                    "firstName": "Luke",
+                    "lastName": "Skywalker"
+                },
+                "webapp": "000000000000000000000000",
+                "__v": 0
+            }
+        ],
         "description": "A beautiful site for sharing your SkyBlock profile 🌹",
         "category": "utilities",
         "createdAt": "2021-04-15T16:52:34.981Z",

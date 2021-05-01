@@ -11,6 +11,7 @@ export interface WebApp {
   themeColor?: string;
   backgroundColor?: string;
   averageRating: number;
+  reviews: Review[];
 }
 
 export type Category =
@@ -134,10 +135,10 @@ export function isPlatform(platform: any): platform is Platform {
 }
 
 export interface Review {
+  _id: string;
   rating: number;
   review?: string;
-  name: string;
-  lastUpdated: number;
+  user: User;
 }
 
 export interface User {

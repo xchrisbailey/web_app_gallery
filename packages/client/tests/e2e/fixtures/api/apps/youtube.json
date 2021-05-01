@@ -2,7 +2,7 @@
     "status": "ok",
     "data": {
         "appleMobileWebAppCapable": false,
-        "_id": "607d2279381b0e480c360126",
+        "_id": "000000000000000000000001",
         "manifestURL": "https://youtube.com/manifest.webmanifest",
         "startURL": "/?feature=ytca",
         "name": "YouTube",
@@ -21,6 +21,7 @@
             }
         ],
         "screenshots": [],
+        "reviews": [],
         "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
         "category": "utilities",
         "createdAt": "2021-04-19T06:26:01.807Z",

@@ -29,7 +29,7 @@ const routes: Array<RouteConfig> = [
     beforeEnter: requireAuth
   },
   {
-    path: "/apps/:id",
+    path: "/apps/:id([0-9a-f]{24})",
     name: "Web App",
     component: () => import(/* webpackChunkName: "WebApp" */ "../views/WebApp.vue")
   },
@@ -58,7 +58,7 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "signup" */ "../views/SignUpView.vue")
   },
   {
-    path: "/apps/:id/review",
+    path: "/apps/:id([0-9a-f]{24})/review",
     name: "Rating",
     component: () => import(/* webpackChunkName: "review" */ "../views/review.vue"),
     beforeEnter: requireAuth

@@ -32,28 +32,42 @@
       />
     </div>
 
-    <v-rating
-      length="5"
-      :value="(appData && appData.averageRating) || 0"
-      readonly
-      half-increments
-      dense
-      color="primary"
-      :background-color="this.$vuetify.theme.dark ? 'primary darken-2' : 'primary lighten-2'"
-    />
+    <label for="rating">
+      Average Rating:
+      <v-rating
+        id="rating"
+        length="5"
+        :value="(appData && appData.averageRating) || 0"
+        readonly
+        half-increments
+        size="32"
+        dense
+        color="primary"
+        :background-color="this.$vuetify.theme.dark ? 'primary darken-2' : 'primary lighten-2'"
+      />
+    </label>
 
-    <v-btn @click="review" color="primary">Make review</v-btn>
+    <v-btn class="rate" :to="this.$route.params.id + '/review'" color="primary" outlined>
+      Rate and Review
+    </v-btn>
+
+    <div v-if="appData && appData.reviews.length > 0">
+      <Review class="review" v-for="review in appData.reviews" :key="review._id" :review="review"></Review>
+    </div>
   </v-container>
 </template>
 
 <style lang="scss" scoped>
 @import "~vuetify/src/styles/styles.sass";
 
-.error {
+.v-alert.error {
   position: fixed;
   bottom: 0;
+  right: 0;
+  left: 0;
   width: stretch;
   margin: 12px;
+  z-index: 1;
 }
 
 .container {
@@ -66,6 +80,7 @@
 
   > * {
     margin: 0;
+    grid-column: 1 / -1;
   }
 }
 
@@ -86,16 +101,19 @@
   max-width: 100px;
 }
 
-.description {
-  grid-column: 1 / -1;
+#rating {
+  display: inline-block;
 }
 
-.iOS-warning {
-  grid-column: 1 / -1;
+.rate {
+  justify-self: start;
+}
+
+.review:not(:last-of-type) {
+  margin-bottom: 12px;
 }
 
 .screenshots {
-  grid-column: 1 / -1;
   overflow-x: auto;
   white-space: nowrap;
   scroll-snap-type: x;
@@ -115,10 +133,6 @@
       margin-right: 12px;
     }
   }
-}
-
-.v-rating {
-  grid-column: 1 / -1;
 }
 
 @media (min-width: 600px) {
@@ -141,11 +155,13 @@ import { getApp } from "@/services/webAppApi";
 import { WebApp } from "@/types";
 import Vue from "vue";
 import AppIcon from "@/components/AppIcon.vue";
+import Review from "@/components/Review.vue";
 
 export default Vue.extend({
   name: "WebApp",
   components: {
-    AppIcon
+    AppIcon,
+    Review
   },
 
   data: () => ({
@@ -154,11 +170,6 @@ export default Vue.extend({
     error: undefined as string | undefined,
     iOS: false
   }),
-  methods: {
-    review() {
-      this.$router.push({ path: this.$route.params.id + "/review" });
-    }
-  },
 
   created: function() {
     this.iOS = navigator.platform.startsWith("iP");

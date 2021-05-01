@@ -53,6 +53,7 @@
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
+          id="username"
           v-model="email"
           label="E-mail"
           :rules="[rules.email, rules.required]"

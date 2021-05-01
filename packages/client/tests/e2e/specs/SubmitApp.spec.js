@@ -41,7 +41,7 @@ describe("app submission page", () => {
       { fixture: "api/apps/skycrypt.json" }
     );
     submitSkycrypt();
-    cy.location("pathname").should("equal", "/apps/skycrypt");
+    cy.location("pathname").should("equal", "/apps/000000000000000000000000");
   });
 
   it("displays error", () => {
