@@ -4,8 +4,10 @@ import store from "../store/index";
 
 Vue.use(VueRouter);
 
-function requireAuth(to: Route, from: Route, next: NavigationGuardNext<Vue>) {
-
+async function requireAuth(to: Route, from: Route, next: NavigationGuardNext<Vue>) {
+  if (store.getters.userCredential === undefined) {
+    await store.dispatch("updateSignInStatus");
+  }
   if (store.getters.userCredential == true) {
     next();
   } else {
