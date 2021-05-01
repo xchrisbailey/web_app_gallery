@@ -59,8 +59,7 @@ export async function logInUser(userEmail: string, userPassword: string): Promis
 }
 
 export async function logOutUser(): Promise<User> {
-  const request = axios.post<ApiResponse<User>>("/api/logout", {
-  });
+  const request = axios.post<ApiResponse<User>>("/api/logout", {});
 
   try {
     const response = await request;
@@ -78,7 +77,7 @@ export async function updateUser(userEmail: string, userFirstName: string, userL
   const request = axios.put<ApiResponse<User>>("/api/me", {
     firstName: userFirstName,
     lastName: userLastName,
-    email: userEmail,
+    email: userEmail
   });
 
   try {
