@@ -8,23 +8,21 @@ export default new Vuex.Store({
     signInStatus: false
   },
   mutations: {
-    SET_SIGN_IN_STATUS(state, status){
-      state.signInStatus = status
-    },
-    
+    SET_SIGN_IN_STATUS(state, status) {
+      state.signInStatus = status;
+    }
   },
   actions: {
-    signOutUser(context){
-      context.commit('SET_SIGN_IN_STATUS',false)
+    signOutUser(context) {
+      context.commit("SET_SIGN_IN_STATUS", false);
     },
-    singInUser(context){
-      context.commit('SET_SIGN_IN_STATUS',true)
+    singInUser(context) {
+      context.commit("SET_SIGN_IN_STATUS", true);
     }
   },
-  getters:{
-    userCredential(state){
-      return state.signInStatus
+  getters: {
+    userCredential(state) {
+      return state.signInStatus;
     }
-  },
-  
+  }
 });

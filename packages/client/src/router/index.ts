@@ -7,9 +7,9 @@ Vue.use(VueRouter);
 function requireAuth(to: Route, from: Route, next: NavigationGuardNext<Vue>) {
 
   if (store.getters.userCredential == true) {
-    next()
+    next();
   } else {
-    next({ name: "signIn", query: {redirect: to.path} });
+    next({ name: "signIn", query: { redirect: to.path } });
   }
 }
 
