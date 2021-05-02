@@ -11,7 +11,7 @@ export interface WebApp {
   themeColor?: string;
   backgroundColor?: string;
   averageRating: number;
-  reviews: Review[];
+  reviews?: Review[];
 }
 
 export type Category =

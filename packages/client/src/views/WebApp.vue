@@ -52,7 +52,7 @@
       {{ error }}
     </v-alert>
 
-    <div v-if="appData && appData.reviews.length > 0">
+    <div v-if="appData && appData.reviews && appData.reviews.length > 0">
       <Review class="review" v-for="review in appData.reviews" :key="review._id" :review="review"></Review>
     </div>
   </v-container>
