@@ -2,11 +2,11 @@
   <v-container class="center">
     <v-card elevation="1" width="600">
       <v-card-title justify-center>
-        {{ msg }}
+        Sing Up to to the Web App Gallery
       </v-card-title>
       <v-spacer> </v-spacer>
       <v-card-subtitle>
-        {{ "Enter your First Name:" }}
+        Enter your First Name:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
@@ -20,7 +20,7 @@
         </v-text-field>
       </v-col>
       <v-card-subtitle>
-        {{ "Enter your LastName:" }}
+        Enter your Last Name:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
@@ -34,13 +34,13 @@
         </v-text-field>
       </v-col>
       <v-card-subtitle>
-        {{ "Enter your E-mail:" }}
+        Enter your Email:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
           id="username"
           v-model="email"
-          label="E-mail"
+          label="Email"
           :rules="[rules.email, rules.required]"
           autocomplete="email"
           outlined
@@ -49,12 +49,12 @@
         </v-text-field>
       </v-col>
       <v-card-subtitle>
-        {{ "Enter your password:" }}
+        Enter your Password:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
           v-model="password"
-          label="password"
+          label="Password"
           type="password"
           :rules="[rules.password, rules.required]"
           autocomplete="new-password"
@@ -88,9 +88,6 @@ import { submitUser } from "../services/signUpApi";
 
 export default {
   name: "SignUp",
-  props: {
-    msg: String
-  },
 
   data: () => ({
     firstName: undefined,

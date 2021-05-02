@@ -2,16 +2,16 @@
   <v-container class="center">
     <v-card elevation="1" width="600">
       <v-card-title justify-center>
-        {{ msg }}
+        Sign In to the Web App Gallery
       </v-card-title>
       <v-spacer> </v-spacer>
       <v-card-subtitle>
-        {{ "Enter your E-mail:" }}
+        Enter your Email:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
           v-model="email"
-          label="E-mail"
+          label="Email"
           autocomplete="email"
           :rules="[rules.email, rules.required]"
           outlined
@@ -20,12 +20,12 @@
         </v-text-field>
       </v-col>
       <v-card-subtitle>
-        {{ "Enter your password:" }}
+        Enter your Password:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
           v-model="password"
-          label="password"
+          label="Password"
           type="password"
           autocomplete="current-password"
           :rules="[rules.required]"
@@ -59,9 +59,6 @@ import { logInUser } from "../services/signUpApi";
 
 export default {
   name: "SignIn",
-  props: {
-    msg: String
-  },
 
   data: () => ({
     email: undefined,
