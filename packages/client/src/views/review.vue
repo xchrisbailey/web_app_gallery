@@ -48,7 +48,7 @@
       </v-layout>
       <v-layout justify-center>
         <v-flex xs5 md12>
-          <v-btn :loading="loading" color="primary" type="submit" @click="submit">
+          <v-btn :loading="loading" color="primary" type="submit" @click="submit" :disabled="rate === 0">
             Submit
           </v-btn>
           <v-btn class="ml-4" color="primary" text @click="goBack">
@@ -57,7 +57,7 @@
         </v-flex>
       </v-layout>
       <v-alert class="mt-4 mb-0" type="error" :value="error" v-if="error">
-        {{ errorMsg }}
+        {{ error }}
       </v-alert>
     </v-container>
   </div>
@@ -78,8 +78,7 @@ export default Vue.extend({
     userReview: "",
     rate: 0,
     loading: false,
-    error: false,
-    errorMsg: "",
+    error: undefined as string | undefined,
 
     rules: {
       maxLength,
@@ -91,22 +90,18 @@ export default Vue.extend({
       console.log(this.rate);
 
       if (this.userReview?.length > 250) {
-        this.error = true;
-        this.errorMsg = "Invalid size of review";
+        this.error = "Invalid size of review";
       } else if (this.rate == 0) {
-        this.error = true;
-        this.errorMsg = "Please rate at the app";
+        this.error = "Please rate at the app";
       } else {
         this.loading = true;
-        this.error = false;
         submitReview(this.userReview, this.rate, this.$route.params.id)
           .then(review => {
             console.log(review);
             this.goBack();
           })
           .catch(error => {
-            this.error = true;
-            this.errorMsg = error;
+            this.error = error;
             console.log(error);
           })
           .finally(() => {
