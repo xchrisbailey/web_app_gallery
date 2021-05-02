@@ -1,5 +1,7 @@
 FROM node:14
 
+RUN npm install -g http-server
+
 WORKDIR /usr/src/app
 
 COPY package.json ./
@@ -8,6 +10,7 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8080
+RUN npm run build
 
-CMD [ "npm", "run", "serve" ]
+EXPOSE 8080
+CMD [ "http-server", "dist" ]
