@@ -22,19 +22,35 @@
             <v-container>
               <v-row>
                 <v-col>
-                  <v-text-field v-model="newFirstName" label="First Name" outlined></v-text-field>
+                  <v-text-field
+                    v-model="newFirstName"
+                    label="First Name"
+                    :rules="[rules.required('First Name')]"
+                    outlined
+                  ></v-text-field>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col>
-                  <v-text-field v-model="newLastName" label="Last Name" outlined></v-text-field>
+                  <v-text-field
+                    v-model="newLastName"
+                    label="Last Name"
+                    :rules="[rules.required('Last Name')]"
+                    outlined
+                  ></v-text-field>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col>
-                  <v-text-field v-model="newEmail" label="E-mail" outlined></v-text-field>
+                  <v-text-field
+                    v-model="newEmail"
+                    label="Email"
+                    :rules="[rules.required('Email'), rules.validEmail('Email')]"
+                    outlined
+                  ></v-text-field>
                 </v-col>
               </v-row>
+              <v-alert class="mt-4 mb-0 sticky" type="error" v-if="updateError"> {{ updateError }} </v-alert>
             </v-container>
           </v-card-text>
           <v-card-actions>
@@ -92,6 +108,7 @@
 </template>
 
 <script lang="ts">
+import { required, validEmail } from "@/services/validators";
 import { getUser, logOutUser, updateUser } from "../services/signUpApi";
 import { User } from "../types";
 import Vue from "vue";
@@ -106,19 +123,24 @@ export default Vue.extend({
 
   data: () => ({
     userData: null as User | null,
-    userInitials: undefined,
+    userInitials: undefined as string | undefined,
     edit: false,
-    newFirstName: undefined,
-    newLastName: undefined,
-    newEmail: undefined,
-    updatingUserProfile: false
+    newFirstName: "",
+    newLastName: "",
+    newEmail: "",
+    updatingUserProfile: false,
+    updateError: undefined as string | undefined,
+    rules: {
+      validEmail,
+      required
+    }
   }),
 
   created: function() {
     getUser()
       .then(user => {
         this.userData = user;
-        this.userInitials = initials(this.userData.firstName + " " + this.userData.lastName);
+        this.userInitials = initials(this.userData.firstName + " " + this.userData.lastName) as string;
       })
       .catch(error => {
         console.log(error);
@@ -138,19 +160,22 @@ export default Vue.extend({
     },
     editprofile() {
       this.edit = true;
-      this.newFirstName = this.userData.firstName;
-      this.newLastName = this.userData.lastName;
-      this.newEmail = this.userData.email;
+      if (this.userData) {
+        this.newFirstName = this.userData.firstName;
+        this.newLastName = this.userData.lastName;
+        this.newEmail = this.userData.email;
+      }
     },
     updateProfile() {
       this.updatingUserProfile = true;
       updateUser(this.newEmail, this.newFirstName, this.newLastName)
         .then(user => {
           this.edit = false;
+          this.updateError = undefined;
           console.log(user);
         })
         .catch(error => {
-          alert(error);
+          this.updateError = error;
           console.log(error);
         })
         .finally(() => {

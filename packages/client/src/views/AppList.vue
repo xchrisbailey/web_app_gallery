@@ -4,7 +4,7 @@
     <v-btn v-if="appsQuery.hasNextPage" v-on:click="loadMore()" color="primary" text :loading="appsQuery.loading">
       load more
     </v-btn>
-    <v-alert type="error" v-if="appsQuery.error">
+    <v-alert class="mb-0 sticky" type="error" v-if="appsQuery.error">
       {{ appsQuery.error }}
     </v-alert>
   </v-container>

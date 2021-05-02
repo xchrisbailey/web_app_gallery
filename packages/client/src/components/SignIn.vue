@@ -1,37 +1,36 @@
 <template>
   <v-container class="center">
     <v-card elevation="1" width="600">
-      <v-alert type="error" :value="error" v-if="error">
-        {{ errorMsg }}
-      </v-alert>
       <v-card-title justify-center>
-        {{ msg }}
+        Sign In to the Web App Gallery
       </v-card-title>
       <v-spacer> </v-spacer>
       <v-card-subtitle>
-        {{ "Enter your E-mail:" }}
+        Enter your Email:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
           v-model="email"
-          label="E-mail"
+          label="Email"
           autocomplete="email"
-          :rules="[rules.email, rules.required]"
+          :rules="[rules.validEmail('Email'), rules.required('Email')]"
           outlined
           required
         >
         </v-text-field>
       </v-col>
       <v-card-subtitle>
-        {{ "Enter your password:" }}
+        Enter your Password:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
           v-model="password"
-          label="password"
-          type="password"
+          label="Password"
+          :type="showPassword ? 'text' : 'password'"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPassword = !showPassword"
           autocomplete="current-password"
-          :rules="[rules.required]"
+          :rules="[rules.required('Password')]"
           outlined
           required
         >
@@ -46,6 +45,9 @@
           </v-flex>
         </v-layout>
       </v-container>
+      <v-alert class="ma-4" type="error" :value="error" v-if="error">
+        {{ error }}
+      </v-alert>
       <v-card-text>
         No account, no problem just
         <router-link :to="{ name: 'signUp', query: { redirect: $route.query.redirect } }">Sign Up</router-link>
@@ -54,24 +56,23 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
+import { required, validEmail } from "@/services/validators";
 import { logInUser } from "../services/signUpApi";
+
 export default {
   name: "SignIn",
-  props: {
-    msg: String
-  },
 
   data: () => ({
-    email: undefined,
-    password: undefined,
+    email: "",
+    password: "",
+    showPassword: false,
     loading: false,
-    error: false,
-    errorMsg: "",
+    error: undefined as string | undefined,
 
     rules: {
-      email: v => !!(v || "").match(/@/) || "Please enter a valid email",
-      required: v => !!v || "This field is required"
+      validEmail,
+      required
     }
   }),
   methods: {
@@ -85,8 +86,7 @@ export default {
         })
         .catch(err => {
           console.log(err);
-          this.error = true;
-          this.errorMsg = err;
+          this.error = err;
         })
         .finally(() => {
           this.loading = false;
