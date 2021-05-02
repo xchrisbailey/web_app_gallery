@@ -1,6 +1,6 @@
 <template>
   <v-container class="center">
-    <v-card elevation="1" width="600">
+    <v-card elevation="1" min-width="200" width="100%" max-width="600">
       <v-card-title justify-center>
         Sign In to the Web App Gallery
       </v-card-title>
