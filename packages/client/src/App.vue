@@ -164,6 +164,11 @@ html::-webkit-scrollbar-thumb {
     min-height: 100%;
   }
 }
+
+.v-alert.sticky {
+  position: sticky;
+  bottom: 12px;
+}
 </style>
 
 <script lang="ts">

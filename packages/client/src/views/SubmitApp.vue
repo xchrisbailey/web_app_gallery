@@ -11,12 +11,13 @@
         required
       ></v-select>
       <v-btn :loading="loading" :disabled="!valid" color="primary" v-on:click="submit()">Submit App</v-btn>
-      <v-alert class="mt-3" outlined type="error" text v-if="error"> {{ error }} </v-alert>
+      <v-alert class="mt-4 mb-0 sticky" type="error" v-if="error"> {{ error }} </v-alert>
     </v-container>
   </v-form>
 </template>
 
 <script lang="ts">
+import { required, validUrl } from "@/services/validators";
 import { submitApp } from "@/services/webAppApi";
 import { categories, Category } from "@/types";
 import Vue from "vue";
@@ -31,13 +32,10 @@ export default Vue.extend({
     loading: false,
     error: "",
     url: "",
-    urlRules: [
-      (v: string) => !!v || "WebApp URL is required",
-      (v: string) => v.startsWith("https://") || "URL must start with https://"
-    ],
+    urlRules: [required("WebApp URL"), validUrl("Webapp URL")],
     categories,
     category: undefined as Category | undefined,
-    categoryRules: [(v: string) => !!v || "Category URL is required"]
+    categoryRules: [required("Category")]
   }),
   methods: {
     submit: function() {

@@ -1,33 +1,18 @@
 <template>
   <v-container class="center">
-    <v-dialog v-model="fail" width="500">
-      <v-card>
-        <v-card-text>
-          This account is already in use
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="fail = false">
-            Try Again
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
     <v-card elevation="1" width="600">
       <v-card-title justify-center>
-        {{ msg }}
+        Sing Up to to the Web App Gallery
       </v-card-title>
       <v-spacer> </v-spacer>
       <v-card-subtitle>
-        {{ "Enter your First Name:" }}
+        Enter your First Name:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
           v-model="firstName"
           label="First Name"
-          :rules="[rules.required]"
+          :rules="[rules.required('First Name')]"
           autocomplete="given-name"
           outlined
           required
@@ -35,13 +20,13 @@
         </v-text-field>
       </v-col>
       <v-card-subtitle>
-        {{ "Enter your LastName:" }}
+        Enter your Last Name:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
           v-model="lastName"
           label="Last Name"
-          :rules="[rules.required]"
+          :rules="[rules.required('Last Name')]"
           autocomplete="family-name"
           outlined
           required
@@ -49,14 +34,14 @@
         </v-text-field>
       </v-col>
       <v-card-subtitle>
-        {{ "Enter your E-mail:" }}
+        Enter your Email:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
           id="username"
           v-model="email"
-          label="E-mail"
-          :rules="[rules.email, rules.required]"
+          label="Email"
+          :rules="[rules.required('Email'), rules.validEmail('Email')]"
           autocomplete="email"
           outlined
           required
@@ -64,15 +49,18 @@
         </v-text-field>
       </v-col>
       <v-card-subtitle>
-        {{ "Enter your password:" }}
+        Enter your Password:
       </v-card-subtitle>
       <v-col cols="12" sm="8">
         <v-text-field
           v-model="password"
-          label="password"
-          type="password"
-          :rules="[rules.password, rules.required]"
+          label="Password"
+          :type="showPassword ? 'text' : 'password'"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPassword = !showPassword"
+          :rules="[rules.required('Password'), rules.minLength('Password', 10)]"
           autocomplete="new-password"
+          counter
           outlined
           required
         >
@@ -87,6 +75,9 @@
           </v-flex>
         </v-layout>
       </v-container>
+      <v-alert class="ma-4" type="error" :value="error" v-if="error">
+        {{ error }}
+      </v-alert>
       <v-card-text>
         Already have an account, no problem just
         <router-link :to="{ name: 'signIn', query: { redirect: $route.query.redirect } }">Sign In</router-link>
@@ -95,30 +86,27 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
+import { required, validEmail, minLength } from "@/services/validators";
 import { submitUser } from "../services/signUpApi";
 
 export default {
   name: "SignUp",
-  props: {
-    msg: String
-  },
 
   data: () => ({
-    firstName: undefined,
-    lastName: undefined,
-    email: undefined,
-    password: undefined,
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    showPassword: false,
     loading: false,
     form: false,
-    fail: false,
+    error: undefined as string | undefined,
 
     rules: {
-      password: v =>
-        !!(v || "").match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/) ||
-        "Password must contain an upper case letter and a numeric character",
-      required: v => !!v || "This field is required",
-      email: v => !!(v || "").match(/@/) || "Please enter a valid email"
+      minLength,
+      required,
+      validEmail
     }
   }),
   methods: {
@@ -132,7 +120,7 @@ export default {
         })
         .catch(err => {
           console.log(err);
-          this.fail = true;
+          this.error = err;
         })
         .finally(() => {
           this.loading = false;

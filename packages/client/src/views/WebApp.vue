@@ -1,8 +1,5 @@
 <template>
   <v-container>
-    <v-alert class="error" type="error" v-if="error">
-      {{ error }}
-    </v-alert>
     <AppIcon class="icon" :icons="appData ? appData.icons : []"></AppIcon>
     <h4 class="name text-h4">{{ (appData && appData.name) || "" }}</h4>
 
@@ -51,6 +48,10 @@
       Rate and Review
     </v-btn>
 
+    <v-alert class="sticky" type="error" v-if="error">
+      {{ error }}
+    </v-alert>
+
     <div v-if="appData && appData.reviews && appData.reviews.length > 0">
       <Review class="review" v-for="review in appData.reviews" :key="review._id" :review="review"></Review>
     </div>
@@ -59,16 +60,6 @@
 
 <style lang="scss" scoped>
 @import "~vuetify/src/styles/styles.sass";
-
-.v-alert.error {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: stretch;
-  margin: 12px;
-  z-index: 1;
-}
 
 .container {
   display: grid;

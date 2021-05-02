@@ -1,17 +1,5 @@
 <template>
   <div id="rating">
-    <div>
-      <v-alert type="error" :value="error" v-if="error">
-        <v-layout row wrap justify-space-around>
-          <v-flex sx12 md9>
-            {{ errorMsg }}
-          </v-flex>
-          <v-flex xs12 md3>
-            <v-btn @click="goBack" color="warning">Click Here to go Back</v-btn>
-          </v-flex>
-        </v-layout>
-      </v-alert>
-    </div>
     <v-container>
       <v-layout row wrap justify-center>
         <v-flex xs4 md1>
@@ -30,6 +18,7 @@
             hover
             color="primary"
             :background-color="this.$vuetify.theme.dark ? 'primary darken-2' : 'primary lighten-2'"
+            :rules="[rules.required('Rating')]"
           ></v-rating>
         </v-flex>
       </v-layout>
@@ -48,27 +37,34 @@
           <v-textarea
             v-model="userReview"
             outlined
-            label="review"
+            label="Review"
             auto-grow
             clearable
             counter="250"
-            :rules="[rules.length(250)]"
+            :rules="[rules.maxLength('Review', 250)]"
           >
           </v-textarea>
         </v-flex>
       </v-layout>
       <v-layout justify-center>
         <v-flex xs5 md12>
-          <v-btn block :loading="loading" color="primary" type="submit" @click="submit">
+          <v-btn :loading="loading" color="primary" type="submit" @click="submit" :disabled="rate === 0">
             Submit
+          </v-btn>
+          <v-btn class="ml-4" color="primary" text @click="goBack">
+            Cancel
           </v-btn>
         </v-flex>
       </v-layout>
+      <v-alert class="mt-4 mb-0" type="error" :value="error" v-if="error">
+        {{ error }}
+      </v-alert>
     </v-container>
   </div>
 </template>
 
 <script lang="ts">
+import { required, maxLength } from "@/services/validators";
 import { submitReview } from "../services/reviewApi";
 export default {
   name: "rating",
@@ -79,33 +75,34 @@ export default {
 
   data: () => ({
     userReview: undefined,
-    rate: undefined,
+    rate: 0,
     loading: false,
     error: false,
-    errorMsg: "",
+    errorMsg: undefined as string | undefined,
 
     rules: {
-      length: (len: number) => (v: any) => (v || "").length <= len || `Invalid character length, max ${len}`
+      maxLength,
+      required
     }
   }),
   methods: {
     submit() {
       if (this.userReview?.length > 250) {
-        this.error = true;
-        this.errorMsg = "Invalid size of review";
+        this.error = "Invalid size of review";
       } else {
         this.loading = true;
         this.error = false;
         submitReview(this.userReview, this.rate, this.$route.params.id)
           .then(review => {
             console.log(review);
-            this.loading = false;
             this.goBack();
           })
           .catch(error => {
-            this.error = true;
-            this.errorMsg = error;
+            this.error = error;
             console.log(error);
+          })
+          .finally(() => {
+            this.loading = false;
           });
       }
     },

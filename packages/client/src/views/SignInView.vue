@@ -1,5 +1,5 @@
 <template>
-  <SignIn msg="Sign In to the WebApp Gallery" />
+  <SignIn />
 </template>
 
 <script>

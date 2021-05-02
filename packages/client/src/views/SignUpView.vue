@@ -1,5 +1,5 @@
 <template>
-  <SignUp msg="Sing Up to to the WebApp Gallery" />
+  <SignUp />
 </template>
 
 <script>
