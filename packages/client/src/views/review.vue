@@ -48,7 +48,7 @@
       </v-layout>
       <v-layout justify-center>
         <v-flex xs5 md12>
-          <v-btn :loading="loading" color="primary" type="submit" @click="submit">
+          <v-btn :loading="loading" color="primary" type="submit" @click="submit" :disabled="rate === 0">
             Submit
           </v-btn>
           <v-btn class="ml-4" color="primary" text @click="goBack">
@@ -75,7 +75,7 @@ export default {
 
   data: () => ({
     userReview: undefined,
-    rate: undefined,
+    rate: 0,
     loading: false,
     error: false,
     errorMsg: undefined as string | undefined,
