@@ -64,9 +64,10 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue";
 import { required, maxLength } from "@/services/validators";
 import { submitReview } from "../services/reviewApi";
-export default {
+export default Vue.extend({
   name: "rating",
 
   metaInfo: {
@@ -74,11 +75,10 @@ export default {
   },
 
   data: () => ({
-    userReview: undefined,
+    userReview: "",
     rate: 0,
     loading: false,
-    error: false,
-    errorMsg: undefined as string | undefined,
+    error: undefined as string | undefined,
 
     rules: {
       maxLength,
@@ -87,11 +87,14 @@ export default {
   }),
   methods: {
     submit() {
+      console.log(this.rate);
+
       if (this.userReview?.length > 250) {
         this.error = "Invalid size of review";
+      } else if (this.rate == 0) {
+        this.error = "Please rate at the app";
       } else {
         this.loading = true;
-        this.error = false;
         submitReview(this.userReview, this.rate, this.$route.params.id)
           .then(review => {
             console.log(review);
@@ -110,5 +113,5 @@ export default {
       this.$router.push({ path: "." });
     }
   }
-};
+});
 </script>
