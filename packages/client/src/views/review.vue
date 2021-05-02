@@ -57,7 +57,7 @@
         </v-flex>
       </v-layout>
       <v-alert class="mt-4 mb-0" type="error" :value="error" v-if="error">
-        {{ errorMsg }}
+        {{ error }}
       </v-alert>
     </v-container>
   </div>
@@ -78,7 +78,7 @@ export default {
     rate: undefined,
     loading: false,
     error: false,
-    errorMsg: "",
+    errorMsg: undefined as string | undefined,
 
     rules: {
       maxLength,
@@ -88,8 +88,7 @@ export default {
   methods: {
     submit() {
       if (this.userReview?.length > 250) {
-        this.error = true;
-        this.errorMsg = "Invalid size of review";
+        this.error = "Invalid size of review";
       } else {
         this.loading = true;
         this.error = false;
@@ -99,8 +98,7 @@ export default {
             this.goBack();
           })
           .catch(error => {
-            this.error = true;
-            this.errorMsg = error;
+            this.error = error;
             console.log(error);
           })
           .finally(() => {
