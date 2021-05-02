@@ -13,8 +13,8 @@ describe('create user', () => {
   it('should return new user', async () => {
     const newUser = await userService.create(dummyUser);
 
-    expect(newUser.firstName).toBe(dummyUser.firstName.toLowerCase());
-    expect(newUser.lastName).toBe(dummyUser.lastName.toLowerCase());
+    expect(newUser.firstName).toBe(dummyUser.firstName);
+    expect(newUser.lastName).toBe(dummyUser.lastName);
     expect(newUser.email).toBe(dummyUser.email.toLowerCase());
     expect(newUser._id).not.toBeNull();
   });

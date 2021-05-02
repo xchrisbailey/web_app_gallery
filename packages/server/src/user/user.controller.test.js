@@ -36,7 +36,7 @@ describe('createUser', () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         data: expect.objectContaining({
-          firstName: dummyUser.firstName.toLowerCase(),
+          firstName: dummyUser.firstName,
         }),
       }),
     );
@@ -93,14 +93,14 @@ describe('loginUser', () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         data: expect.objectContaining({
-          firstName: dummyUser.firstName.toLowerCase(),
+          firstName: dummyUser.firstName,
         }),
       }),
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         data: expect.objectContaining({
-          lastName: dummyUser.lastName.toLowerCase(),
+          lastName: dummyUser.lastName,
         }),
       }),
     );
