@@ -130,7 +130,7 @@ describe('PUT /me', () => {
     expect(res.body.status).toBe('ok');
     expect(res.body.data.firstName).toBe('christopher');
     expect(res.body.data.email).toBe('christopher@example.net');
-    expect(res.body.data.lastName).toBe(dummyUser.lastName.toLowerCase());
+    expect(res.body.data.lastName).toBe(dummyUser.lastName);
 
     // get user from database and recheck that data was updated properly
     res = await r.get('/api/me').send().expect(200);
