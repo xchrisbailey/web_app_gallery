@@ -99,13 +99,15 @@ export default {
         submitReview(this.userReview, this.rate, this.$route.params.id)
           .then(review => {
             console.log(review);
-            this.loading = false;
             this.goBack();
           })
           .catch(error => {
             this.error = true;
             this.errorMsg = error;
             console.log(error);
+          })
+          .finally(() => {
+            this.loading = false;
           });
       }
     },
