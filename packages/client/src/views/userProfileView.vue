@@ -109,9 +109,9 @@ export default Vue.extend({
     userData: null as User | null,
     userInitials: undefined as string | undefined,
     edit: false,
-    newFirstName: undefined as string | undefined,
-    newLastName: undefined as string | undefined,
-    newEmail: undefined as string | undefined,
+    newFirstName: "",
+    newLastName: "",
+    newEmail: "",
     updatingUserProfile: false,
     updateError: undefined as string | undefined
   }),
@@ -140,9 +140,11 @@ export default Vue.extend({
     },
     editprofile() {
       this.edit = true;
-      this.newFirstName = this.userData?.firstName;
-      this.newLastName = this.userData?.lastName;
-      this.newEmail = this.userData?.email;
+      if (this.userData) {
+        this.newFirstName = this.userData.firstName;
+        this.newLastName = this.userData.lastName;
+        this.newEmail = this.userData.email;
+      }
     },
     updateProfile() {
       this.updatingUserProfile = true;

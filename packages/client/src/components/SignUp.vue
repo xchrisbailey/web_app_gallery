@@ -90,10 +90,10 @@ export default {
   name: "SignUp",
 
   data: () => ({
-    firstName: undefined,
-    lastName: undefined,
-    email: undefined,
-    password: undefined,
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
     loading: false,
     form: false,
     error: undefined as string | undefined,

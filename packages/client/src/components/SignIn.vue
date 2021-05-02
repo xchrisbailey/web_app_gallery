@@ -61,8 +61,8 @@ export default {
   name: "SignIn",
 
   data: () => ({
-    email: undefined,
-    password: undefined,
+    email: "",
+    password: "",
     loading: false,
     error: undefined as string | undefined,
 
