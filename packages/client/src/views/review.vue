@@ -18,6 +18,7 @@
             hover
             color="primary"
             :background-color="this.$vuetify.theme.dark ? 'primary darken-2' : 'primary lighten-2'"
+            :rules="[rules.required('Rating')]"
           ></v-rating>
         </v-flex>
       </v-layout>
@@ -36,11 +37,11 @@
           <v-textarea
             v-model="userReview"
             outlined
-            label="review"
+            label="Review"
             auto-grow
             clearable
             counter="250"
-            :rules="[rules.length(250)]"
+            :rules="[rules.maxLength('Review', 250)]"
           >
           </v-textarea>
         </v-flex>
@@ -63,6 +64,7 @@
 </template>
 
 <script lang="ts">
+import { required, maxLength } from "@/services/validators";
 import { submitReview } from "../services/reviewApi";
 export default {
   name: "rating",
@@ -79,7 +81,8 @@ export default {
     errorMsg: "",
 
     rules: {
-      length: (len: number) => (v: any) => (v || "").length <= len || `Invalid character length, max ${len}`
+      maxLength,
+      required
     }
   }),
   methods: {

@@ -17,6 +17,7 @@
 </template>
 
 <script lang="ts">
+import { required, validUrl } from "@/services/validators";
 import { submitApp } from "@/services/webAppApi";
 import { categories, Category } from "@/types";
 import Vue from "vue";
@@ -31,13 +32,10 @@ export default Vue.extend({
     loading: false,
     error: "",
     url: "",
-    urlRules: [
-      (v: string) => !!v || "WebApp URL is required",
-      (v: string) => v.startsWith("https://") || "URL must start with https://"
-    ],
+    urlRules: [required("WebApp URL"), validUrl("Webapp URL")],
     categories,
     category: undefined as Category | undefined,
-    categoryRules: [(v: string) => !!v || "Category URL is required"]
+    categoryRules: [required("Category")]
   }),
   methods: {
     submit: function() {

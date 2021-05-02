@@ -12,7 +12,7 @@
         <v-text-field
           v-model="firstName"
           label="First Name"
-          :rules="[rules.required]"
+          :rules="[rules.required('First Name')]"
           autocomplete="given-name"
           outlined
           required
@@ -26,7 +26,7 @@
         <v-text-field
           v-model="lastName"
           label="Last Name"
-          :rules="[rules.required]"
+          :rules="[rules.required('Last Name')]"
           autocomplete="family-name"
           outlined
           required
@@ -41,7 +41,7 @@
           id="username"
           v-model="email"
           label="Email"
-          :rules="[rules.email, rules.required]"
+          :rules="[rules.required('Email'), rules.validEmail('Email')]"
           autocomplete="email"
           outlined
           required
@@ -55,9 +55,12 @@
         <v-text-field
           v-model="password"
           label="Password"
-          type="password"
-          :rules="[rules.password, rules.required]"
+          :type="showPassword ? 'text' : 'password'"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPassword = !showPassword"
+          :rules="[rules.required('Password'), rules.minLength('Password', 10)]"
           autocomplete="new-password"
+          counter
           outlined
           required
         >
@@ -84,6 +87,7 @@
 </template>
 
 <script lang="ts">
+import { required, validEmail, minLength } from "@/services/validators";
 import { submitUser } from "../services/signUpApi";
 
 export default {
@@ -94,16 +98,15 @@ export default {
     lastName: "",
     email: "",
     password: "",
+    showPassword: false,
     loading: false,
     form: false,
     error: undefined as string | undefined,
 
     rules: {
-      password: v =>
-        !!(v || "").match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/) ||
-        "Password must contain an upper case letter and a numeric character",
-      required: v => !!v || "This field is required",
-      email: v => !!(v || "").match(/@/) || "Please enter a valid email"
+      minLength,
+      required,
+      validEmail
     }
   }),
   methods: {

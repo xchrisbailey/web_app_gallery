@@ -22,17 +22,32 @@
             <v-container>
               <v-row>
                 <v-col>
-                  <v-text-field v-model="newFirstName" label="First Name" outlined></v-text-field>
+                  <v-text-field
+                    v-model="newFirstName"
+                    label="First Name"
+                    :rules="[rules.required('First Name')]"
+                    outlined
+                  ></v-text-field>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col>
-                  <v-text-field v-model="newLastName" label="Last Name" outlined></v-text-field>
+                  <v-text-field
+                    v-model="newLastName"
+                    label="Last Name"
+                    :rules="[rules.required('Last Name')]"
+                    outlined
+                  ></v-text-field>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col>
-                  <v-text-field v-model="newEmail" label="E-mail" outlined></v-text-field>
+                  <v-text-field
+                    v-model="newEmail"
+                    label="Email"
+                    :rules="[rules.required('Email'), rules.validEmail('Email')]"
+                    outlined
+                  ></v-text-field>
                 </v-col>
               </v-row>
               <v-alert class="mt-4 mb-0 sticky" type="error" v-if="updateError"> {{ updateError }} </v-alert>
@@ -93,6 +108,7 @@
 </template>
 
 <script lang="ts">
+import { required, validEmail } from "@/services/validators";
 import { getUser, logOutUser, updateUser } from "../services/signUpApi";
 import { User } from "../types";
 import Vue from "vue";
@@ -113,7 +129,11 @@ export default Vue.extend({
     newLastName: "",
     newEmail: "",
     updatingUserProfile: false,
-    updateError: undefined as string | undefined
+    updateError: undefined as string | undefined,
+    rules: {
+      validEmail,
+      required
+    }
   }),
 
   created: function() {

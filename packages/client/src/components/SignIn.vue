@@ -13,7 +13,7 @@
           v-model="email"
           label="Email"
           autocomplete="email"
-          :rules="[rules.email, rules.required]"
+          :rules="[rules.validEmail('Email'), rules.required('Email')]"
           outlined
           required
         >
@@ -26,9 +26,11 @@
         <v-text-field
           v-model="password"
           label="Password"
-          type="password"
+          :type="showPassword ? 'text' : 'password'"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPassword = !showPassword"
           autocomplete="current-password"
-          :rules="[rules.required]"
+          :rules="[rules.required('Password')]"
           outlined
           required
         >
@@ -55,6 +57,7 @@
 </template>
 
 <script lang="ts">
+import { required, validEmail } from "@/services/validators";
 import { logInUser } from "../services/signUpApi";
 
 export default {
@@ -63,12 +66,13 @@ export default {
   data: () => ({
     email: "",
     password: "",
+    showPassword: false,
     loading: false,
     error: undefined as string | undefined,
 
     rules: {
-      email: v => !!(v || "").match(/@/) || "Please enter a valid email",
-      required: v => !!v || "This field is required"
+      validEmail,
+      required
     }
   }),
   methods: {
