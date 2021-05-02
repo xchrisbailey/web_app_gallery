@@ -106,11 +106,11 @@ export default Vue.extend({
 
   data: () => ({
     userData: null as User | null,
-    userInitials: undefined,
+    userInitials: undefined as string | undefined,
     edit: false,
-    newFirstName: undefined,
-    newLastName: undefined,
-    newEmail: undefined,
+    newFirstName: undefined as string | undefined,
+    newLastName: undefined as string | undefined,
+    newEmail: undefined as string | undefined,
     updatingUserProfile: false
   }),
 
@@ -118,7 +118,7 @@ export default Vue.extend({
     getUser()
       .then(user => {
         this.userData = user;
-        this.userInitials = initials(this.userData.firstName + " " + this.userData.lastName);
+        this.userInitials = initials(this.userData.firstName + " " + this.userData.lastName) as string;
       })
       .catch(error => {
         console.log(error);
@@ -138,9 +138,9 @@ export default Vue.extend({
     },
     editprofile() {
       this.edit = true;
-      this.newFirstName = this.userData.firstName;
-      this.newLastName = this.userData.lastName;
-      this.newEmail = this.userData.email;
+      this.newFirstName = this.userData?.firstName;
+      this.newLastName = this.userData?.lastName;
+      this.newEmail = this.userData?.email;
     },
     updateProfile() {
       this.updatingUserProfile = true;
