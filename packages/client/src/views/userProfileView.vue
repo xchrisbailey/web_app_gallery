@@ -35,6 +35,7 @@
                   <v-text-field v-model="newEmail" label="E-mail" outlined></v-text-field>
                 </v-col>
               </v-row>
+              <v-alert class="mt-4 mb-0 sticky" type="error" v-if="updateError"> {{ updateError }} </v-alert>
             </v-container>
           </v-card-text>
           <v-card-actions>
@@ -111,7 +112,8 @@ export default Vue.extend({
     newFirstName: undefined as string | undefined,
     newLastName: undefined as string | undefined,
     newEmail: undefined as string | undefined,
-    updatingUserProfile: false
+    updatingUserProfile: false,
+    updateError: undefined as string | undefined
   }),
 
   created: function() {
@@ -147,10 +149,11 @@ export default Vue.extend({
       updateUser(this.newEmail, this.newFirstName, this.newLastName)
         .then(user => {
           this.edit = false;
+          this.updateError = undefined;
           console.log(user);
         })
         .catch(error => {
-          alert(error);
+          this.updateError = error;
           console.log(error);
         })
         .finally(() => {

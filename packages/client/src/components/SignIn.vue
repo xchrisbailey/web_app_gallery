@@ -1,9 +1,6 @@
 <template>
   <v-container class="center">
     <v-card elevation="1" width="600">
-      <v-alert type="error" :value="error" v-if="error">
-        {{ errorMsg }}
-      </v-alert>
       <v-card-title justify-center>
         {{ msg }}
       </v-card-title>
@@ -46,6 +43,9 @@
           </v-flex>
         </v-layout>
       </v-container>
+      <v-alert class="ma-4" type="error" :value="error" v-if="error">
+        {{ error }}
+      </v-alert>
       <v-card-text>
         No account, no problem just
         <router-link :to="{ name: 'signUp', query: { redirect: $route.query.redirect } }">Sign Up</router-link>
@@ -54,8 +54,9 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import { logInUser } from "../services/signUpApi";
+
 export default {
   name: "SignIn",
   props: {
@@ -66,8 +67,7 @@ export default {
     email: undefined,
     password: undefined,
     loading: false,
-    error: false,
-    errorMsg: "",
+    error: undefined as string | undefined,
 
     rules: {
       email: v => !!(v || "").match(/@/) || "Please enter a valid email",
@@ -85,8 +85,7 @@ export default {
         })
         .catch(err => {
           console.log(err);
-          this.error = true;
-          this.errorMsg = err;
+          this.error = err;
         })
         .finally(() => {
           this.loading = false;

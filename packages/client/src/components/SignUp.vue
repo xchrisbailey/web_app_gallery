@@ -1,20 +1,5 @@
 <template>
   <v-container class="center">
-    <v-dialog v-model="fail" width="500">
-      <v-card>
-        <v-card-text>
-          This account is already in use
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="fail = false">
-            Try Again
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
     <v-card elevation="1" width="600">
       <v-card-title justify-center>
         {{ msg }}
@@ -87,6 +72,9 @@
           </v-flex>
         </v-layout>
       </v-container>
+      <v-alert class="ma-4" type="error" :value="error" v-if="error">
+        {{ error }}
+      </v-alert>
       <v-card-text>
         Already have an account, no problem just
         <router-link :to="{ name: 'signIn', query: { redirect: $route.query.redirect } }">Sign In</router-link>
@@ -95,7 +83,7 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import { submitUser } from "../services/signUpApi";
 
 export default {
@@ -111,7 +99,7 @@ export default {
     password: undefined,
     loading: false,
     form: false,
-    fail: false,
+    error: undefined as string | undefined,
 
     rules: {
       password: v =>
@@ -132,7 +120,7 @@ export default {
         })
         .catch(err => {
           console.log(err);
-          this.fail = true;
+          this.error = err;
         })
         .finally(() => {
           this.loading = false;

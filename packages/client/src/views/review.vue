@@ -1,17 +1,5 @@
 <template>
   <div id="rating">
-    <div>
-      <v-alert type="error" :value="error" v-if="error">
-        <v-layout row wrap justify-space-around>
-          <v-flex sx12 md9>
-            {{ errorMsg }}
-          </v-flex>
-          <v-flex xs12 md3>
-            <v-btn @click="goBack" color="warning">Click Here to go Back</v-btn>
-          </v-flex>
-        </v-layout>
-      </v-alert>
-    </div>
     <v-container>
       <v-layout row wrap justify-center>
         <v-flex xs4 md1>
@@ -59,11 +47,17 @@
       </v-layout>
       <v-layout justify-center>
         <v-flex xs5 md12>
-          <v-btn block :loading="loading" color="primary" type="submit" @click="submit">
+          <v-btn :loading="loading" color="primary" type="submit" @click="submit">
             Submit
+          </v-btn>
+          <v-btn class="ml-4" color="primary" text @click="goBack">
+            Cancel
           </v-btn>
         </v-flex>
       </v-layout>
+      <v-alert class="mt-4 mb-0" type="error" :value="error" v-if="error">
+        {{ errorMsg }}
+      </v-alert>
     </v-container>
   </div>
 </template>

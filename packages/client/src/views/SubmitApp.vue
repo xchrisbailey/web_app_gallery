@@ -11,7 +11,7 @@
         required
       ></v-select>
       <v-btn :loading="loading" :disabled="!valid" color="primary" v-on:click="submit()">Submit App</v-btn>
-      <v-alert class="mt-3" outlined type="error" text v-if="error"> {{ error }} </v-alert>
+      <v-alert class="mt-4 mb-0 sticky" type="error" v-if="error"> {{ error }} </v-alert>
     </v-container>
   </v-form>
 </template>
