@@ -138,12 +138,15 @@ export interface Review {
   _id: string;
   rating: number;
   review?: string;
-  user: User;
+  user: SanitizedUser;
 }
 
-export interface User {
+export interface SanitizedUser {
   firstName: string;
   lastName: string;
+}
+
+export interface User extends SanitizedUser {
   email: string;
   password: string;
 }

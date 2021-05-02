@@ -37,7 +37,7 @@ export default Vue.extend({
   name: "AppList",
   metaInfo: {
     title: "Web App Gallery",
-    titleTemplate: null
+    titleTemplate: undefined
   },
   components: {
     ListApp

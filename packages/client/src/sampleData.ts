@@ -95,26 +95,38 @@ export const sampleReviews: ApiResponse<Review[]> = {
   status: "ok",
   data: [
     {
+      _id: "",
       rating: 5,
       review: "I love this app!",
-      name: "Nate",
-      lastUpdated: 1615845522
+      user: {
+        firstName: "Nate",
+        lastName: "Stringham"
+      }
     },
     {
+      _id: "",
       rating: 3,
-      name: "Lorem Ipsum",
-      lastUpdated: 1615840284
+      user: {
+        firstName: "Lorem",
+        lastName: "Ipsum"
+      }
     },
     {
+      _id: "",
       rating: 4,
-      name: "User32",
-      lastUpdated: 1615843606
+      user: {
+        firstName: "John",
+        lastName: "Doe"
+      }
     },
     {
+      _id: "",
       rating: 1,
       review: "I hate this app it doesn't even work. When ever I try to open it it says app crashed.",
-      name: "Eeyore",
-      lastUpdated: 1615837503
+      user: {
+        firstName: "Eeyore",
+        lastName: ""
+      }
     }
   ]
 };

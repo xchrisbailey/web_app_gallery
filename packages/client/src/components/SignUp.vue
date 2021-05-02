@@ -87,10 +87,11 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue";
 import { required, validEmail, minLength } from "@/services/validators";
 import { submitUser } from "../services/signUpApi";
 
-export default {
+export default Vue.extend({
   name: "SignUp",
 
   data: () => ({
@@ -116,7 +117,9 @@ export default {
         .then(user => {
           console.log(user);
           this.$store.dispatch("singInUser");
-          this.$router.replace(this.$route.query.redirect || "/profile");
+          this.$router.replace(
+            typeof this.$route.query.redirect === "string" ? this.$route.query.redirect : "/profile"
+          );
         })
         .catch(err => {
           console.log(err);
@@ -127,5 +130,5 @@ export default {
         });
     }
   }
-};
+});
 </script>
