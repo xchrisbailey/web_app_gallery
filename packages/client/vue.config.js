@@ -1,7 +1,8 @@
 module.exports = {
   transpileDependencies: ["vuetify"],
   devServer: {
-    proxy: "http://webappgallery_server:3000"
+    proxy: "http://webappgallery_server:3000",
+    disableHostCheck: true
   },
   pwa: {
     name: "Web App Gallery",
