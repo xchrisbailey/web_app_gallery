@@ -112,7 +112,7 @@ const findWebApps = async (opts = { limit: 10 }, filters = {}) => {
     },
     {
       $project: {
-        'reviews.user': 0,
+        reviews: 0,
       },
     },
   );
