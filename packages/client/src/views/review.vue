@@ -1,72 +1,52 @@
 <template>
-  <div id="rating">
-    <v-container>
-      <v-layout row wrap justify-center>
-        <v-flex xs4 md1>
-          <h1 class="headline font-weight-bold mb-3">Review</h1>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex s4 md5>
-          <p class="text-left">Give the WebApp a rating</p>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap justify-space-around>
-        <v-flex xs12 md12>
-          <v-rating
-            v-model="rate"
-            hover
-            color="primary"
-            :background-color="this.$vuetify.theme.dark ? 'primary darken-2' : 'primary lighten-2'"
-            :rules="[rules.required('Rating')]"
-          ></v-rating>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex s4 md12>
-          <v-divider></v-divider>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex s4 md5>
-          <p class="text-left">Write down your review below (optional)</p>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap justtify-center>
-        <v-flex xs15 md12 justify-center>
-          <v-textarea
-            v-model="userReview"
-            outlined
-            label="Review"
-            auto-grow
-            clearable
-            counter="250"
-            :rules="[rules.maxLength('Review', 250)]"
-          >
-          </v-textarea>
-        </v-flex>
-      </v-layout>
-      <v-layout justify-center>
-        <v-flex xs5 md12>
-          <v-btn :loading="loading" color="primary" type="submit" @click="submit" :disabled="rate === 0">
-            Submit
-          </v-btn>
-          <v-btn class="ml-4" color="primary" text @click="goBack">
-            Cancel
-          </v-btn>
-        </v-flex>
-      </v-layout>
-      <v-alert class="mt-4 mb-0" type="error" :value="error" v-if="error">
-        {{ error }}
-      </v-alert>
-    </v-container>
-  </div>
+  <v-container>
+    <v-layout row wrap justify-center>
+      <h1 class="headline font-weight-bold ma-3">Review {{ app.name }}</h1>
+    </v-layout>
+    <p class="mt-4 mb-1">Choose a star rating:</p>
+    <v-rating
+      v-model="rate"
+      hover
+      size="32"
+      color="primary"
+      :background-color="this.$vuetify.theme.dark ? 'primary darken-2' : 'primary lighten-2'"
+    ></v-rating>
+    <p class="mt-4">Write a review:</p>
+    <v-textarea
+      class="mt-4"
+      v-model="userReview"
+      outlined
+      label="Review"
+      auto-grow
+      clearable
+      counter="250"
+      :rules="[rules.required('Review'), rules.maxLength('Review', 250)]"
+    >
+    </v-textarea>
+    <v-btn :loading="loading" color="primary" type="submit" @click="submit" :disabled="rate === 0 || userReview === ''">
+      Submit
+    </v-btn>
+    <v-btn class="ml-4" color="primary" text @click="goBack">
+      Cancel
+    </v-btn>
+    <v-alert class="mt-4 mb-0" type="error" :value="error" v-if="error">
+      {{ error }}
+    </v-alert>
+  </v-container>
 </template>
+
+<style lang="scss" scoped>
+.v-rating {
+  display: inline-block;
+}
+</style>
 
 <script lang="ts">
 import Vue from "vue";
 import { required, maxLength } from "@/services/validators";
 import { submitReview } from "../services/reviewApi";
+import { WebApp } from "@/types";
+import { getApp } from "@/services/webAppApi";
 export default Vue.extend({
   name: "rating",
 
@@ -79,12 +59,23 @@ export default Vue.extend({
     rate: 0,
     loading: false,
     error: undefined as string | undefined,
+    app: undefined as WebApp | undefined,
 
     rules: {
       maxLength,
       required
     }
   }),
+
+  created: function() {
+    this.app = (this.$route.params.app as unknown) as WebApp;
+    if (this.app?.name == undefined) {
+      getApp(this.$route.params.id).then(app => {
+        this.app = app;
+      });
+    }
+  },
+
   methods: {
     submit() {
       console.log(this.rate);
