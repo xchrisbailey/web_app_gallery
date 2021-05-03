@@ -1,5 +1,6 @@
 module.exports = {
   transpileDependencies: ["vuetify"],
+  indexPath: "404.html",
   devServer: {
     proxy: "http://localhost:3000",
     disableHostCheck: true
