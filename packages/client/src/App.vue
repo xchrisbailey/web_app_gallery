@@ -179,7 +179,8 @@ import { Category } from "./types";
 const catagories = new Map<Category | "submit", { name: string; icon: string }>([
   ["games", { name: "Games", icon: "mdi-google-controller" }],
   ["social", { name: "Social", icon: "mdi-account" }],
-  ["travel", { name: "Travel", icon: "mdi-train-car" }],
+  // ["travel", { name: "Travel", icon: "mdi-train-car" }],
+  ["navigation", { name: "Navigation", icon: "mdi-train-car" }],
   ["utilities", { name: "Utilities", icon: "mdi-tools" }],
   ["music", { name: "Music", icon: "mdi-music" }],
   ["news", { name: "News", icon: "mdi-newspaper" }],
