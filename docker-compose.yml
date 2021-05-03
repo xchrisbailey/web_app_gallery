@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+    webappgallery_client:
+        build:
+            context: ./packages/client/
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"
+    webappgallery_server:
+        build:
+            context: ./packages/server/
+            dockerfile: Dockerfile
+        ports:
+            - '3000:3000'
+    mongo:
+        image: mongo
+        restart: always
+        volumes:
+            - mongo_data:/data/db
+volumes:
+    mongo_data:
+        external: true

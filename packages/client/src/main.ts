@@ -1,4 +1,18 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import App from "./App.vue";
+import "./registerServiceWorker";
+import router from "./router";
+import store from "./store";
+import vuetify from "./plugins/vuetify";
+import VueMeta from "vue-meta";
 
-createApp(App).mount('#app')
+Vue.config.productionTip = false;
+
+Vue.use(VueMeta);
+
+new Vue({
+  router,
+  store,
+  vuetify,
+  render: h => h(App)
+}).$mount("#app");

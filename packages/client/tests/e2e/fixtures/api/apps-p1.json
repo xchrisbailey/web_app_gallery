@@ -1,0 +1,545 @@
+{
+    "status": "ok",
+    "data": [
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6ce1021b8839d045063a",
+            "manifestURL": "https://proxx.app/manifest.json",
+            "startURL": "/",
+            "name": "PROXX",
+            "themeColor": "#0e103e",
+            "icons": [
+                {
+                    "_id": "607b6ce1021b8839d045063b",
+                    "src": "assets/icon-05a70868.png",
+                    "type": "image/png",
+                    "sizes": "1024x1024"
+                },
+                {
+                    "_id": "607b6ce1021b8839d045063c",
+                    "src": "assets/icon-maskable-7a2eb399.png",
+                    "type": "image/png",
+                    "sizes": "1024x1024",
+                    "purpose": "maskable"
+                }
+            ],
+            "screenshots": [],
+            "description": "Help your crew navigate space by marking out the black holes using proxx, your proximity scanner.",
+            "category": "games",
+            "createdAt": "2021-04-17T23:18:57.647Z",
+            "updatedAt": "2021-04-17T23:18:57.647Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6cee021b8839d045063d",
+            "manifestURL": "https://connexagon.web.app/manifest.webmanifest",
+            "startURL": "./",
+            "name": "Connexagon",
+            "themeColor": "#1976d2",
+            "icons": [
+                {
+                    "_id": "607b6cee021b8839d045063e",
+                    "src": "assets/icons/badge-72x72.png",
+                    "sizes": "72x72",
+                    "type": "image/png",
+                    "purpose": "badge"
+                },
+                {
+                    "_id": "607b6cee021b8839d045063f",
+                    "src": "assets/icons/badge-512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                    "purpose": "badge"
+                },
+                {
+                    "_id": "607b6cee021b8839d0450640",
+                    "src": "assets/icons/icon-72x72.png",
+                    "sizes": "72x72",
+                    "type": "image/png",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6cee021b8839d0450641",
+                    "src": "assets/icons/icon-96x96.png",
+                    "sizes": "96x96",
+                    "type": "image/png",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6cee021b8839d0450642",
+                    "src": "assets/icons/icon-128x128.png",
+                    "sizes": "128x128",
+                    "type": "image/png",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6cee021b8839d0450643",
+                    "src": "assets/icons/icon-144x144.png",
+                    "sizes": "144x144",
+                    "type": "image/png",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6cee021b8839d0450644",
+                    "src": "assets/icons/icon-152x152.png",
+                    "sizes": "152x152",
+                    "type": "image/png",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6cee021b8839d0450645",
+                    "src": "assets/icons/icon-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6cee021b8839d0450646",
+                    "src": "assets/icons/icon-384x384.png",
+                    "sizes": "384x384",
+                    "type": "image/png",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6cee021b8839d0450647",
+                    "src": "assets/icons/icon-512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                    "purpose": "any"
+                },
+                {
+                    "_id": "607b6cee021b8839d0450648",
+                    "src": "assets/icons/icon-72x72-maskable.png",
+                    "sizes": "72x72",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6cee021b8839d0450649",
+                    "src": "assets/icons/icon-96x96-maskable.png",
+                    "sizes": "96x96",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6cee021b8839d045064a",
+                    "src": "assets/icons/icon-128x128-maskable.png",
+                    "sizes": "128x128",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6cee021b8839d045064b",
+                    "src": "assets/icons/icon-144x144-maskable.png",
+                    "sizes": "144x144",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6cee021b8839d045064c",
+                    "src": "assets/icons/icon-152x152-maskable.png",
+                    "sizes": "152x152",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6cee021b8839d045064d",
+                    "src": "assets/icons/icon-192x192-maskable.png",
+                    "sizes": "192x192",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6cee021b8839d045064e",
+                    "src": "assets/icons/icon-384x384-maskable.png",
+                    "sizes": "384x384",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6cee021b8839d045064f",
+                    "src": "assets/icons/icon-512x512-maskable.png",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                }
+            ],
+            "screenshots": [],
+            "description": "Play connexagon online.",
+            "category": "games",
+            "createdAt": "2021-04-17T23:19:10.766Z",
+            "updatedAt": "2021-04-17T23:19:10.766Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6cfb021b8839d0450650",
+            "manifestURL": "https://doodlecricket.github.io/manifest.json",
+            "startURL": ".",
+            "name": "Doodle Cricket",
+            "themeColor": "#09a3d1",
+            "icons": [
+                {
+                    "_id": "607b6cfb021b8839d0450651",
+                    "src": "statics/icons/icon-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6cfb021b8839d0450652",
+                    "src": "statics/icons/icon-512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [],
+            "description": "Welcome to the Doodle Cricket Game! Powered By Advance AI Algorithms. This is a game built for you the cricket fan! Every cricket lover can now have the most lightweight mobile cricket game at the palm of their hands! You can play the maximum number of cricket shots without having over limits. Be prepared for awesome fun!",
+            "category": "games",
+            "createdAt": "2021-04-17T23:19:23.994Z",
+            "updatedAt": "2021-04-17T23:19:23.994Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6d0b021b8839d0450653",
+            "manifestURL": "https://sudoku.jull.dev/manifest.json?v=1",
+            "startURL": "/",
+            "name": "Sudoku",
+            "themeColor": "#000000",
+            "icons": [
+                {
+                    "_id": "607b6d0b021b8839d0450654",
+                    "src": "/img/icons/android-chrome-96x96.png",
+                    "sizes": "96x96",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d0b021b8839d0450655",
+                    "src": "/img/icons/android-chrome-144x144.png",
+                    "sizes": "144x144",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d0b021b8839d0450656",
+                    "src": "/img/icons/android-chrome-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d0b021b8839d0450657",
+                    "src": "/img/icons/android-chrome-512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [],
+            "description": "A minimal Sudoku Web App.",
+            "category": "games",
+            "createdAt": "2021-04-17T23:19:39.040Z",
+            "updatedAt": "2021-04-17T23:19:39.040Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6d18021b8839d0450658",
+            "manifestURL": "https://snake-pwa.github.io/manifest.json",
+            "startURL": ".",
+            "name": "Snake",
+            "themeColor": "#000",
+            "icons": [
+                {
+                    "_id": "607b6d18021b8839d0450659",
+                    "src": "images/icons/icon-48.png",
+                    "sizes": "48x48",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d18021b8839d045065a",
+                    "src": "images/icons/icon-96.png",
+                    "sizes": "96x96",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d18021b8839d045065b",
+                    "src": "images/icons/icon-144.png",
+                    "sizes": "144x144",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d18021b8839d045065c",
+                    "src": "images/icons/icon-192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d18021b8839d045065d",
+                    "src": "images/icons/icon-384.png",
+                    "sizes": "384x384",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d18021b8839d045065e",
+                    "src": "images/icons/icon-512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [],
+            "description": "A simple snake game",
+            "category": "games",
+            "createdAt": "2021-04-17T23:19:52.186Z",
+            "updatedAt": "2021-04-17T23:19:52.186Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6d27021b8839d045065f",
+            "manifestURL": "https://www.towergame.app/manifest.json",
+            "startURL": "/",
+            "name": "Tower Game",
+            "themeColor": "#F95240",
+            "icons": [
+                {
+                    "_id": "607b6d27021b8839d0450660",
+                    "src": "/assets/icon-192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d27021b8839d0450661",
+                    "src": "/assets/icon-512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [],
+            "description": "Stack blocks and build the tallest tower!",
+            "category": "games",
+            "createdAt": "2021-04-17T23:20:07.070Z",
+            "updatedAt": "2021-04-17T23:20:07.070Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6d32021b8839d0450662",
+            "manifestURL": "https://crossyroad.netlify.app/manifest.json",
+            "startURL": ".",
+            "name": "Bouncy Bacon",
+            "themeColor": "#87C6FF",
+            "icons": [
+                {
+                    "_id": "607b6d32021b8839d0450663",
+                    "src": "/apple/splash/icon_1125x2436.png",
+                    "sizes": "1125x2436",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d0450664",
+                    "src": "/apple/splash/icon_1136x640.png",
+                    "sizes": "1136x640",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d0450665",
+                    "src": "/apple/splash/icon_1242x2208.png",
+                    "sizes": "1242x2208",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d0450666",
+                    "src": "/apple/splash/icon_1242x2688.png",
+                    "sizes": "1242x2688",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d0450667",
+                    "src": "/apple/splash/icon_1334x750.png",
+                    "sizes": "1334x750",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d0450668",
+                    "src": "/apple/splash/icon_1792x828.png",
+                    "sizes": "1792x828",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d0450669",
+                    "src": "/apple/icons/icon_180x180.png",
+                    "sizes": "180x180",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d045066a",
+                    "src": "/apple/icons/icon_192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d045066b",
+                    "src": "/apple/splash/icon_2208x1242.png",
+                    "sizes": "2208x1242",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d045066c",
+                    "src": "/apple/splash/icon_2436x1125.png",
+                    "sizes": "2436x1125",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d045066d",
+                    "src": "/apple/splash/icon_2688x1242.png",
+                    "sizes": "2688x1242",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d045066e",
+                    "src": "/apple/icons/icon_512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d045066f",
+                    "src": "/apple/splash/icon_640x1136.png",
+                    "sizes": "640x1136",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d0450670",
+                    "src": "/apple/splash/icon_750x1334.png",
+                    "sizes": "750x1334",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d32021b8839d0450671",
+                    "src": "/apple/splash/icon_828x1792.png",
+                    "sizes": "828x1792",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [],
+            "description": "The infinite retro bouncer you'll never need to put down",
+            "category": "games",
+            "createdAt": "2021-04-17T23:20:18.295Z",
+            "updatedAt": "2021-04-17T23:20:18.295Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6d3f021b8839d0450672",
+            "manifestURL": "https://maxwellito.github.io/breaklock/en/manifest.json",
+            "startURL": "./",
+            "name": "BreakLock",
+            "themeColor": "#14171b",
+            "icons": [
+                {
+                    "_id": "607b6d3f021b8839d0450673",
+                    "src": "../assets/icons/icon-128x128.png",
+                    "sizes": "128x128",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d3f021b8839d0450674",
+                    "src": "../assets/icons/icon-144x144.png",
+                    "sizes": "144x144",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d3f021b8839d0450675",
+                    "src": "../assets/icons/icon-152x152.png",
+                    "sizes": "152x152",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d3f021b8839d0450676",
+                    "src": "../assets/icons/icon-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d3f021b8839d0450677",
+                    "src": "../assets/icons/icon-256x256.png",
+                    "sizes": "256x256",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d3f021b8839d0450678",
+                    "src": "../assets/icons/ios-180x180.png",
+                    "sizes": "180x180",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6d3f021b8839d0450679",
+                    "src": "../assets/icons/ios-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                },
+                {
+                    "_id": "607b6d3f021b8839d045067a",
+                    "src": "../assets/icons/ios-256x256.png",
+                    "sizes": "256x256",
+                    "type": "image/png",
+                    "purpose": "maskable"
+                }
+            ],
+            "screenshots": [],
+            "description": "A hybrid of Mastermind and the Android pattern lock. A game you gonna love to hate.",
+            "category": "games",
+            "createdAt": "2021-04-17T23:20:31.593Z",
+            "updatedAt": "2021-04-17T23:20:31.593Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "000000000000000000000001",
+            "manifestURL": "https://www.youtube.com/manifest.webmanifest",
+            "startURL": "/?feature=ytca",
+            "name": "YouTube",
+            "icons": [
+                {
+                    "_id": "607b6d4d021b8839d045067c",
+                    "src": "https://www.gstatic.com/youtube/img/branding/favicon/favicon_144x144.png",
+                    "sizes": "144x144",
+                    "type": "image/png"
+                },
+                {
+                    "_id": "607b6d4d021b8839d045067d",
+                    "src": "https://www.gstatic.com/youtube/img/branding/favicon/favicon_192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [],
+            "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
+            "category": "social",
+            "createdAt": "2021-04-17T23:20:45.726Z",
+            "updatedAt": "2021-04-17T23:20:45.726Z"
+        },
+        {
+            "appleMobileWebAppCapable": false,
+            "_id": "607b6d64021b8839d045067e",
+            "manifestURL": "https://www.pinterest.com/manifest.json/",
+            "startURL": "/?utm_source=homescreen_icon",
+            "name": "Pinterest",
+            "themeColor": "#FFFFFF",
+            "icons": [
+                {
+                    "_id": "607b6d64021b8839d045067f",
+                    "src": "https://s.pinimg.com/images/favicon_red_192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                }
+            ],
+            "screenshots": [],
+            "description": "Discover recipes, home ideas, style inspiration and other ideas to try.",
+            "category": "social",
+            "createdAt": "2021-04-17T23:21:08.553Z",
+            "updatedAt": "2021-04-17T23:21:08.553Z"
+        }
+    ],
+    "totalDocs": 19,
+    "limit": 10,
+    "totalPages": 2,
+    "page": 1,
+    "pagingCounter": 1,
+    "hasPrevPage": false,
+    "hasNextPage": true,
+    "prevPage": null,
+    "nextPage": 2
+}

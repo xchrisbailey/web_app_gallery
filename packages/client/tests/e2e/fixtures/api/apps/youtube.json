@@ -1,0 +1,30 @@
+{
+    "status": "ok",
+    "data": {
+        "appleMobileWebAppCapable": false,
+        "_id": "000000000000000000000001",
+        "manifestURL": "https://youtube.com/manifest.webmanifest",
+        "startURL": "/?feature=ytca",
+        "name": "YouTube",
+        "icons": [
+            {
+                "_id": "607d2279381b0e480c360127",
+                "src": "https://www.gstatic.com/youtube/img/branding/favicon/favicon_144x144.png",
+                "sizes": "144x144",
+                "type": "image/png"
+            },
+            {
+                "_id": "607d2279381b0e480c360128",
+                "src": "https://www.gstatic.com/youtube/img/branding/favicon/favicon_192x192.png",
+                "sizes": "192x192",
+                "type": "image/png"
+            }
+        ],
+        "screenshots": [],
+        "reviews": [],
+        "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
+        "category": "utilities",
+        "createdAt": "2021-04-19T06:26:01.807Z",
+        "updatedAt": "2021-04-19T06:26:01.807Z"
+    }
+}
