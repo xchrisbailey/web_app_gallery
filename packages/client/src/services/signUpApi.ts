@@ -58,8 +58,8 @@ export async function logInUser(userEmail: string, userPassword: string): Promis
   }
 }
 
-export async function logOutUser(): Promise<User> {
-  const request = axios.post<ApiResponse<User>>("/api/logout", {});
+export async function logOutUser(): Promise<string> {
+  const request = axios.post<ApiResponse<string>>("/api/logout", {});
 
   try {
     const response = await request;
@@ -79,6 +79,21 @@ export async function updateUser(userEmail: string, userFirstName: string, userL
     lastName: userLastName,
     email: userEmail
   });
+
+  try {
+    const response = await request;
+    return response.data.data;
+  } catch (error) {
+    if (error.response.data.status === "error") {
+      throw error.response.data.message;
+    } else {
+      throw error;
+    }
+  }
+}
+
+export async function destroyUser(): Promise<string> {
+  const request = axios.post<ApiResponse<string>>("/api/me/destroy", {});
 
   try {
     const response = await request;

@@ -60,6 +60,21 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <v-dialog v-model="showDeletePrompt" width="500">
+        <v-card>
+          <v-card-title>
+            <span class="headline">Delete Account?</span>
+          </v-card-title>
+          <v-card-text>
+            Are you sure you want to permanently delete your Account?
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn text @click="showDeletePrompt = false" color="primary">Cancel</v-btn>
+            <v-btn text @click="deleteUser" color="error" :loading="deletingUser">Delete Account</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
       <v-row>
         <v-col cols="12" sm="6">
           <v-card-title>
@@ -89,12 +104,17 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="4">
           <v-btn @click="signOut" color="error">
             Sign out
           </v-btn>
         </v-col>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="4">
+          <v-btn @click="showDeletePrompt = true" color="error">
+            Delete Account
+          </v-btn>
+        </v-col>
+        <v-col cols="12" sm="4">
           <v-btn color="primary" @click="editprofile">
             <v-icon left dark>
               mdi-pencil
@@ -109,7 +129,7 @@
 
 <script lang="ts">
 import { required, validEmail } from "@/services/validators";
-import { getUser, logOutUser, updateUser } from "../services/signUpApi";
+import { destroyUser, getUser, logOutUser, updateUser } from "../services/signUpApi";
 import { User } from "../types";
 import Vue from "vue";
 import initials from "initials";
@@ -130,6 +150,8 @@ export default Vue.extend({
     newEmail: "",
     updatingUserProfile: false,
     updateError: undefined as string | undefined,
+    showDeletePrompt: false,
+    deletingUser: false,
     rules: {
       validEmail,
       required
@@ -149,8 +171,8 @@ export default Vue.extend({
   methods: {
     signOut() {
       logOutUser()
-        .then(user => {
-          console.log(user);
+        .then(message => {
+          console.log(message);
           this.$store.dispatch("signOutUser");
           this.$router.push({ path: "/signIn" });
         })
@@ -180,6 +202,25 @@ export default Vue.extend({
         })
         .finally(() => {
           this.updatingUserProfile = false;
+        });
+    },
+    deleteUser() {
+      this.deletingUser = true;
+      destroyUser()
+        .then(message => {
+          this.edit = false;
+          this.updateError = undefined;
+          console.log(message);
+          this.$store.dispatch("signOutUser");
+          this.$router.push({ path: "/signUp" });
+        })
+        .catch(error => {
+          alert(error);
+          console.log(error);
+        })
+        .finally(() => {
+          this.showDeletePrompt = false;
+          this.deletingUser = false;
         });
     }
   }
