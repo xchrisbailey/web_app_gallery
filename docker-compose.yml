@@ -16,4 +16,7 @@ services:
         image: mongo
         restart: always
         volumes:
-            - /data/db
+            - mongo_data:/data/db
+volumes:
+    mongo_data:
+        external: true

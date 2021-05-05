@@ -115,6 +115,11 @@ const findWebApps = async (opts = { limit: 10 }, filters = {}) => {
         reviews: 0,
       },
     },
+    {
+      $sort: {
+        averageRating: -1,
+      },
+    },
   );
 
   const appAggregate = WebApp.aggregate(aggregates);

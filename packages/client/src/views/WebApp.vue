@@ -44,7 +44,7 @@
       />
     </label>
 
-    <v-btn class="rate" :to="this.$route.params.id + '/review'" color="primary" outlined>
+    <v-btn class="rate" :to="{ name: 'Rating', params: { app: appData, id: appData._id } }" color="primary" outlined>
       Rate and Review
     </v-btn>
 
