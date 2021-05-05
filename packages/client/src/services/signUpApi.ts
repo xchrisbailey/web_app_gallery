@@ -93,7 +93,7 @@ export async function updateUser(userEmail: string, userFirstName: string, userL
 }
 
 export async function destroyUser(): Promise<string> {
-  const request = axios.post<ApiResponse<string>>("/api/me/destroy", {});
+  const request = axios.delete<ApiResponse<string>>("/api/me/destroy", {});
 
   try {
     const response = await request;
