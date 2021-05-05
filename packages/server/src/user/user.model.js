@@ -3,6 +3,8 @@ const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const validator = require('validator');
 
+const Review = require('../review/review.model');
+
 const userSchema = new mongoose.Schema(
   {
     email: {
@@ -92,6 +94,11 @@ userSchema.post('save', function (err, doc, next) {
 
   if (errorMessage) next(new Error(errorMessage));
   else next();
+});
+
+userSchema.pre('remove', async function (next) {
+  await Review.deleteMany({ user: this._id });
+  next();
 });
 
 const User = mongoose.model('User', userSchema);
