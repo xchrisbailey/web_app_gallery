@@ -43,6 +43,12 @@ describe("Side nav", () => {
       .should("have.attr", "href", "/apps/submit");
   });
 
+  it("links to about page", () => {
+    cy.get(".v-navigation-drawer")
+      .contains("a", "About")
+      .should("have.attr", "href", "/about");
+  });
+
   it("links to profile", () => {
     cy.get(".v-navigation-drawer")
       .contains("a", "My Account")
