@@ -29,7 +29,7 @@
 
     <v-navigation-drawer app v-model="drawer">
       <v-list>
-        <v-list-item color="primary" link :to="'/profile'">
+        <v-list-item color="primary" link to="/profile">
           <v-list-item-icon>
             <v-icon>mdi-account</v-icon>
           </v-list-item-icon>
@@ -49,7 +49,7 @@
           <v-list-item-title>{{ name }}</v-list-item-title>
         </v-list-item>
         <v-spacer></v-spacer>
-        <v-list-item color="primary" link :to="'/apps/submit'">
+        <v-list-item color="primary" link to="/apps/submit">
           <v-list-item-icon>
             <v-icon>mdi-plus</v-icon>
           </v-list-item-icon>
